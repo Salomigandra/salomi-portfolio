@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ----- Global helpers ----- */
+
+.link {
+  @apply underline underline-offset-4 transition;
+  text-decoration-color: rgb(21 18 12 / 0.30); /* charcoal @ 30% */
+}
+.link:hover {
+  text-decoration-color: rgb(21 18 12 / 1);    /* charcoal @ 100% */
+}
+
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: rgba(0,0,0,.2); border-radius: 999px; }
+*::-webkit-scrollbar-track { background: transparent; }
+
+/* Optional for footer links */
+.link-light { text-decoration: underline; text-underline-offset: 4px; }
+.link-light:hover { opacity: .85; }
+
+/* Prevent accidental horizontal scrolling (wide images, rotated photos, etc.) */
+html, body { overflow-x: hidden; }
+
+/* Make images never overflow on small screens */
+img { max-width: 100%; height: auto; display: block; }
+
+/* Respect user preference: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-bg-pan { animation: none !important; background-position: 50% 50% !important; }
+  .animate-wave-slow, .animate-wave-mid, .animate-wave-fast { animation: none !important; }
+}
+
+/* ---- Header Wave Utilities ---- */
+/* Fade the top waves into transparent */
+.mask-fade-b {
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+/* (Optional) If you ever need a reverse fade: */
+.mask-fade-t {
+  -webkit-mask-image: linear-gradient(to top, black, transparent);
+  mask-image: linear-gradient(to top, black, transparent);
+}
+
+

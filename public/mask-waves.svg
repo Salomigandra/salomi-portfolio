@@ -1,0 +1,23 @@
+<svg viewBox="0 0 1440 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- white = visible, black = hidden -->
+  <defs>
+    <linearGradient id="fade" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="white"/>
+      <stop offset="85%" stop-color="white"/>
+      <stop offset="100%" stop-color="black"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1440" height="400" fill="black"/>
+  
+  <!-- wave 1 -->
+  <path d="M0,220 C240,160 360,240 540,210 C720,180 840,240 1080,210 C1200,195 1320,205 1440,180 L1440,0 L0,0 Z"
+        fill="white" opacity="0.95"/>
+  
+  <!-- wave 2 -->
+  <path d="M0,260 C220,200 360,270 520,245 C700,215 880,275 1100,245 C1250,225 1360,235 1440,210 L1440,400 L0,400 Z"
+        fill="white" opacity="0.85"/>
+  
+  <!-- fade bottom -->
+  <rect width="1440" height="400" fill="url(#fade)"/>
+</svg>
