@@ -1,15 +1,12 @@
-node_modules/
-.next/
-out/
-# logs
+node_modules
+.next
+out
+dist
+.env*
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-# env
-.env
-.env.*
-!.env.example
-# OS/editor
+yarn-*.log*
+pnpm-*.log*
 .DS_Store
-.vscode/
-.idea/
+.vscode
+.idea
+*.swp

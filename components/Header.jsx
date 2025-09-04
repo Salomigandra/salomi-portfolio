@@ -40,7 +40,7 @@ export default function Header() {
       />
 
       {/* Nav content */}
-      <nav className="relative z-10 mx-auto max-w-7xl px-6 md:px-8 py-6 md:py-10 flex items-center justify-between">
+      <nav className="relative z-10 mx-auto max-w-6xl px-6 md:px-8 py-6 md:py-10 flex items-center justify-between">
       <a href="/" className="flex items-center gap-5 group">
   <div className="grid place-items-center w-14 h-14 rounded-full border-2 border-white/60 text-white font-bold text-2xl tracking-wide">
     SG

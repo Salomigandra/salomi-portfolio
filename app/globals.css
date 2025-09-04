@@ -46,3 +46,15 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 
+/* app/globals.css (or styles/globals.css) */
+:root{
+  --sb: 74, 96, 115;   /* #4A6073 */
+  --sc: 227, 139, 117; /* #E38B75 */
+}
+.bg-pastel-wash{
+  background: linear-gradient(
+    180deg,
+    rgba(var(--sb), 0.04) 0%,
+    rgba(var(--sc), 0.06) 100%
+  );
+}

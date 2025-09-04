@@ -1,0 +1,59 @@
+.fade { animation: fadeInOut 1.4s ease-in-out; }
+.driftSlow { animation: drift 30s linear infinite; }
+.driftMed { animation: drift 22s linear infinite; }
+.swell { animation: swell 6s ease-in-out infinite; }
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(6px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes drift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes swell {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@keyframes move_wave {
+    0%   { transform: translateX(0) translateZ(0) scaleY(1); }
+    50%  { transform: translateX(-25%) translateZ(0) scaleY(0.98); }
+    100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+  }
+  
+/* Waving hand */
+.hand {
+    display: inline-block;
+    transform-origin: 70% 70%;
+    animation: handWave 1.6s ease-in-out infinite;
+  }
+  
+  @keyframes handWave {
+    0% { transform: rotate(0deg); }
+    15% { transform: rotate(14deg); }
+    30% { transform: rotate(-8deg); }
+    45% { transform: rotate(14deg); }
+    60% { transform: rotate(-4deg); }
+    75% { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
+  }
+  
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .hand { animation: none; }
+  }
+  
+  /* Pastel wash to match the Glimpse section */
+.pastelHero {
+    --sb: 74, 96, 115;   /* #4A6073 Slate Blue */
+    --sc: 227, 139, 117; /* #E38B75 Soft Coral */
+    background: linear-gradient(
+      180deg,
+      rgba(var(--sb), 0.04) 0%,
+      rgba(var(--sc), 0.06) 100%
+    );
+  }
+  
