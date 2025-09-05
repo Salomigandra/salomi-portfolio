@@ -31,7 +31,7 @@ export default function Header() {
       {/* Wave edge at the TOP of header */}
       <div
         className="
-          absolute left-0 right-0 top-0 h-20 pointer-events-none
+          absolute left-0 right-0 top-0 h-12 pointer-events-none
           bg-inherit bg-[length:300%_300%] animate-bg-pan
           [mask-image:url('/mask-waves.svg')] [mask-size:100%_100%] [mask-repeat:no-repeat] [mask-position:top_center] [mask-mode:luminance]
           [-webkit-mask-image:url('/mask-waves.svg')] [-webkit-mask-size:100%_100%] [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:top center] [-webkit-mask-mode:luminance]
@@ -40,7 +40,8 @@ export default function Header() {
       />
 
       {/* Nav content */}
-      <nav className="relative z-10 mx-auto max-w-6xl px-6 md:px-8 py-6 md:py-10 flex items-center justify-between">
+      <nav className="relative z-10 mx-auto max-w-6xl px-6 md:px-8 py-2 md:py-3 flex items-center justify-between">
+
       <a href="/" className="flex items-center gap-5 group">
   <div className="grid place-items-center w-14 h-14 rounded-full border-2 border-white/60 text-white font-bold text-2xl tracking-wide">
     SG

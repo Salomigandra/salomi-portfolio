@@ -38,7 +38,7 @@
     will-change: top, opacity;
   }
   @media (max-width: 767px) {
-    .duck { --duck-h: 80px; }     /* mobile */
+    .duck { --duck-h: 60px; }      /* mobile */
   }
   
   .loop { animation: duck-loop var(--loop-duration, 16s) linear infinite; }
