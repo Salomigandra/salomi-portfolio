@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Bebas_Neue, Montserrat } from "next/font/google";
 
+
 const bebas = Bebas_Neue({ subsets: ["latin"], weight: "400" });
 const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "600", "700"] });
 
