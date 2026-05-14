@@ -26,46 +26,43 @@ export default function Footer() {
       <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-6 pt-12 pb-8">
 
 {/* Row: Left = stranger, Right = thank you (logo at bottom) */}
-<div className="flex flex-col md:flex-row justify-between items-start md:items-stretch gap-12">
+<div className="flex flex-col md:flex-row justify-between items-start md:items-stretch gap-8 md:gap-12">
 
   {/* Left side */}
   <div>
-    <h2 className="text-4xl md:text-6xl font-bold tracking-wide drop-shadow">
-      Don’t be a stranger
+    <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-wide drop-shadow leading-snug">
+      Don&apos;t be a stranger
     </h2>
-    <p className="mt-3 text-2xl md:text-3xl font-bold">
-      Let’s <a className="underline underline-offset-4 decoration-2" href="mailto:hello@example.com">connect</a> :)
+    <p className="mt-2 md:mt-3 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+      Let&apos;s <a className="underline underline-offset-4 decoration-2" href="mailto:salomigandra234@gmail.com">connect</a> :)
     </p>
 
     {/* Links row */}
-    <div className="mt-8 flex flex-wrap gap-8 text-xl md:text-2xl">
+    <div className="mt-5 md:mt-8 flex flex-wrap gap-5 md:gap-8 text-base sm:text-lg md:text-xl lg:text-2xl">
       <a className="underline underline-offset-4 font-semibold" href="https://www.linkedin.com/in/salomisabastian/" target="_blank" rel="noreferrer">LinkedIn</a>
-      <a className="underline underline-offset-4 font-semibold" href="/resume/salomi-resume.pdf" target="_blank" rel="noreferrer">Résumé</a>
+      <a className="underline underline-offset-4 font-semibold" href="/resume/salomi-resume.pdf" target="_blank" rel="noreferrer">R&eacute;sum&eacute;</a>
     </div>
   </div>
 
   {/* Right side */}
-  <div className="flex flex-col justify-between items-end flex-1">
+  <div className="flex flex-col justify-between items-start md:items-end flex-1 gap-6 md:gap-0">
     {/* Thank you note at top */}
-    <p className="text-2xl md:text-3xl font-bold mb-6">
+    <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold">
       Thank you for reaching the bottom ✨
     </p>
 
     {/* Logo at bottom-right */}
-    <a href="/" className="flex items-center gap-5 group self-end">
-      <div className="grid place-items-center w-14 h-14 rounded-full border-2 border-white/60 text-white font-bold text-2xl tracking-wide">
+    <a href="/" className="flex items-center gap-3 md:gap-5 group md:self-end">
+      <div className="grid place-items-center w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-white/60 text-white font-bold text-lg md:text-2xl tracking-wide flex-shrink-0">
         SG
       </div>
-      <div className="h-10 w-[2px] bg-white/50 group-hover:bg-white/70 transition" />
+      <div className="h-8 md:h-10 w-[2px] bg-white/50 group-hover:bg-white/70 transition" />
       <div className="leading-tight text-white">
-        <div className="text-2xl md:text-3xl font-bold tracking-wide">SALOMI</div>
-        <div className="text-2xl md:text-3xl font-bold tracking-wide">GANDRA</div>
+        <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-wide">SALOMI</div>
+        <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-wide">GANDRA</div>
       </div>
     </a>
   </div>
-
-
-
 
 
         </div>

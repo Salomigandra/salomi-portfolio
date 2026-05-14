@@ -5,8 +5,9 @@ export function FullSlideWrapper({ children, className = "", bg = "transparent",
     <section
       className={`
         relative w-full
-        min-h-screen
-        px-6 md:px-12 lg:px-24
+        min-h-[60vh] md:min-h-screen
+        px-4 md:px-12 lg:px-24
+        py-12 md:py-0
         ${center ? "flex items-center justify-center" : "flex flex-col"}
         ${className}
       `}
@@ -22,8 +23,9 @@ export function AdaptiveWrapper({ children, className = "", bg = "transparent", 
     <section
       className={`
         relative w-full
-        min-h-[80vh] md:min-h-screen
-        px-6 md:px-12 lg:px-24
+        min-h-[50vh] md:min-h-screen
+        px-4 md:px-12 lg:px-24
+        py-10 md:py-0
         ${center ? "flex items-center justify-center" : "flex flex-col"}
         ${className}
       `}

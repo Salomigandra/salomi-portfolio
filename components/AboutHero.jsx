@@ -100,7 +100,8 @@ export default function AboutHero() {
         </h1>
 
         <p className="mt-6 max-w-4xl text-base md:text-lg text-[#4A6073]/85">
-          Think of me <span className="font-semibold">as a feature-rich MVP,</span> still shipping updates.
+          Data analyst with a developer's edge —{" "}
+          <span className="font-semibold">I turn messy questions into clear answers</span> and complex data into decisions that actually matter.
         </p>
       </div>
       <WavesSoft />

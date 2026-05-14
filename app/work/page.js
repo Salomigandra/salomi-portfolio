@@ -1,26 +1,32 @@
 // app/work/page.js
 import Link from "next/link";
 import Image from "next/image";
+import WorkSkillsTabs from "../../components/WorkSkillsTabs";
 
-export const metadata = { title: "Work — Salomi Gandra" };
+export const metadata = { title: "Work -- Salomi Gandra | Data Analyst" };
 
 const PALETTE = {
-  charcoal: "#1C1C1C", // Deep Charcoal
-  ivory: "#F5F5F0",    // Ivory Sand
-  gold: "#C9A46F",     // Muted Gold
-  slate: "#4A6073",    // Slate Blue
-  coral: "#E38B75",    // Soft Coral
-  olive: "#5A6E4F",    // Olive Green
+  charcoal: "#1C1C1C",
+  ivory: "#F5F5F0",
+  gold: "#C9A46F",
+  slate: "#4A6073",
+  coral: "#E38B75",
+  olive: "#5A6E4F",
 };
 
-/* ---------- Small helpers ---------- */
+/* ---------- Case study card helpers ---------- */
 function Cover({ imageSrc, accent, alt }) {
   const gradient = `linear-gradient(135deg, ${accent}22, ${PALETTE.gold}22)`;
   const bgImage = imageSrc ? `${gradient}, url(${imageSrc})` : gradient;
   return (
     <div
       className="relative h-44 md:h-56 w-full rounded-xl overflow-hidden"
-      style={{ backgroundImage: bgImage, backgroundSize: "cover", backgroundPosition: "center", border: `1px solid ${accent}` }}
+      style={{
+        backgroundImage: bgImage,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        border: `1px solid ${accent}`,
+      }}
       role="img"
       aria-label={alt || "Case study cover"}
     />
@@ -31,11 +37,19 @@ function CaseStudyCard({ title, blurb, href, accent = PALETTE.slate, imageSrc, i
   return (
     <div
       className="group relative rounded-2xl p-6 md:p-7"
-      style={{ backgroundColor: PALETTE.ivory, border: `1px solid ${accent}`, boxShadow: "0 1px 0 rgba(0,0,0,0.02), 0 10px 30px rgba(0,0,0,0.04)" }}
+      style={{
+        backgroundColor: PALETTE.ivory,
+        border: `1px solid ${accent}`,
+        boxShadow: "0 1px 0 rgba(0,0,0,0.02), 0 10px 30px rgba(0,0,0,0.04)",
+      }}
     >
       <Cover imageSrc={imageSrc} accent={accent} alt={imageAlt} />
-      <h3 className="mt-5 text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>{title}</h3>
-      <p className="mt-3 leading-relaxed text-sm md:text-base" style={{ color: PALETTE.charcoal }}>{blurb}</p>
+      <h3 className="mt-5 text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>
+        {title}
+      </h3>
+      <p className="mt-3 leading-relaxed text-sm md:text-base" style={{ color: PALETTE.charcoal }}>
+        {blurb}
+      </p>
       {href ? (
         <Link
           href={href}
@@ -45,7 +59,14 @@ function CaseStudyCard({ title, blurb, href, accent = PALETTE.slate, imageSrc, i
         >
           View case study
           <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 12h12m0 0l-5-5m5 5l-5 5" fill="none" stroke={PALETTE.charcoal} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path
+              d="M5 12h12m0 0l-5-5m5 5l-5 5"
+              fill="none"
+              stroke={PALETTE.charcoal}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </Link>
       ) : (
@@ -62,50 +83,22 @@ function CaseStudyCard({ title, blurb, href, accent = PALETTE.slate, imageSrc, i
   );
 }
 
-function BigStat({ emoji, accent = PALETTE.slate, label, value, sub }) {
-  return (
-    <div className="flex items-center gap-4">
-      <div className="relative h-16 w-16 shrink-0">
-        <span
-          className="absolute inset-0 rounded-2xl"
-          style={{
-            background: `radial-gradient(60% 60% at 30% 40%, ${accent}33 0%, transparent 70%),
-                         radial-gradient(60% 60% at 70% 70%, ${PALETTE.gold}33 0%, transparent 70%)`,
-            border: `1px solid ${accent}66`,
-          }}
-          aria-hidden="true"
-        />
-        <span className="absolute inset-0 grid place-items-center text-2xl" aria-hidden="true">{emoji}</span>
-      </div>
-      <div>
-        <div className="text-sm uppercase tracking-wide" style={{ color: PALETTE.slate }}>{label}</div>
-        <div className="text-2xl md:text-3xl font-extrabold" style={{ color: PALETTE.charcoal }}>
-          {value}
-        </div>
-        {sub && (
-          <div className="text-sm md:text-base mt-0.5 opacity-80">{sub}</div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/* ---------- Work Experience (timeline FLOW) ---------- */
+/* ---------- Work Experience (timeline) ---------- */
 const EXPERIENCE = [
   {
-    period: "Oct 2023 – Jul 2024",
+    period: "Oct 2023 - Jul 2024",
     title: "Web Developer",
     company: "Church Life Apps",
     location: "Cleveland, Ohio, United States",
   },
   {
-    period: "Sep 2022 – May 2023",
-    title: "Graduate Assistant — Web Team",
+    period: "Sep 2022 - May 2023",
+    title: "Graduate Assistant -- Web Team",
     company: "Cleveland State University",
     location: "On-site",
   },
   {
-    period: "Mar 2022 – Sep 2022",
+    period: "Mar 2022 - Sep 2022",
     title: "Web Design & Research Specialist",
     company: "Cleveland State University",
     location: "",
@@ -117,17 +110,21 @@ function ExperienceTimeline() {
 
   return (
     <section id="experience" className="mx-auto max-w-6xl px-4 pt-10 pb-6">
-      <h2 className="text-center text-3xl md:text-4xl font-extrabold leading-tight">
-        Work experience (recent)
-      </h2>
+      <h2 className="text-center text-3xl md:text-4xl font-extrabold leading-tight">Work experience</h2>
 
-      <div className="relative mx-auto mt-12 max-w-5xl">
+      <div className="relative mx-auto max-w-5xl mt-10 md:mt-[calc(2in+3rem)]">
         {/* center line (desktop) */}
         <span
           aria-hidden="true"
-          className="absolute left-1/2 top-0 hidden h-full w-[3px] -translate-x-1/2 rounded md:block"
-          style={{ backgroundColor: LINE, opacity: 0.85 }}
+          className="absolute left-1/2 hidden w-[3px] -translate-x-1/2 rounded md:block"
+          style={{
+            backgroundColor: LINE,
+            opacity: 0.85,
+            top: "-2in",
+            height: "calc(100% - 3rem + 2in)",
+          }}
         />
+
         {/* left line (mobile) */}
         <span
           aria-hidden="true"
@@ -137,23 +134,21 @@ function ExperienceTimeline() {
 
         <ol className="space-y-16 md:space-y-24">
           {EXPERIENCE.map((item, i) => {
-            const left = i % 2 === 0; // alternate sides on desktop
+            const left = i % 2 === 0;
             return (
               <li key={i} className="relative">
                 {/* dot mobile */}
                 <span
                   aria-hidden="true"
-                  className="absolute left-4 top-2 h-3 w-3 rounded-full bg-[var(--ivory,white)] ring-2 md:hidden"
-                  style={{ ringColor: LINE, backgroundColor: PALETTE.ivory }}
+                  className="absolute left-4 top-2 h-3 w-3 rounded-full md:hidden"
+                  style={{ backgroundColor: PALETTE.ivory, boxShadow: `0 0 0 2px ${LINE}` }}
                 />
+
                 {/* dot desktop */}
                 <span
                   aria-hidden="true"
                   className="absolute left-1/2 top-0 hidden h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
-                  style={{
-                    backgroundColor: PALETTE.ivory,
-                    boxShadow: `0 0 0 4px ${LINE}`,
-                  }}
+                  style={{ backgroundColor: PALETTE.ivory, boxShadow: `0 0 0 4px ${LINE}` }}
                 />
 
                 <div
@@ -179,43 +174,31 @@ function ExperienceTimeline() {
   );
 }
 
-function VerticalStat({ emoji, label, value, accent = "#4A6073" }) {
+/* ---------- KPI hero card ---------- */
+function KpiCard({ emoji, label, value, accent }) {
   return (
-    <div className="text-center">
-      <div className="mb-3">
-        <span className="inline-block leading-none text-6xl md:text-7xl" aria-hidden="true">
-          {emoji}
-        </span>
-      </div>
-      <div className="text-sm uppercase tracking-wide" style={{ color: accent }}>
+    <div
+      className="flex flex-col items-center rounded-2xl px-5 py-6"
+      style={{
+        backgroundColor: `${accent}0F`,
+        border: `1.5px solid ${accent}30`,
+        boxShadow: `0 4px 20px ${accent}15`,
+      }}
+    >
+      <span className="text-4xl mb-3" aria-hidden="true">{emoji}</span>
+      <div
+        className="text-[10px] uppercase tracking-[0.18em] font-semibold mb-1.5"
+        style={{ color: accent }}
+      >
         {label}
       </div>
-      <div className="mt-1 text-3xl md:text-4xl font-extrabold" style={{ color: "#1C1C1C" }}>
+      <div
+        className="text-lg md:text-xl font-extrabold text-center leading-snug"
+        style={{ color: PALETTE.charcoal }}
+      >
         {value}
       </div>
     </div>
-  );
-}
-function SocialSquare({ href, label, src }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      title={label}
-      className="inline-grid h-12 w-12 md:h-14 md:w-14 place-items-center rounded-xl border transition
-                 hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-2"
-      style={{
-        backgroundColor: "#F5F5F0", // Ivory Sand
-        borderColor: "#4A607388",   // Slate with alpha
-        outlineColor: "#1C1C1C",    // Charcoal
-      }}
-    >
-      {/* decorative image, label is on the <a> */}
-      <Image src={src} alt="" width={26} height={26} />
-      <span className="sr-only">{label}</span>
-    </a>
   );
 }
 
@@ -223,128 +206,127 @@ function SocialSquare({ href, label, src }) {
 export default function WorkPage() {
   return (
     <main className="min-h-screen" style={{ backgroundColor: PALETTE.ivory, color: PALETTE.charcoal }}>
-      {/* Intro */}
-      <section className="mx-auto max-w-5xl px-4 pt-28 pb-10 text-center">
-        {/* Bouncing memoji (replace src if you use a different path) */}
-       {/* Bigger memoji inside a circle (no blur) */}
-  {/* BIG centered Memoji in a circle (no border) */}
-  <div className="flex justify-center">
-    <div className="relative h-40 w-40 md:h-56 md:w-56 rounded-full overflow-hidden bg-[#F5F5F0] animate-bounce">
-      <Image
-        src="/images/memoji.png?v=3"   // rename or add ?v= to bust cache
-        alt="Salomi memoji"
-        fill
-        sizes="224px"
-        className="object-contain p-2"
-        priority
-      />
-    </div>
-  </div>
 
-  <div className="mt-4 flex justify-center gap-3">
-  <SocialSquare
-    href="https://www.linkedin.com/in/salomisabastian/"
-    label="LinkedIn"
-    src="/icons/linkedin.svg?v=2"   // v=2 busts cache if you update the file
-  />
-  <SocialSquare
-    href="https://github.com/Salomigandra"
-    label="GitHub"
-    src="/icons/github.svg?v=1"
-  />
-</div>
+      {/* ===== HERO ===== */}
+      <section className="relative overflow-hidden mx-auto max-w-5xl px-4 pt-12 md:pt-28 pb-12 text-center">
 
+        {/* Soft background blob */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 50% -10%, rgba(74,96,115,0.10) 0%, transparent 70%), " +
+              "radial-gradient(ellipse 55% 40% at 85% 90%, rgba(201,164,111,0.10) 0%, transparent 70%)",
+          }}
+        />
 
-  {/* Reference-style stats: big emoji on top, then label + larger value */}
-  <div className="mt-12 grid grid-cols-1 gap-12 text-center sm:grid-cols-3">
-    <VerticalStat
-      emoji="💼"
-      label="Professional Background"
-      value="Aspiring Product Manager"
-      accent="#4A6073"   // Slate
-    />
-    <VerticalStat
-      emoji="🎓"
-      label="Education"
-      value="M.S. Computer & Information Science"
-      accent="#5A6E4F"   // Olive
-    />
-    <VerticalStat
-      emoji="🕰️"
-      label="Graduation"
-      value="May 2023"
-      accent="#E38B75"   // Soft Coral
-    />
-  </div>
+        {/* Memoji */}
+        <div className="flex justify-center">
+          <div className="relative h-36 w-36 md:h-52 md:w-52 rounded-full overflow-hidden bg-[#F5F5F0] shadow-xl">
+            <Image
+              src="/images/memoji.png?v=3"
+              alt="Salomi memoji"
+              fill
+              sizes="224px"
+              className="object-contain p-2"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Bold gradient headline */}
+        <h1 className="mt-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-tight">
+          Turning raw data
+          <br />
+          <span
+            style={{
+              background: `linear-gradient(90deg, ${PALETTE.slate} 0%, ${PALETTE.gold} 100%)`,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            into clear decisions.
+          </span>
+        </h1>
+
+        <p className="mt-5 mx-auto max-w-xl text-base md:text-lg leading-relaxed" style={{ color: `${PALETTE.charcoal}B3` }}>
+          CS grad + web developer background, pivoting into data analysis. I ask the right questions,
+          clean the mess, and surface insights people can actually act on.
+        </p>
+
+        {/* KPI cards */}
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-lg mx-auto">
+          <KpiCard
+            emoji="📊"
+            label="Current Role"
+            value="Aspiring Data Analyst"
+            accent={PALETTE.slate}
+          />
+          <KpiCard
+            emoji="🎓"
+            label="Education"
+            value="M.S. Computer & Information Science"
+            accent={PALETTE.olive}
+          />
+        </div>
       </section>
 
-      {/* Work Experience (timeline flow, recent-first) */}
+      {/* ===== WORK EXPERIENCE ===== */}
       <ExperienceTimeline />
 
-      {/* What excites me */}
-      <section className="mx-auto max-w-3xl px-4 py-12 text-center">
-        <h2 className="text-2xl md:text-3xl font-semibold">What excites me about Product Management?</h2>
+      {/* ===== DARK QUOTE SECTION ===== */}
+      <section
+        className="relative overflow-hidden py-20 md:py-28"
+        style={{ backgroundColor: PALETTE.slate }}
+      >
+        {/* Decorative large quote mark */}
         <div
-          className="mx-auto mt-6 rounded-2xl px-6 py-6 md:px-10 md:py-10 leading-relaxed"
-          style={{ background: `linear-gradient(135deg, ${PALETTE.coral}22, ${PALETTE.gold}22)`, border: `1px solid ${PALETTE.gold}` }}
+          aria-hidden="true"
+          className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/3 select-none text-[220px] md:text-[300px] font-serif leading-none"
+          style={{ color: "rgba(255,255,255,0.06)" }}
         >
-          <p className="text-base md:text-lg">
-            I’m drawn to the messy middle—where problems are fuzzy and people need clarity.<br className="hidden md:block" />
-            I love shaping a crisp “why,” prototyping the “how,” and shipping small, steady wins.<br className="hidden md:block" />
-            The best part is seeing real people feel the difference.
+          &ldquo;
+        </div>
+
+        <div className="relative mx-auto max-w-3xl px-6 text-center">
+          <p className="text-xl sm:text-2xl md:text-3xl font-medium leading-relaxed italic text-white">
+            I get genuine satisfaction from taking a messy dataset, asking the right questions,
+            and surfacing insights that help real people make better decisions.
           </p>
+          <div
+            className="mt-7 text-xs font-bold tracking-[0.22em] uppercase"
+            style={{ color: PALETTE.gold }}
+          >
+            -- Salomi Gandra, Data Analyst in Training
+          </div>
+
+          {/* Small decorative divider */}
+          <div
+            className="mx-auto mt-8 h-px w-24 rounded"
+            style={{ background: `linear-gradient(90deg, transparent, ${PALETTE.gold}, transparent)` }}
+          />
         </div>
       </section>
 
-      {/* Approach */}
-      <section className="mx-auto max-w-6xl px-4 py-20">
-        <h2 className="text-center text-3xl md:text-5xl font-extrabold leading-tight">
-          I design solutions, <br className="md:hidden" />
-          one product at a time.
-        </h2>
+      {/* ===== INTERACTIVE SKILLS TABS ===== */}
+      <WorkSkillsTabs />
 
-        <div className="mt-14 grid grid-cols-1 gap-12 md:grid-cols-3">
-          <div>
-            <h3 className="text-xl font-semibold">What I do</h3>
-            <ul className="mt-6 space-y-3 text-base leading-relaxed list-disc pl-5">
-              <li><strong>Frame problems</strong> with a crisp one-pager & shared success.</li>
-              <li><strong>Prototype & test</strong> with real users; instrument simple metrics.</li>
-              <li><strong>Orchestrate delivery</strong>—clear scopes, weekly rituals, calm ownership.</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold">What I use</h3>
-            <ul className="mt-6 space-y-3 text-base leading-relaxed list-disc pl-5">
-              <li><strong>Design/Docs:</strong> Figma, Notion.</li>
-              <li><strong>Build:</strong> Next.js/React, Expo, Prisma/Postgres, Firebase, GitHub.</li>
-              <li><strong>Methods:</strong> PRD, RICE, JTBD, OKRs, North Star metrics.</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold">What you can expect</h3>
-            <ul className="mt-6 space-y-3 text-base leading-relaxed list-disc pl-5">
-              <li><strong>Data-driven</strong> decisions, customer-centric bets.</li>
-              <li><strong>A11y-safe</strong> UI and thoughtful craft.</li>
-              <li><strong>Kind, steady collaboration</strong> with bias for action.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Case Studies */}
+      {/* ===== CASE STUDIES ===== */}
       <section className="mx-auto max-w-6xl px-4 pb-24">
         <h2 className="text-center text-2xl md:text-3xl font-semibold">Case Studies</h2>
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
           <CaseStudyCard
-            title="BibleGO — Inline reference that keeps readers in flow"
-            blurb="Shortcutting verse toggles; shipped inline reference with a quick 'jump back.' Targets: ↓ time-to-verse, ↑ verses/session, 0 a11y regressions."
+            title="BibleGO -- Inline reference that keeps readers in flow"
+            blurb="Shortcutting verse toggles; shipped inline reference with a quick 'jump back.' Targets: down time-to-verse, up verses/session, 0 a11y regressions."
             href="/work/biblego"
             accent={PALETTE.slate}
             imageSrc="/work/biblego/cover.jpg"
             imageAlt="BibleGO inline reference UI cover"
           />
           <CaseStudyCard
-            title="DayView — Own your day, at a glance"
+            title="DayView -- Own your day, at a glance"
             blurb="Dual-camera prompts to capture real life with intention. Built with Expo + Firebase + Postgres (prototype & metrics)."
             href="/work/dayview"
             accent={PALETTE.coral}
@@ -352,8 +334,8 @@ export default function WorkPage() {
             imageAlt="DayView dual-camera concept cover"
           />
           <CaseStudyCard
-            title="WorkLifePlus — Try a career in 5 minutes"
-            blurb="Branched micro-simulations, 'Fit Sheet,' and consent-aware booking for under-18 students. From problem framing to high-fidelity prototype."
+            title="WorkLifePlus -- Try a career in 5 minutes"
+            blurb="Branched micro-simulations, Fit Sheet, and consent-aware booking for under-18 students. From problem framing to high-fidelity prototype."
             href="/work/worklifeplus"
             accent={PALETTE.olive}
             imageSrc="/work/worklifeplus/cover.jpg"
@@ -361,7 +343,7 @@ export default function WorkPage() {
           />
           <CaseStudyCard
             title="Coming Soon"
-            blurb="Next case in progress—shipping notes and insights soon."
+            blurb="Next case in progress -- shipping notes and insights soon."
             href={null}
             accent={PALETTE.gold}
             imageSrc="/work/coming-soon/cover.jpg"
@@ -369,6 +351,7 @@ export default function WorkPage() {
           />
         </div>
       </section>
+
     </main>
   );
 }

@@ -53,7 +53,7 @@ const BOARDS = [
     emoji: "🎨",
     title: "Sketching & Painting",
     blurb:
-      "Slow, quiet making—ink lines, soft graphite, and small bursts of color. Little studies that calm the mind.",
+      "Slow, quiet making--ink lines, soft graphite, and small bursts of color. Little studies that calm the mind.",
     accent: PALETTE.slate,
     pinColor: PALETTE.coral,
     items: [
@@ -68,7 +68,7 @@ const BOARDS = [
     emoji: "🍃",
     title: "I Love Nature (and Sunsets)",
     blurb:
-      "Evening skies and green quiet places make me happiest—two sunsets, two nature moments: my favorite kind of pause.",
+      "Evening skies and green quiet places make me happiest--two sunsets, two nature moments: my favorite kind of pause.",
     accent: PALETTE.olive,
     pinColor: PALETTE.gold,
     items: [
@@ -83,7 +83,7 @@ const BOARDS = [
     emoji: "🍽️",
     title: "Cooking & Cuisines",
     blurb:
-      "Comfort bowls at home—and curiosity for new cuisines. I love trying different flavors and learning techniques.",
+      "Comfort bowls at home--and curiosity for new cuisines. I love trying different flavors and learning techniques.",
     accent: PALETTE.gold,
     pinColor: PALETTE.slate,
     items: [
@@ -96,7 +96,7 @@ const BOARDS = [
     id: "ukulele",
     emoji: "🎶",
     title: "Learning Ukulele",
-    blurb: "A little practice corner—gentle chords, steady hands, and patience.",
+    blurb: "A little practice corner--gentle chords, steady hands, and patience.",
     accent: PALETTE.coral,
     pinColor: PALETTE.gold,
     items: [{ src: uke1, alt: "Practice corner" }],
@@ -146,7 +146,7 @@ function PolaroidLandscape({ img, pinColor, delayMs = 0, onOpen }) {
   return (
     <button
       onClick={onOpen}
-      className="relative mx-auto w-[20rem] sm:w-[28rem] rounded-[10px] bg-white p-2 pb-4 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.35)] ring-1 ring-black/10"
+      className="relative mx-auto w-full max-w-[20rem] sm:max-w-[28rem] rounded-[10px] bg-white p-2 pb-4 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.35)] ring-1 ring-black/10"
       style={{
         animation: `dropIn 520ms cubic-bezier(.2,.8,.25,1) both`,
         animationDelay: `${delayMs}ms`,
@@ -251,10 +251,10 @@ export default function OffTheClockSection() {
             Beyond work
           </p>
           <h2 className="mt-1 text-2xl md:text-3xl font-semibold" style={{ color: PALETTE.charcoal }}>
-            When I’m off the clock
+            When I'm off the clock
           </h2>
           <p className="mt-1.5 max-w-2xl text-[15px] leading-relaxed" style={{ color: PALETTE.charcoal }}>
-            A pin board of small joys—art I make, skies I watch, food I try, and the tiny chords I’m learning.
+            A pin board of small joys--art I make, skies I watch, food I try, and the tiny chords I'm learning.
           </p>
         </header>
 

@@ -58,3 +58,16 @@ img { max-width: 100%; height: auto; display: block; }
     rgba(var(--sc), 0.06) 100%
   );
 }
+
+/* ==== Work timeline animations (global) ==== */
+@keyframes revealLine {
+  from { clip-path: inset(100% 0 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes dotPop {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.revealLine { animation: revealLine 900ms ease-out 120ms forwards; }
+.dotPop { animation: dotPop 500ms cubic-bezier(.2,.7,.2,1) both; }
+
