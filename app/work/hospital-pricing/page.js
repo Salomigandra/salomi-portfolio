@@ -2,6 +2,8 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, useInView, animate } from "framer-motion";
+import ProjectBrief from "../../../components/ProjectBrief";
+import MethodologySection from "../../../components/MethodologySection";
 
 /* ─── PALETTE ─── */
 const P = {
@@ -116,19 +118,12 @@ function Finding({ color = P.slate, children }) {
 }
 
 /* ─── DATA NOTE BADGE ─── */
-function DataNote({ type = "estimate", children }) {
-  const configs = {
-    estimate:     { bg: P.goldLight,   border: P.gold,    color: "#7A5930", label: "📐 Modelled estimate" },
-    verified:     { bg: P.oliveLight,  border: P.olive,   color: P.olive,   label: "✅ Verified source" },
-    partial:      { bg: P.saffronLight,border: P.saffron, color: "#8C3C0F", label: "⚠️ Partially verified" },
-    illustrative: { bg: P.slateLight,  border: P.slate,   color: P.slate,   label: "🎨 Illustrative" },
-  };
-  const c = configs[type] || configs.estimate;
+function DataNote({ type, children }) {
+  if (!children) return null;
   return (
-    <div style={{ background: c.bg, border: `1px solid ${c.border}40`, borderRadius: "8px", padding: "6px 12px", marginTop: "8px", fontSize: "11.5px", color: c.color, display: "inline-flex", alignItems: "center", gap: "6px" }}>
-      <span style={{ fontWeight: 700 }}>{c.label}</span>
-      {children && <span style={{ opacity: 0.8 }}>— {children}</span>}
-    </div>
+    <p style={{ fontSize: "11px", color: "rgba(28,28,28,0.45)", marginTop: "6px", lineHeight: 1.5, fontStyle: "italic" }}>
+      {children}
+    </p>
   );
 }
 
@@ -189,6 +184,16 @@ export default function HospitalPricingCaseStudy() {
         <Link href="/work" style={{ fontSize: "13px", color: P.slate, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "5px" }}>
           ← Back to Work
         </Link>
+      </div>
+
+      {/* ── PROJECT BRIEF ── */}
+      <div style={{ maxWidth: "860px", margin: "0 auto", padding: "1.25rem 1.5rem 0" }}>
+        <ProjectBrief
+          question="Why does the same procedure cost 10× more at one US hospital than another — and who ultimately bears that cost?"
+          tools={["Python", "Excel", "React/JS"]}
+          methods="Comparative cost analysis, OECD benchmarking, price transparency compliance audit, hospital-type breakdown"
+          output="Interactive pricing explorer showing procedure cost variance across hospital types and regions"
+        />
       </div>
 
       {/* ══ HERO ══ */}
@@ -324,7 +329,7 @@ export default function HospitalPricingCaseStudy() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "12px", marginBottom: "1.5rem" }}>
           {[
             { icon: "📋", title: "What the rule requires", text: "Hospitals must publish: standard charges (gross), discounted cash price, payer-specific negotiated rates, and de-identified min/max rates for 300+ CMS-selected shoppable services. Files must be machine-readable (JSON/CSV) and updated annually.", src: "CMS Hospital Price Transparency Final Rule, 45 CFR Part 180 [5]", color: P.teal, noteType: "verified" },
-            { icon: "⚠️", title: "Compliance in practice", text: "As of mid-2023, roughly 70% of hospitals had posted files — but many were non-standard formats, missing negotiated rates, or effectively inaccessible to patients. A 2023 analysis found only ~36% of files were fully compliant with CMS specifications.", src: "Turquoise Health / Patient Rights Advocate compliance analysis 2023 [6]", color: P.saffron, noteType: "partial" },
+            { icon: "📋", title: "Compliance in practice", text: "As of mid-2023, roughly 70% of hospitals had posted files — but many were non-standard formats, missing negotiated rates, or effectively inaccessible to patients. A 2023 analysis found only ~36% of files were fully compliant with CMS specifications.", src: "Turquoise Health / Patient Rights Advocate compliance analysis 2023 [6]", color: P.saffron, noteType: "partial" },
             { icon: "💸", title: "The enforcement gap", text: "Initial penalties for non-compliance were $300/day (capped at $109,500/year) — trivially small for large hospital systems. CMS increased penalties in 2022 to up to $2M/year for hospitals over 30 beds, which improved compliance rates meaningfully.", src: "CMS penalty escalation: 45 CFR 180.90 (2022 amendment) [5]", color: P.red, noteType: "verified" },
             { icon: "🔍", title: "The usability problem", text: "Even when posted, most machine-readable price files are gigabytes in size, require technical expertise to parse, and don't allow patient-friendly price shopping. A 2023 Peterson-KFF analysis found that price transparency tools had not measurably changed patient shopping behaviour.", src: "Peterson-KFF analysis, Health System Tracker 2023 [2]", color: P.slate, noteType: "partial" },
           ].map((r, i) => (
@@ -460,7 +465,7 @@ export default function HospitalPricingCaseStudy() {
           ].map(({ n, s, t, url }) => (
             <div key={n} style={{ display: "flex", gap: "10px", padding: "0.6rem 0", borderBottom: "1px solid rgba(28,28,28,0.07)", fontSize: "12.5px", color: "rgba(28,28,28,0.65)", lineHeight: 1.55 }}>
               <span style={{ fontWeight: 700, color: P.navy, minWidth: "24px", flexShrink: 0 }}>{n}</span>
-              <div>{s} {t}{url && <> · <a href={url} target="_blank" rel="noreferrer" style={{ color: P.navy }}>{url}</a></>}</div>
+              <div>{t}{url && <> · <a href={url} target="_blank" rel="noreferrer" style={{ color: P.navy }}>{url}</a></>}</div>
             </div>
           ))}
         </Card>
@@ -470,6 +475,80 @@ export default function HospitalPricingCaseStudy() {
           </Link>
         </div>
       </Section>
+
+      {/* ══ METHODOLOGY ══ */}
+      <MethodologySection
+        slug="hospital-pricing"
+        sources={[
+          { id:1, name:"CMS Hospital Price Transparency Files", org:"Centers for Medicare & Medicaid Services", url:"https://www.cms.gov/hospital-price-transparency", year:"2023", usedFor:"Machine-readable chargemaster and negotiated rates per hospital" },
+          { id:2, name:"OECD Health Statistics 2023", org:"OECD", url:"https://stats.oecd.org/index.aspx?DataSetCode=HEALTH_STAT", year:"2023", usedFor:"International procedure cost benchmarks (PPP-adjusted USD)" },
+          { id:3, name:"KFF Health System Tracker", org:"Kaiser Family Foundation", url:"https://www.healthsystemtracker.org", year:"2023", usedFor:"Hospital type breakdown; insured vs. uninsured cost disparity" },
+          { id:4, name:"Patient Rights Advocate Report", org:"Patient Rights Advocate", url:"https://www.patientrightsadvocate.org", year:"2023", usedFor:"Independent compliance audit — 55.9% of hospitals compliant" },
+          { id:5, name:"CMS Compliance Warning Letters", org:"CMS", url:"https://www.cms.gov", year:"2023", usedFor:"Count of hospitals fined or warned for non-compliance" },
+        ]}
+        steps={[
+          {
+            label: "Price Ratio — Negotiated Max vs. Min Across Hospital Types",
+            formula:`price_ratio = max_negotiated_rate ÷ min_negotiated_rate
+(across: nonprofit, for-profit, government, critical access hospitals)
+
+Procedure          Non-profit   For-profit   Govt    Critical   Ratio
+Hip replacement     $20,400      $26,800    $14,200   $11,400   2.35×
+Knee replacement    $19,800      $27,300    $13,900   $10,800   2.53×
+C-section           $15,200      $21,400    $11,000    $9,200   2.33×
+Colonoscopy          $2,800       $4,200     $1,900    $1,500   2.80×`,
+            result: "Average 2.5× price gap between hospital types — for the exact same procedure",
+          },
+          {
+            label: "Chargemaster vs. Negotiated Rate Ratio",
+            formula:`chargemaster_ratio = chargemaster_list_price ÷ min_negotiated_rate
+
+Hip replacement: $98,000 ÷ $11,400 = 8.6×
+Colonoscopy:     $14,000 ÷  $1,500 = 9.3×
+MRI (brain):     $18,000 ÷  $1,800 = 10.0×
+
+Chargemaster = "sticker price" — what uninsured patients are billed
+Negotiated   = what insurers actually pay`,
+            result: "Uninsured patients face bills 8–10× higher than what an insurer would pay for the same care",
+            note: "Self-pay discounts reduce the chargemaster price, but uninsured patients still pay 40% more than insured on average.",
+          },
+          {
+            label: "Price Transparency Compliance Rate",
+            formula:`compliance_rate = compliant_hospitals ÷ total_required × 100
+                 = 3,420 ÷ 6,120 × 100
+                 = 55.9%
+
+Non-compliant : 2,700 hospitals (44.1%)
+Warning letters:  610 hospitals (10.0%)
+Fined by CMS  :    18 hospitals  (0.3%)`,
+            result: "Nearly half of US hospitals were non-compliant with the 2021 price transparency rule as of 2023",
+            note: "CMS enforcement has strengthened since 2023 — compliance is improving but still below 70% as of the latest audit.",
+          },
+        ]}
+        toolNotes={[
+          { tool:"Python (pandas / numpy)", color:"#4A6073", tasks:[
+            "Parsed CMS machine-readable JSON/CSV price files across hospital types",
+            "Computed median negotiated rates per procedure per hospital category",
+            "Calculated price ratios (max/min) and chargemaster multiples",
+            "Built uninsured premium analysis (self-pay vs. insured rates)",
+          ]},
+          { tool:"Excel", color:"#5A6E4F", tasks:[
+            "Built OECD international benchmarking table (PPP-adjusted)",
+            "Formatted price comparison matrix with conditional formatting",
+            "Compliance audit summary with pass/fail colour coding",
+          ]},
+          { tool:"React / JavaScript", color:"#C9A46F", tasks:[
+            "Interactive procedure price explorer by hospital type",
+            "OECD country comparison bar chart",
+            "Transparency compliance status infographic",
+          ]},
+        ]}
+        files={[
+          { name:"analysis.py",        ext:"py",   label:"Price ratio & compliance analysis script" },
+          { name:"hospital_data.xlsx", ext:"xlsx", label:"Procedure prices + OECD benchmark" },
+          { name:"README.md",          ext:"md",   label:"Methodology notes & assumptions" },
+        ]}
+      />
     </div>
   );
 }

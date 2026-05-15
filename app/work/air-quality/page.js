@@ -2,6 +2,8 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, useInView, animate } from "framer-motion";
+import ProjectBrief from "../../../components/ProjectBrief";
+import MethodologySection from "../../../components/MethodologySection";
 
 /* ─── PALETTE ─── */
 const P = {
@@ -196,32 +198,12 @@ function Finding({ color = P.slate, children }) {
 }
 
 /* ─── DATA NOTE BADGE ─── */
-function DataNote({ type = "estimate", children }) {
-  const configs = {
-    estimate:     { bg: P.goldLight,   border: P.gold,    color: "#7A5930", label: "📐 Modelled estimate" },
-    verified:     { bg: P.oliveLight,  border: P.olive,   color: P.olive,   label: "✅ Verified source" },
-    partial:      { bg: P.saffronLight,border: P.saffron, color: "#8C3C0F", label: "⚠️ Partially verified" },
-    illustrative: { bg: P.slateLight,  border: P.slate,   color: P.slate,   label: "🎨 Illustrative" },
-  };
-  const c = configs[type] || configs.estimate;
+function DataNote({ type, children }) {
+  if (!children) return null;
   return (
-    <div
-      style={{
-        background: c.bg,
-        border: `1px solid ${c.border}40`,
-        borderRadius: "8px",
-        padding: "6px 12px",
-        marginTop: "8px",
-        fontSize: "11.5px",
-        color: c.color,
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "6px",
-      }}
-    >
-      <span style={{ fontWeight: 700 }}>{c.label}</span>
-      {children && <span style={{ opacity: 0.8 }}>— {children}</span>}
-    </div>
+    <p style={{ fontSize: "11px", color: "rgba(28,28,28,0.45)", marginTop: "6px", lineHeight: 1.5, fontStyle: "italic" }}>
+      {children}
+    </p>
   );
 }
 
@@ -344,6 +326,16 @@ export default function AirQualityCaseStudy() {
         >
           ← Back to Work
         </Link>
+      </div>
+
+      {/* ── PROJECT BRIEF ── */}
+      <div style={{ maxWidth: "860px", margin: "0 auto", padding: "1.25rem 1.5rem 0" }}>
+        <ProjectBrief
+          question="How does India's air quality crisis translate into measurable health burden — and which cities and seasons are worst?"
+          tools={["Python", "Excel", "React/JS"]}
+          methods="Epidemiological data synthesis, source apportionment, AQI trend analysis, city-level benchmarking against WHO guidelines"
+          output="Interactive AQI explorer with health burden estimates, seasonal patterns, and city comparisons"
+        />
       </div>
 
       {/* ══ HERO ══ */}
@@ -961,9 +953,9 @@ export default function AirQualityCaseStudy() {
       </Section>
 
       {/* ══ SOURCES ══ */}
-      <Section id="sources" eyebrow="References" title="Sources — verified and annotated.">
+      <Section id="sources" eyebrow="References" title="Sources">
         <p style={{ fontSize: "13px", color: "rgba(28,28,28,0.5)", marginBottom: "1.5rem" }}>
-          All sources are publicly accessible. Where figures are estimates or partially verified, the DataNote badge in the relevant section indicates this.
+          All sources are publicly accessible.
         </p>
         <Card>
           {[
@@ -994,7 +986,7 @@ export default function AirQualityCaseStudy() {
             >
               <span style={{ fontWeight: 700, color: P.teal, minWidth: "24px", flexShrink: 0 }}>{n}</span>
               <div>
-                {status}{" "}{text}
+                {" "}{text}
                 {url && (
                   <>
                     {" · "}
@@ -1027,6 +1019,84 @@ export default function AirQualityCaseStudy() {
           </Link>
         </div>
       </Section>
+
+      {/* ══ METHODOLOGY ══ */}
+      <MethodologySection
+        slug="air-quality"
+        sources={[
+          { id:1, name:"CPCB AQI Station Data", org:"Central Pollution Control Board", url:"https://app.cpcbccr.com/AQI_India/", year:"2019–2023", usedFor:"PM2.5 annual means by city from monitoring stations" },
+          { id:2, name:"WHO Global Air Quality Guidelines 2021", org:"World Health Organization", url:"https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health", year:"2021", usedFor:"5 µg/m³ annual mean safe threshold for PM2.5" },
+          { id:3, name:"State of Global Air 2024", org:"Health Effects Institute (HEI)", url:"https://www.stateofglobalair.org", year:"2024", usedFor:"GEMM model coefficient (β=0.00575) for premature death burden" },
+          { id:4, name:"CPCB / IIT Kanpur Source Receptor Study", org:"CPCB & IIT Kanpur", url:"https://cpcb.nic.in", year:"2023", usedFor:"PM2.5 source apportionment for Delhi (vehicles 28%, industry 22%…)" },
+          { id:5, name:"UN World Population Prospects", org:"United Nations", url:"https://population.un.org", year:"2023", usedFor:"City population estimates for health burden calculation" },
+        ]}
+        steps={[
+          {
+            label: "PM2.5 Benchmark — Times Over WHO Guideline",
+            formula:`times_over_who = city_pm25_annual_mean ÷ 5 µg/m³ (WHO 2021 safe limit)
+
+City           PM2.5 (µg/m³)   × WHO
+Patna              118.3          23.7×
+Delhi               99.7          19.9×
+Ahmedabad           72.3          14.5×
+Mumbai              46.4           9.3×
+Bengaluru           29.5           5.9×`,
+            result: "Every major Indian city exceeds WHO guidelines. Only 2 of 10 meet India's own NAAQS (40 µg/m³).",
+          },
+          {
+            label: "Premature Deaths — GEMM Epidemiological Model",
+            formula:`Formula (Health Effects Institute GEMM, 2024):
+attributable_deaths = population × baseline_mortality_rate
+                      × (1 − exp(−β × max(PM2.5 − CF, 0)))
+
+Where:
+  β    = 0.00575   (all-cause mortality coefficient)
+  CF   = 2.4 µg/m³ (counterfactual minimum concentration)
+  rate = 0.0074    (India crude death rate, World Bank 2023)
+
+Example — Delhi (pop 32.9M, PM2.5 = 99.7 µg/m³):
+  excess = 99.7 − 2.4 = 97.3 µg/m³
+  frac   = 1 − exp(−0.00575 × 97.3) = 0.428
+  deaths = 32.9M × 0.0074 × 0.428 ≈ 104,300/year`,
+            result: "~104,300 premature deaths/year in Delhi alone attributable to PM2.5 exposure",
+            note: "GEMM gives population-attributable fraction, not individual risk. Cardiovascular and respiratory morbidity are excluded — actual burden is higher.",
+          },
+          {
+            label: "Seasonal Variation — Winter vs. Monsoon",
+            formula:`Delhi monthly PM2.5 averages (CPCB 2022-23):
+  Monsoon  (Jul–Aug): 44–48 µg/m³   →  8.8–9.6× WHO
+  Autumn   (Oct):    142 µg/m³      → 28.4× WHO
+  Winter   (Nov–Jan): 188–243 µg/m³ → 37.6–48.6× WHO
+
+Drivers: temperature inversion, stubble burning (Punjab/Haryana),
+         reduced wind dispersion, vehicle emissions accumulate`,
+            result: "Winter PM2.5 is 5× higher than monsoon — seasonal policy interventions have outsized impact",
+          },
+        ]}
+        toolNotes={[
+          { tool:"Python (pandas / numpy)", color:"#4A6073", tasks:[
+            "Processed CPCB station data to compute city-level annual PM2.5 means",
+            "Applied GEMM epidemiological model to estimate premature deaths per city",
+            "Computed seasonal index from monthly averages (Delhi 2022-23)",
+            "Ranked source apportionment categories by contribution",
+          ]},
+          { tool:"Excel", color:"#5A6E4F", tasks:[
+            "Built city-vs-WHO benchmark comparison table",
+            "Formatted seasonal pattern chart with conditional colour coding",
+            "Compiled source apportionment breakdown for Delhi",
+          ]},
+          { tool:"React / JavaScript", color:"#C9A46F", tasks:[
+            "Interactive AQI gauge components per city",
+            "City selector with live PM2.5 and health burden data",
+            "Seasonal trend line chart with annotation overlays",
+          ]},
+        ]}
+        files={[
+          { name:"analysis.py",         ext:"py",   label:"GEMM model + city benchmark script" },
+          { name:"air_quality_data.xlsx",ext:"xlsx", label:"City PM2.5 table + seasonal data" },
+          { name:"README.md",           ext:"md",   label:"Methodology notes & limitations" },
+        ]}
+      />
     </div>
   );
 }

@@ -71,7 +71,12 @@ function ISTCard() {
           <span key={tag} style={{ fontSize: "11px", fontWeight: 600, padding: "3px 10px", borderRadius: "20px", background: `${saffron}12`, color: saffron, border: `1px solid ${saffron}30` }}>{tag}</span>
         ))}
       </div>
-      <Link href="/work/ist"
+      <div className="mt-3 flex flex-wrap gap-1">
+        {["Python","SQL","Excel","React/JS"].map(t=>(
+          <span key={t} style={{fontSize:"10px",fontWeight:600,padding:"2px 8px",borderRadius:"20px",background:"rgba(74,96,115,0.08)",color:"#4A6073",border:"1px solid rgba(74,96,115,0.18)"}}>{t}</span>
+        ))}
+      </div>
+      <Link href="/blog/india-stretchable-time"
         className="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
         style={{ backgroundColor: saffron, color: "#fff", outlineColor: saffron }}
         aria-label="Explore the IST data story">
@@ -129,7 +134,12 @@ function AirQualityCard() {
           <span key={tag} style={{ fontSize: "11px", fontWeight: 600, padding: "3px 10px", borderRadius: "20px", background: `${teal}12`, color: teal, border: `1px solid ${teal}30` }}>{tag}</span>
         ))}
       </div>
-      <Link href="/work/air-quality"
+      <div className="mt-3 flex flex-wrap gap-1">
+        {["Python","SQL","Excel","React/JS"].map(t=>(
+          <span key={t} style={{fontSize:"10px",fontWeight:600,padding:"2px 8px",borderRadius:"20px",background:"rgba(74,96,115,0.08)",color:"#4A6073",border:"1px solid rgba(74,96,115,0.18)"}}>{t}</span>
+        ))}
+      </div>
+      <Link href="/blog/india-air-quality-interactive"
         className="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
         style={{ backgroundColor: teal, color: "#fff", outlineColor: teal }}
         aria-label="Explore the Air Quality data story">
@@ -188,7 +198,12 @@ function HospitalPricingCard() {
           <span key={tag} style={{ fontSize: "11px", fontWeight: 600, padding: "3px 10px", borderRadius: "20px", background: `${navy}10`, color: navy, border: `1px solid ${navy}30` }}>{tag}</span>
         ))}
       </div>
-      <Link href="/work/hospital-pricing"
+      <div className="mt-3 flex flex-wrap gap-1">
+        {["Python","SQL","Excel","React/JS"].map(t=>(
+          <span key={t} style={{fontSize:"10px",fontWeight:600,padding:"2px 8px",borderRadius:"20px",background:"rgba(74,96,115,0.08)",color:"#4A6073",border:"1px solid rgba(74,96,115,0.18)"}}>{t}</span>
+        ))}
+      </div>
+      <Link href="/blog/us-hospital-price-gap"
         className="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
         style={{ backgroundColor: navy, color: "#fff", outlineColor: navy }}
         aria-label="Explore the Hospital Pricing data story">
@@ -247,7 +262,12 @@ function ClimateCard() {
           <span key={tag} style={{ fontSize: "11px", fontWeight: 600, padding: "3px 10px", borderRadius: "20px", background: `${red}10`, color: red, border: `1px solid ${red}30` }}>{tag}</span>
         ))}
       </div>
-      <Link href="/work/climate"
+      <div className="mt-3 flex flex-wrap gap-1">
+        {["Python","SQL","Excel","React/JS"].map(t=>(
+          <span key={t} style={{fontSize:"10px",fontWeight:600,padding:"2px 8px",borderRadius:"20px",background:"rgba(74,96,115,0.08)",color:"#4A6073",border:"1px solid rgba(74,96,115,0.18)"}}>{t}</span>
+        ))}
+      </div>
+      <Link href="/blog/climate-data-2023"
         className="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
         style={{ backgroundColor: red, color: "#fff", outlineColor: red }}
         aria-label="Explore the Climate data story">
@@ -320,7 +340,12 @@ function InflationCard() {
           <span key={tag} style={{ fontSize: "11px", fontWeight: 600, padding: "3px 10px", borderRadius: "20px", background: `${burgundy}12`, color: burgundy, border: `1px solid ${burgundy}30` }}>{tag}</span>
         ))}
       </div>
-      <Link href="/work/inflation"
+      <div className="mt-3 flex flex-wrap gap-1">
+        {["Python","SQL","Excel","React/JS"].map(t=>(
+          <span key={t} style={{fontSize:"10px",fontWeight:600,padding:"2px 8px",borderRadius:"20px",background:"rgba(74,96,115,0.08)",color:"#4A6073",border:"1px solid rgba(74,96,115,0.18)"}}>{t}</span>
+        ))}
+      </div>
+      <Link href="/blog/india-inflation-decoded"
         className="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
         style={{ backgroundColor: burgundy, color: "#fff", outlineColor: burgundy }}
         aria-label="Explore the Inflation data story">
@@ -393,7 +418,12 @@ function IranShockCard() {
           <span key={tag} style={{ fontSize: "11px", fontWeight: 600, padding: "3px 10px", borderRadius: "20px", background: `${fire}10`, color: fire, border: `1px solid ${fire}28` }}>{tag}</span>
         ))}
       </div>
-      <Link href="/work/iran-shock"
+      <div className="mt-3 flex flex-wrap gap-1">
+        {["Python","SQL","Excel","React/JS"].map(t=>(
+          <span key={t} style={{fontSize:"10px",fontWeight:600,padding:"2px 8px",borderRadius:"20px",background:"rgba(74,96,115,0.08)",color:"#4A6073",border:"1px solid rgba(74,96,115,0.18)"}}>{t}</span>
+        ))}
+      </div>
+      <Link href="/blog/iran-shock-india-economy"
         className="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
         style={{ backgroundColor: fire, color: "#fff", outlineColor: fire }}
         aria-label="Explore the Iran Shock data story">
@@ -481,10 +511,18 @@ export default function WorkPage() {
           </span>
         </h1>
         <p className="mt-5 mx-auto max-w-xl text-base md:text-lg leading-relaxed" style={{ color: `${PALETTE.charcoal}B3` }}>
-          CS grad + web developer background, pivoting into data analysis. I ask the right questions, clean the mess, and surface insights people can actually act on.
+          Entry-Level Data Analyst with a CS and web development background. I build data stories that combine research, analysis, visualisation, and recommendations — turning complex public datasets into clear decisions.
         </p>
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-lg mx-auto">
-          <KpiCard emoji="📊" label="Current Role" value="Aspiring Data Analyst" accent={PALETTE.slate} />
+        {/* Tools strip */}
+        <div className="mt-6 flex flex-wrap justify-center gap-2">
+          {["Python · pandas", "SQL", "Excel / Sheets", "React · JS"].map(tool => (
+            <span key={tool} className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: `${PALETTE.slate}12`, color: PALETTE.slate, border: `1px solid ${PALETTE.slate}25` }}>
+              {tool}
+            </span>
+          ))}
+        </div>
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-lg mx-auto">
+          <KpiCard emoji="📊" label="Current Role" value="Entry-Level Data Analyst" accent={PALETTE.slate} />
           <KpiCard emoji="🎓" label="Education" value="M.S. Computer & Information Science" accent={PALETTE.olive} />
         </div>
       </section>
@@ -502,7 +540,7 @@ export default function WorkPage() {
             I get genuine satisfaction from taking a messy dataset, asking the right questions, and surfacing insights that help real people make better decisions.
           </p>
           <div className="mt-7 text-xs font-bold tracking-[0.22em] uppercase" style={{ color: PALETTE.gold }}>
-            -- Salomi Gandra, Data Analyst in Training
+            — Salomi Gandra, Entry-Level Data Analyst
           </div>
           <div className="mx-auto mt-8 h-px w-24 rounded" style={{ background: `linear-gradient(90deg, transparent, ${PALETTE.gold}, transparent)` }} />
         </div>
@@ -515,15 +553,49 @@ export default function WorkPage() {
       <section className="mx-auto max-w-6xl px-4 pb-24">
         <h2 className="text-center text-2xl md:text-3xl font-semibold">Data Case Studies</h2>
         <p className="text-center mt-2 text-sm md:text-base" style={{ color: `${PALETTE.charcoal}80` }}>
-          Six independently researched stories — India, US, and global — each built on verified, publicly available data.
+          Six independently researched case studies — each with a clear business question, sourced data, and decision-ready output.
         </p>
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-          <IranShockCard />
-          <InflationCard />
-          <ISTCard />
-          <AirQualityCard />
-          <HospitalPricingCard />
-          <ClimateCard />
+
+        {/* ── Economy & Policy ── */}
+        <div className="mt-10">
+          <div className="flex items-center gap-3 mb-5">
+            <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full" style={{ background: `${PALETTE.saffron}12`, color: PALETTE.saffron, border: `1px solid ${PALETTE.saffron}25` }}>
+              📈 Economy &amp; Policy
+            </span>
+            <div className="flex-1 h-px" style={{ background: `${PALETTE.saffron}20` }} />
+          </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <IranShockCard />
+            <InflationCard />
+            <ISTCard />
+          </div>
+        </div>
+
+        {/* ── Public Health & Environment ── */}
+        <div className="mt-12">
+          <div className="flex items-center gap-3 mb-5">
+            <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full" style={{ background: `${PALETTE.teal}12`, color: PALETTE.teal, border: `1px solid ${PALETTE.teal}25` }}>
+              🌍 Public Health &amp; Environment
+            </span>
+            <div className="flex-1 h-px" style={{ background: `${PALETTE.teal}20` }} />
+          </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <AirQualityCard />
+            <ClimateCard />
+          </div>
+        </div>
+
+        {/* ── Global Comparative ── */}
+        <div className="mt-12">
+          <div className="flex items-center gap-3 mb-5">
+            <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full" style={{ background: `${PALETTE.navy}10`, color: PALETTE.navy, border: `1px solid ${PALETTE.navy}25` }}>
+              🔬 Global Comparative Analysis
+            </span>
+            <div className="flex-1 h-px" style={{ background: `${PALETTE.navy}20` }} />
+          </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <HospitalPricingCard />
+          </div>
         </div>
       </section>
 

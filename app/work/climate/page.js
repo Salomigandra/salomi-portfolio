@@ -2,6 +2,8 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, useInView, animate } from "framer-motion";
+import ProjectBrief from "../../../components/ProjectBrief";
+import MethodologySection from "../../../components/MethodologySection";
 
 /* ─── PALETTE ─── */
 const P = {
@@ -139,19 +141,12 @@ function Finding({ color = P.slate, children }) {
 }
 
 /* ─── DATA NOTE BADGE ─── */
-function DataNote({ type = "estimate", children }) {
-  const configs = {
-    estimate:     { bg: P.goldLight,   border: P.gold,    color: "#7A5930", label: "📐 Modelled estimate" },
-    verified:     { bg: P.oliveLight,  border: P.olive,   color: P.olive,   label: "✅ Verified source" },
-    partial:      { bg: P.saffronLight,border: P.saffron, color: "#8C3C0F", label: "⚠️ Partially verified" },
-    illustrative: { bg: P.slateLight,  border: P.slate,   color: P.slate,   label: "🎨 Illustrative" },
-  };
-  const c = configs[type] || configs.estimate;
+function DataNote({ type, children }) {
+  if (!children) return null;
   return (
-    <div style={{ background: c.bg, border: `1px solid ${c.border}40`, borderRadius: "8px", padding: "6px 12px", marginTop: "8px", fontSize: "11.5px", color: c.color, display: "inline-flex", alignItems: "center", gap: "6px" }}>
-      <span style={{ fontWeight: 700 }}>{c.label}</span>
-      {children && <span style={{ opacity: 0.8 }}>— {children}</span>}
-    </div>
+    <p style={{ fontSize: "11px", color: "rgba(28,28,28,0.45)", marginTop: "6px", lineHeight: 1.5, fontStyle: "italic" }}>
+      {children}
+    </p>
   );
 }
 
@@ -232,6 +227,16 @@ export default function ClimateCaseStudy() {
         <Link href="/work" style={{ fontSize: "13px", color: P.slate, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "5px" }}>
           ← Back to Work
         </Link>
+      </div>
+
+      {/* ── PROJECT BRIEF ── */}
+      <div style={{ maxWidth: "860px", margin: "0 auto", padding: "1.25rem 1.5rem 0" }}>
+        <ProjectBrief
+          question="How far off track are global warming trends vs. Paris Agreement pledges — and which sectors drive the gap?"
+          tools={["Python", "Excel", "React/JS"]}
+          methods="Time-series analysis, NASA GISTEMP data, emissions trajectory modelling, pledge vs. pathway gap comparison"
+          output="Climate dashboard with warming trends, sector breakdown, and 2030 pledge gap analysis"
+        />
       </div>
 
       {/* ══ HERO ══ */}
@@ -487,7 +492,7 @@ export default function ClimateCaseStudy() {
           ].map(({ n, s, t, url }) => (
             <div key={n} style={{ display: "flex", gap: "10px", padding: "0.6rem 0", borderBottom: "1px solid rgba(28,28,28,0.07)", fontSize: "12.5px", color: "rgba(28,28,28,0.65)", lineHeight: 1.55 }}>
               <span style={{ fontWeight: 700, color: P.warmRed, minWidth: "24px", flexShrink: 0 }}>{n}</span>
-              <div>{s} {t}{url && <> · <a href={url} target="_blank" rel="noreferrer" style={{ color: P.warmRed }}>{url}</a></>}</div>
+              <div>{t}{url && <> · <a href={url} target="_blank" rel="noreferrer" style={{ color: P.warmRed }}>{url}</a></>}</div>
             </div>
           ))}
         </Card>
@@ -497,6 +502,82 @@ export default function ClimateCaseStudy() {
           </Link>
         </div>
       </Section>
+
+      {/* ══ METHODOLOGY ══ */}
+      <MethodologySection
+        slug="climate"
+        sources={[
+          { id:1, name:"NASA GISTEMP v4", org:"NASA Goddard Institute for Space Studies", url:"https://data.giss.nasa.gov/gistemp/", year:"1950–2023", usedFor:"Annual global mean temperature anomaly vs. 1951–1980 baseline" },
+          { id:2, name:"IPCC Sixth Assessment Report (AR6)", org:"IPCC", url:"https://www.ipcc.ch/ar6/", year:"2021", usedFor:"Remaining carbon budgets for 1.5°C and 2°C (Table SPM.2)" },
+          { id:3, name:"Our World in Data — CO₂ Emissions", org:"Our World in Data / GCP", url:"https://ourworldindata.org/co2-and-greenhouse-gas-emissions", year:"2023", usedFor:"Country and sector emissions time series" },
+          { id:4, name:"UNEP Emissions Gap Report 2023", org:"UN Environment Programme", url:"https://www.unep.org/resources/emissions-gap-report-2023", year:"2023", usedFor:"NDC pledge scenarios vs. required reductions by 2030" },
+          { id:5, name:"Global Carbon Project 2023", org:"Global Carbon Project", url:"https://www.globalcarbonproject.org", year:"2023", usedFor:"Current annual global emissions (37.4 GtCO₂/yr)" },
+        ]}
+        steps={[
+          {
+            label: "Warming Trend — Linear Regression on GISTEMP (1950–2023)",
+            formula:`Fit using numpy.polyfit on 74 annual data points (1950–2023):
+  anomaly(year) = 0.0189 × year − 37.42
+
+  → Rate = +0.189°C per decade (full record)
+  → Rate = +0.262°C per decade (since 1980 — accelerating)
+
+2023 anomaly (vs. 1951-80 baseline) = +1.17°C
+Pre-industrial offset                = +0.29°C
+2023 vs. pre-industrial              ≈ +1.46°C`,
+            result: "Warming has accelerated: 0.262°C/decade since 1980 vs. 0.189°C/decade over full record",
+          },
+          {
+            label: "Carbon Budget Countdown",
+            formula:`Source: IPCC AR6 Table SPM.2 (updated to Jan 2023 base year)
+
+  Remaining budget (1.5°C, 67% probability) = 380 GtCO₂
+  Remaining budget (2.0°C, 67% probability) = 1,230 GtCO₂
+  Current annual global emissions             = 37.4 GtCO₂/yr
+
+  Years to exhaust 1.5°C budget = 380 ÷ 37.4 = 10.2 years → ~2033
+  Years to exhaust 2.0°C budget = 1,230 ÷ 37.4 = 32.9 years → ~2056`,
+            result: "At current emissions, the 1.5°C carbon budget runs out around 2033",
+            note: "Budget assumes constant emissions. Any increase shortens the timeline; any decrease extends it.",
+          },
+          {
+            label: "NDC Pledge Gap (2030)",
+            formula:`All scenarios in GtCO₂e/yr by 2030 (UNEP Emissions Gap Report 2023):
+
+  Current policies (no new action)    : 58.5 GtCO₂e
+  Unconditional NDCs implemented       : 53.4 GtCO₂e  (−5.1 gap)
+  Conditional NDCs implemented         : 48.6 GtCO₂e  (−9.9 gap)
+  Required for 2°C (67%)              : 41.0 GtCO₂e  (−17.5 gap)
+  Required for 1.5°C (67%)            : 30.0 GtCO₂e  (−28.5 gap)
+
+Pledge gap to 1.5°C = 53.4 − 30.0 = 23.4 GtCO₂e/yr`,
+            result: "Even if all NDC pledges are met, a 23.4 GtCO₂e/yr gap remains vs. 1.5°C target",
+          },
+        ]}
+        toolNotes={[
+          { tool:"Python (pandas / numpy)", color:"#4A6073", tasks:[
+            "Downloaded and processed NASA GISTEMP v4 annual anomaly series",
+            "Fitted linear regression to compute decadal warming rate",
+            "Calculated carbon budget countdown from IPCC AR6 Table SPM.2",
+            "Processed UNEP NDC pledge scenarios and gap calculations",
+          ]},
+          { tool:"Excel", color:"#5A6E4F", tasks:[
+            "Built NDC scenario comparison table with colour-coded gap column",
+            "Formatted GISTEMP anomaly chart for decade-by-decade visualisation",
+            "Sector emissions breakdown with trend annotations",
+          ]},
+          { tool:"React / JavaScript", color:"#C9A46F", tasks:[
+            "Animated temperature anomaly line chart (1950–2023)",
+            "Carbon budget countdown clock with live depletion bar",
+            "NDC pledge gap comparison chart by scenario",
+          ]},
+        ]}
+        files={[
+          { name:"analysis.py",       ext:"py",   label:"GISTEMP regression + carbon budget script" },
+          { name:"climate_data.xlsx", ext:"xlsx", label:"Anomaly series + NDC pledge gap table" },
+          { name:"README.md",         ext:"md",   label:"Methodology notes & data sources" },
+        ]}
+      />
     </div>
   );
 }

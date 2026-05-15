@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getAllPosts } from "../../lib/blog";
-import BlogCard from "../../components/BlogCard";
+import BlogSearch from "../../components/BlogSearch";
 
 const PALETTE = {
   bg:     "#F5F5F0",
@@ -10,9 +10,7 @@ const PALETTE = {
   amber:  "#D97706",
   teal:   "#1A7A8A",
   cream:  "#FFFDF5",
-  olive:  "#5A6E4F",
 };
-
 
 export default function BlogPage() {
   const posts = getAllPosts();
@@ -32,13 +30,16 @@ export default function BlogPage() {
           <h1 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 900, color: "#FFFDF5", lineHeight: 1.1, margin: "0 0 14px" }}>
             Data Blog
           </h1>
-          <p style={{ fontSize: "clamp(0.95rem, 2vw, 1.2rem)", color: "rgba(255,253,245,0.7)", lineHeight: 1.65, margin: "0 0 0", maxWidth: "560px" }}>
+          <p style={{ fontSize: "clamp(0.95rem, 2vw, 1.2rem)", color: "rgba(255,253,245,0.7)", lineHeight: 1.65, margin: "0 0 16px", maxWidth: "560px" }}>
             Numbers behind the news — India's economy, air quality, public health, and global data stories. Short, sourced, no fluff.
+          </p>
+          <p style={{ fontSize: "13px", color: "rgba(255,253,245,0.45)" }}>
+            {posts.length} {posts.length === 1 ? "post" : "posts"} · Interactive case studies included
           </p>
         </div>
       </section>
 
-      {/* ── POST LIST ── */}
+      {/* ── POST LIST WITH SEARCH ── */}
       <section style={{ maxWidth: "760px", margin: "0 auto", padding: "48px 20px 80px" }}>
 
         {posts.length === 0 ? (
@@ -47,14 +48,10 @@ export default function BlogPage() {
             <p style={{ fontSize: "1.1rem" }}>First post coming soon.</p>
           </div>
         ) : (
-          <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-            {posts.map((post) => (
-              <BlogCard key={post.slug} post={post} />
-            ))}
-          </div>
+          <BlogSearch posts={posts} />
         )}
 
-        {/* Newsletter / follow prompt */}
+        {/* CTA */}
         <div style={{ marginTop: "56px", background: `linear-gradient(135deg, #1C1C1C 0%, #2d2010 100%)`, borderRadius: "18px", padding: "32px", textAlign: "center" }}>
           <div style={{ fontSize: "1.5rem", marginBottom: "12px" }}>📬</div>
           <h3 style={{ fontSize: "1.1rem", fontWeight: 800, color: "#FFFDF5", margin: "0 0 8px" }}>Want more data analysis?</h3>

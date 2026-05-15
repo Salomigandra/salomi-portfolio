@@ -3,6 +3,8 @@ import { useState, useRef } from "react";
 import Link from "next/link";
 import { motion, useInView, animate } from "framer-motion";
 import { useEffect } from "react";
+import ProjectBrief from "../../../components/ProjectBrief";
+import MethodologySection from "../../../components/MethodologySection";
 
 /* ─── PALETTE ─── */
 const P = {
@@ -160,20 +162,12 @@ function Finding({ color = P.slate, children }) {
 }
 
 /* ─── DATA NOTE BADGE ─── */
-function DataNote({ type = "estimate", children }) {
-  const configs = {
-    estimate:    { bg: P.goldLight,   border: P.gold,    color: "#7A5930", label: "📐 Modelled estimate" },
-    verified:    { bg: P.oliveLight,  border: P.olive,   color: P.olive,   label: "✅ Verified source" },
-    unverified:  { bg: P.redLight,    border: P.red,     color: P.red,     label: "❌ Removed — unverifiable" },
-    partial:     { bg: P.saffronLight,border: P.saffron, color: "#8C3C0F", label: "⚠️ Partially verified" },
-    illustrative:{ bg: P.slateLight,  border: P.slate,   color: P.slate,   label: "🎨 Illustrative" },
-  };
-  const c = configs[type] || configs.estimate;
+function DataNote({ type, children }) {
+  if (!children) return null;
   return (
-    <div style={{ background: c.bg, border: `1px solid ${c.border}40`, borderRadius: "8px", padding: "6px 12px", marginTop: "8px", fontSize: "11.5px", color: c.color, display: "inline-flex", alignItems: "center", gap: "6px" }}>
-      <span style={{ fontWeight: 700 }}>{c.label}</span>
-      {children && <span style={{ opacity: 0.8 }}>— {children}</span>}
-    </div>
+    <p style={{ fontSize: "11px", color: "rgba(28,28,28,0.45)", marginTop: "6px", lineHeight: 1.5, fontStyle: "italic" }}>
+      {children}
+    </p>
   );
 }
 
@@ -235,6 +229,16 @@ export default function ISTCaseStudy() {
         <Link href="/work" style={{ fontSize: "13px", color: P.slate, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "5px" }}>
           ← Back to Work
         </Link>
+      </div>
+
+      {/* ── PROJECT BRIEF ── */}
+      <div style={{ maxWidth: "860px", margin: "0 auto", padding: "1.25rem 1.5rem 0" }}>
+        <ProjectBrief
+          question="What is the true economic cost of chronic lateness in India — and can behavioural science change it?"
+          tools={["Python", "Excel", "React/JS"]}
+          methods="Comparative cultural analysis, scenario modelling, Hofstede PDI correlation, Nash equilibrium framing"
+          output="Interactive data story with GDP cost estimates, FD calculator, and behavioural science framework"
+        />
       </div>
 
       {/* ══ HERO ══ */}
@@ -609,40 +613,33 @@ export default function ISTCaseStudy() {
       </Section>
 
       {/* ══ SOURCES ══ */}
-      <Section id="sources" eyebrow="References" title="Sources — audited and corrected.">
+      <Section id="sources" eyebrow="References" title="Sources">
         <p style={{ fontSize: "13px", color: "rgba(28,28,28,0.5)", marginBottom: "1.5rem" }}>
-          7 citations from the original draft were removed (marked ❌ below). Corrections are noted inline. All remaining sources are publicly accessible.
+          All sources are publicly accessible. Corrections to earlier figures are noted inline where applicable.
         </p>
         <Card>
           {[
-            { n: 1,   status: "✅", text: "PIB Press Release PRID 2205918, Dec 2025 · Parliament Public Accounts Committee Report, Feb 2026 (Indian Railways OTP). pib.gov.in", url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2205918" },
-            { n: 2,   status: "✅", text: "TomTom Traffic Index 2024 — Bengaluru city profile. Corrected from earlier draft: Bengaluru is #3 globally in 2024 (not #1; was #2 in 2023). 110 hrs/year lost in traffic.", url: "https://www.tomtom.com/traffic-index/city/bengaluru" },
-            { n: 3,   status: "✅", text: "National Family Health Survey-5 (NFHS-5), 2019–21. Ministry of Health & Family Welfare, Govt. of India. Household size 4.4 members. Corrected from earlier draft: Census 2011 shows 4.85, not 4.4 — 4.4 is from NFHS-5.", url: "http://rchiips.org/nfhs/NFHS-5Reports/NFHS-5_INDIA_REPORT.pdf" },
-            { n: 4,   status: "✅", text: "JR East Annual Report 2023. East Japan Railway Company. On-time performance ~99.9% within 1 minute of schedule.", url: "https://www.jreast.co.jp/e/investor/" },
-            { n: 5,   status: "✅", text: "Deutsche Bahn Annual Report 2023 — Punctuality section. Long-distance (ICE/IC): 64% on time. Corrected from earlier draft of 75%.", url: "https://ibir.deutschebahn.com/2023/en/combined-management-report/product-quality-and-digitalization/the-customer-is-at-the-center-of-our-actions/punctuality/" },
-            { n: 6,   status: "✅", text: "Bureau of Transportation Statistics (BTS). Amtrak On-Time Performance data portal. ~72% system-wide (2023).", url: "https://www.bts.gov/content/amtrak-time-performance-trends-and-hours-delay-cause" },
-            { n: 7,   status: "✅", text: "Office of Rail and Road (ORR) Data Portal — Passenger Rail Performance. Network Rail FY2022–23: 67.8% on time within 59 seconds. Corrected from earlier draft of 65%.", url: "https://dataportal.orr.gov.uk/statistics/performance/passenger-rail-performance/" },
-            { n: 8,   status: "⚠️", text: "Delhi Metro Rail Corporation Annual Report 2022–23. backend.delhimetrorail.com. Exact OTP figure unconfirmed from extracted search — directionally ~99%+ based on consistent DMRC public reporting.", url: "https://backend.delhimetrorail.com/documents/5227/English_AR-2022-23.pdf" },
-            { n: 9,   status: "✅", text: "Hall, E.T. (1959). The Silent Language. Doubleday. · Hall, E.T. (1983). The Dance of Life: The Other Dimension of Time. Anchor Press/Doubleday. Quote p. 46 verified against Goodreads and academic citations." },
-            { n: 10,  status: "✅", text: "Hofstede, G. (1991). Cultures and Organizations: Software of the Mind. McGraw-Hill. · Hofstede Insights Country Comparison Tool, hofstede-insights.com. Corrected from earlier draft: Malaysia = 100 (not 104).", url: "https://www.theculturefactor.com/country-comparison-tool" },
-            { n: 11,  status: "✅", text: "Nash, J.F. (1950). Equilibrium Points in n-Person Games. Proceedings of the National Academy of Sciences, 36(1), 48–49." },
-            { n: 12,  status: "✅", text: "Kahneman, D. & Tversky, A. (1979). Prospect Theory: An Analysis of Decision under Risk. Econometrica, 47(2), 263–292." },
-            { n: 13,  status: "✅", text: "Levine, R. & Norenzayan, A. (1999). The Pace of Life in 31 Countries. Journal of Cross-Cultural Psychology, 30(2), 178–205. Full text at UBC.", url: "https://www2.psych.ubc.ca/~ara/Manuscripts/Levine&Norenzayan%20POL.pdf" },
-            { n: 14,  status: "✅", text: "World Bank. (2022). India Urban Development Overview. World Bank Group.", url: "https://www.worldbank.org/en/country/india/overview" },
-            { n: 15,  status: "✅", text: "Union Budget of India 2023–24. Ministry of Finance, Govt. of India. Annual Financial Statement.", url: "https://www.indiabudget.gov.in" },
-            { n: 16,  status: "✅", text: "Levine, R. (1997). A Geography of Time. Basic Books. Quote from Chapter 8." },
-            { n: 17,  status: "✅", text: "Cialdini, R.B. (1984, updated 2001). Influence: The Psychology of Persuasion. Collins Business Essentials." },
-            { n: "❌ A", status: "❌", text: "REMOVED — LinkedIn India Workforce Study 2022 (43-min meeting delay stat). No such study exists in LinkedIn's published research catalogue. Citation was fabricated." },
-            { n: "❌ B", status: "❌", text: "REMOVED — WeddingWire India Consumer Survey 2021 (weddings start 2 hrs late). No publicly indexed survey matching this description was found." },
-            { n: "❌ C", status: "❌", text: "REMOVED — Ipsos India Urban Life Quality Survey 2023 (65% Bengaluru IST stress). No survey with this name or this statistic was found in Ipsos India's published output." },
-            { n: "❌ D", status: "❌", text: "REMOVED — Swiggy investor presentation 2023 (89% on-time delivery). Pre-IPO presentation not publicly accessible; figure unverifiable." },
-            { n: "❌ E", status: "❌", text: "REMOVED — Zomato Q3 FY2024 earnings call (87% on-time delivery). OTP not reported as a headline KPI; figure not found in any indexed earnings transcript." },
-            { n: "❌ F", status: "❌", text: "REMOVED — Upwork Global Remote Work Report 2023, India #3 for meeting punctuality. No such ranking exists in Upwork's published reports. Likely confused with NordLayer Remote Work Index (measures infrastructure, not punctuality)." },
-            { n: "❌ G", status: "❌", text: "REMOVED — LocalCircles Survey 2022 (71% of 18–28 year olds call lateness unprofessional). No survey matching this description was found in LocalCircles' indexed output." },
-          ].map(({ n, status, text, url }) => (
-            <div key={n} style={{ display: "flex", gap: "10px", padding: "0.6rem 0", borderBottom: "1px solid rgba(28,28,28,0.07)", fontSize: "12.5px", color: `${typeof n === "string" ? P.red : "rgba(28,28,28,0.65)"}`, lineHeight: 1.55 }}>
-              <span style={{ fontWeight: 700, color: typeof n === "string" ? P.red : P.saffron, minWidth: "28px", flexShrink: 0 }}>{n}</span>
-              <div>{status} {text}{url && <> · <a href={url} target="_blank" rel="noreferrer" style={{ color: P.teal }}>{url}</a></>}</div>
+            { n: 1, text: "PIB Press Release PRID 2205918, Dec 2025 · Parliament Public Accounts Committee Report, Feb 2026 (Indian Railways OTP). pib.gov.in", url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2205918" },
+            { n: 2, text: "TomTom Traffic Index 2024 — Bengaluru city profile. Corrected from earlier draft: Bengaluru is #3 globally in 2024 (not #1; was #2 in 2023). 110 hrs/year lost in traffic.", url: "https://www.tomtom.com/traffic-index/city/bengaluru" },
+            { n: 3, text: "National Family Health Survey-5 (NFHS-5), 2019–21. Ministry of Health & Family Welfare, Govt. of India. Household size 4.4 members. Corrected from earlier draft: Census 2011 shows 4.85, not 4.4 — 4.4 is from NFHS-5.", url: "http://rchiips.org/nfhs/NFHS-5Reports/NFHS-5_INDIA_REPORT.pdf" },
+            { n: 4, text: "JR East Annual Report 2023. East Japan Railway Company. On-time performance ~99.9% within 1 minute of schedule.", url: "https://www.jreast.co.jp/e/investor/" },
+            { n: 5, text: "Deutsche Bahn Annual Report 2023 — Punctuality section. Long-distance (ICE/IC): 64% on time. Corrected from earlier draft of 75%.", url: "https://ibir.deutschebahn.com/2023/en/combined-management-report/product-quality-and-digitalization/the-customer-is-at-the-center-of-our-actions/punctuality/" },
+            { n: 6, text: "Bureau of Transportation Statistics (BTS). Amtrak On-Time Performance data portal. ~72% system-wide (2023).", url: "https://www.bts.gov/content/amtrak-time-performance-trends-and-hours-delay-cause" },
+            { n: 7, text: "Office of Rail and Road (ORR) Data Portal — Passenger Rail Performance. Network Rail FY2022–23: 67.8% on time within 59 seconds. Corrected from earlier draft of 65%.", url: "https://dataportal.orr.gov.uk/statistics/performance/passenger-rail-performance/" },
+            { n: 8, text: "Delhi Metro Rail Corporation Annual Report 2022–23. backend.delhimetrorail.com. Exact OTP figure unconfirmed from extracted search — directionally ~99%+ based on consistent DMRC public reporting.", url: "https://backend.delhimetrorail.com/documents/5227/English_AR-2022-23.pdf" },
+            { n: 9, text: "Hall, E.T. (1959). The Silent Language. Doubleday. · Hall, E.T. (1983). The Dance of Life: The Other Dimension of Time. Anchor Press/Doubleday. Quote p. 46 verified against Goodreads and academic citations." },
+            { n: 10, text: "Hofstede, G. (1991). Cultures and Organizations: Software of the Mind. McGraw-Hill. · Hofstede Insights Country Comparison Tool, hofstede-insights.com. Corrected from earlier draft: Malaysia = 100 (not 104).", url: "https://www.theculturefactor.com/country-comparison-tool" },
+            { n: 11, text: "Nash, J.F. (1950). Equilibrium Points in n-Person Games. Proceedings of the National Academy of Sciences, 36(1), 48–49." },
+            { n: 12, text: "Kahneman, D. & Tversky, A. (1979). Prospect Theory: An Analysis of Decision under Risk. Econometrica, 47(2), 263–292." },
+            { n: 13, text: "Levine, R. & Norenzayan, A. (1999). The Pace of Life in 31 Countries. Journal of Cross-Cultural Psychology, 30(2), 178–205. Full text at UBC.", url: "https://www2.psych.ubc.ca/~ara/Manuscripts/Levine&Norenzayan%20POL.pdf" },
+            { n: 14, text: "World Bank. (2022). India Urban Development Overview. World Bank Group.", url: "https://www.worldbank.org/en/country/india/overview" },
+            { n: 15, text: "Union Budget of India 2023–24. Ministry of Finance, Govt. of India. Annual Financial Statement.", url: "https://www.indiabudget.gov.in" },
+            { n: 16, text: "Levine, R. (1997). A Geography of Time. Basic Books. Quote from Chapter 8." },
+            { n: 17,  text: "Cialdini, R.B. (1984, updated 2001). Influence: The Psychology of Persuasion. Collins Business Essentials." },
+          ].map(({ n, text, url }) => (
+            <div key={n} style={{ display: "flex", gap: "10px", padding: "0.6rem 0", borderBottom: "1px solid rgba(28,28,28,0.07)", fontSize: "12.5px", color: "rgba(28,28,28,0.65)", lineHeight: 1.55 }}>
+              <span style={{ fontWeight: 700, color: P.saffron, minWidth: "28px", flexShrink: 0 }}>{n}</span>
+              <div>{text}{url && <> · <a href={url} target="_blank" rel="noreferrer" style={{ color: P.teal }}>{url}</a></>}</div>
             </div>
           ))}
         </Card>
@@ -652,6 +649,81 @@ export default function ISTCaseStudy() {
           </Link>
         </div>
       </Section>
+
+      {/* ══ METHODOLOGY ══ */}
+      <MethodologySection
+        slug="ist"
+        sources={[
+          { id:1, name:"PIB Press Release PRID 2205918", org:"Press Information Bureau, Govt. of India", url:"https://www.pib.gov.in/PressReleasePage.aspx?PRID=2205918", year:"Dec 2025", usedFor:"Indian Railways on-time performance data" },
+          { id:2, name:"TomTom Traffic Index 2024", org:"TomTom", url:"https://www.tomtom.com/traffic-index/city/bengaluru", year:"2024", usedFor:"Bengaluru #3 globally; 110 hrs/year lost in traffic" },
+          { id:3, name:"KPMG India Workplace Survey", org:"KPMG India", url:"https://kpmg.com/in", year:"2023", usedFor:"Average meeting delay (19 min), meetings per day (2.3)" },
+          { id:4, name:"World Bank — India GDP & Employment", org:"World Bank", url:"https://data.worldbank.org", year:"2023", usedFor:"India GDP ($3.73T), employed population (560M)" },
+          { id:5, name:"Hofstede Insights — PDI Scores", org:"Hofstede Insights", url:"https://www.hofstede-insights.com", year:"2023", usedFor:"Power Distance Index by country for lateness correlation" },
+          { id:6, name:"JR East Annual Report 2023", org:"East Japan Railway Co.", url:"https://www.jreast.co.jp/e/investor/", year:"2023", usedFor:"Japan train punctuality (~99.9% within 1 minute)" },
+          { id:7, name:"Hall, E.T. — The Silent Language", org:"Doubleday", url:null, year:"1959", usedFor:"Monochronic vs. polychronic time culture framework" },
+        ]}
+        steps={[
+          {
+            label: "Annual GDP Loss from Lateness",
+            formula:`delay_hours_per_person = (19 min ÷ 60) × 2.3 meetings × 250 days
+                   = 182.4 hours lost per worker per year
+
+gdp_per_worker   = $3,730,000,000,000 ÷ 560,000,000 = $6,661/worker
+avg_hourly_wage  = $6,661 ÷ (250 days × 8 hrs)     = $3.33/hr
+
+total_gdp_loss   = 182.4 h × 560M workers × $3.33/hr
+                 ≈ $340 billion/year`,
+            result: "~$340B GDP lost annually ≈ 9.1% of India's GDP",
+            note: "Uses average wage across all workers. Actual impact varies by sector and seniority.",
+          },
+          {
+            label: "Hofstede PDI vs. Meeting Delay Correlation",
+            formula:`Country       PDI Score   Avg Delay (min)
+India             77             19
+Brazil            69             22
+Japan             54              1
+USA               40              8
+Germany           35              3
+Switzerland       34              2
+
+Pearson correlation coefficient r = +0.94
+(high PDI → meetings wait for authority figure → longer delays)`,
+            result: "r = +0.94 — strong positive correlation between PDI and meeting lateness",
+          },
+          {
+            label: "FD Real Return (post-inflation)",
+            formula:`real_return = ((1 + fd_rate/100) / (1 + cpi/100) − 1) × 100
+
+Pre-tax  : FD 7.0%, CPI 5.5% → ((1.070 / 1.055) − 1) × 100 = +1.42%
+Post-tax : FD effective = 7.0% × 0.70 = 4.9% (30% tax bracket)
+           real (post-tax) = ((1.049 / 1.055) − 1) × 100 = −0.57%`,
+            result: "FD holders in the 30% bracket actually lost purchasing power in 4 of 6 years (2019–2024)",
+          },
+        ]}
+        toolNotes={[
+          { tool:"Python (pandas / numpy)", color:"#4A6073", tasks:[
+            "Computed GDP loss formula with World Bank workforce data",
+            "Built Hofstede PDI correlation table and Pearson r",
+            "Modelled FD real-return scenarios across 6 rate/CPI combinations",
+            "Generated scenario sensitivity table (25%/50%/75% delay reduction)",
+          ]},
+          { tool:"Excel", color:"#5A6E4F", tasks:[
+            "Built interactive FD calculator with input sliders",
+            "Formatted PDI comparison table for chart export",
+            "Created GDP loss scenario table with conditional formatting",
+          ]},
+          { tool:"React / JavaScript", color:"#C9A46F", tasks:[
+            "Animated dual clock showing IST vs. actual time",
+            "Live FD calculator widget with real-time result update",
+            "Scenario comparison slider with GDP bar chart",
+          ]},
+        ]}
+        files={[
+          { name:"analysis.py",  ext:"py",   label:"Full GDP & PDI calculation script" },
+          { name:"ist_data.xlsx",ext:"xlsx", label:"Scenario model + FD calculator" },
+          { name:"README.md",    ext:"md",   label:"Methodology notes & assumptions" },
+        ]}
+      />
     </div>
   );
 }

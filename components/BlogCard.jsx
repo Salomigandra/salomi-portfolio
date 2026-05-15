@@ -5,6 +5,7 @@ const TAG_COLORS = ["#1A7A8A", "#D97706", "#5A6E4F", "#4A6073"];
 const INK = "#1C1C1C";
 const CREAM = "#FFFDF5";
 const TEAL = "#1A7A8A";
+const AMBER = "#D97706";
 
 export default function BlogCard({ post }) {
   function fmtDate(d) {
@@ -12,6 +13,8 @@ export default function BlogCard({ post }) {
       year: "numeric", month: "long", day: "numeric",
     });
   }
+
+  const isCase = Boolean(post.caseStudyUrl);
 
   return (
     <article
@@ -23,6 +26,7 @@ export default function BlogCard({ post }) {
         boxShadow: "0 2px 16px rgba(0,0,0,0.04)",
         transition: "box-shadow 0.2s, transform 0.2s",
         cursor: "pointer",
+        borderTop: isCase ? `3px solid ${AMBER}` : undefined,
       }}
       onMouseEnter={e => {
         e.currentTarget.style.boxShadow = "0 6px 28px rgba(0,0,0,0.10)";
@@ -33,6 +37,15 @@ export default function BlogCard({ post }) {
         e.currentTarget.style.transform = "translateY(0)";
       }}
     >
+      {/* Interactive badge (case studies only) */}
+      {isCase && (
+        <div style={{ marginBottom: "10px" }}>
+          <span style={{ fontSize: "10px", fontWeight: 700, color: AMBER, background: `${AMBER}15`, border: `1px solid ${AMBER}30`, padding: "2px 9px", borderRadius: "20px", letterSpacing: "0.08em" }}>
+            ⚡ Interactive Case Study
+          </span>
+        </div>
+      )}
+
       {/* Meta row */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", alignItems: "center", marginBottom: "12px" }}>
         <time dateTime={post.date} style={{ fontSize: "12px", fontWeight: 600, color: `${INK}55` }}>
@@ -70,16 +83,27 @@ export default function BlogCard({ post }) {
         {post.excerpt}
       </p>
 
-      {/* CTA */}
-      <Link
-        href={`/blog/${post.slug}`}
-        style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13px", fontWeight: 700, color: TEAL, textDecoration: "none" }}
-      >
-        Read the analysis
-        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M5 12h12m0 0l-5-5m5 5l-5 5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </Link>
+      {/* CTA row */}
+      <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
+        <Link
+          href={`/blog/${post.slug}`}
+          style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13px", fontWeight: 700, color: TEAL, textDecoration: "none" }}
+        >
+          Read the analysis
+          <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h12m0 0l-5-5m5 5l-5 5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </Link>
+
+        {isCase && (
+          <Link
+            href={post.caseStudyUrl}
+            style={{ display: "inline-flex", alignItems: "center", gap: "5px", fontSize: "12px", fontWeight: 600, color: AMBER, textDecoration: "none", background: `${AMBER}12`, border: `1px solid ${AMBER}25`, padding: "4px 12px", borderRadius: "8px" }}
+          >
+            View interactive →
+          </Link>
+        )}
+      </div>
     </article>
   );
 }

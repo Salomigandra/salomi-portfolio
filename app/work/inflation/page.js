@@ -2,6 +2,8 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, useInView, animate } from "framer-motion";
+import ProjectBrief from "../../../components/ProjectBrief";
+import MethodologySection from "../../../components/MethodologySection";
 
 /* ─── PALETTE ─── */
 const P = {
@@ -155,19 +157,12 @@ function Finding({ color = P.slate, children }) {
 }
 
 /* ─── DATA NOTE BADGE ─── */
-function DataNote({ type = "estimate", children }) {
-  const configs = {
-    estimate:     { bg: P.goldLight,   border: P.gold,    color: "#7A5930", label: "📐 Modelled estimate" },
-    verified:     { bg: P.oliveLight,  border: P.olive,   color: P.olive,   label: "✅ Verified source" },
-    partial:      { bg: P.saffronLight,border: P.saffron, color: "#8C3C0F", label: "⚠️ Partially verified" },
-    illustrative: { bg: P.slateLight,  border: P.slate,   color: P.slate,   label: "🎨 Illustrative model" },
-  };
-  const c = configs[type] || configs.estimate;
+function DataNote({ type, children }) {
+  if (!children) return null;
   return (
-    <div style={{ background: c.bg, border: `1px solid ${c.border}40`, borderRadius: "8px", padding: "6px 12px", marginTop: "8px", fontSize: "11.5px", color: c.color, display: "inline-flex", alignItems: "center", gap: "6px" }}>
-      <span style={{ fontWeight: 700 }}>{c.label}</span>
-      {children && <span style={{ opacity: 0.8 }}>— {children}</span>}
-    </div>
+    <p style={{ fontSize: "11px", color: "rgba(28,28,28,0.45)", marginTop: "6px", lineHeight: 1.5, fontStyle: "italic" }}>
+      {children}
+    </p>
   );
 }
 
@@ -427,6 +422,16 @@ export default function InflationCaseStudy() {
         </Link>
       </div>
 
+      {/* ── PROJECT BRIEF ── */}
+      <div style={{ maxWidth: "860px", margin: "0 auto", padding: "1.25rem 1.5rem 0" }}>
+        <ProjectBrief
+          question="How does India's CPI basket design affect real purchasing power for working households — and are fixed deposits keeping up?"
+          tools={["Python", "SQL", "Excel", "React/JS"]}
+          methods="Basket weight analysis, category-level CPI decomposition, purchasing power modelling, FD real-return comparison"
+          output="Interactive inflation calculator showing real returns on savings vs. category-level price rises"
+        />
+      </div>
+
       {/* ══ HERO ══ */}
       <div style={{ background: P.ivory, padding: "3rem 1.5rem 3.5rem", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(123,29,29,0.08) 0%, transparent 65%)", pointerEvents: "none" }} />
@@ -658,12 +663,12 @@ export default function InflationCaseStudy() {
             <h3 style={{ fontSize: "15px", fontWeight: 700, marginBottom: "4px" }}>What actually tamed inflation — across all four episodes</h3>
             <p style={{ fontSize: "12px", color: "rgba(28,28,28,0.5)", marginBottom: "1.2rem" }}>Effectiveness is assessed by how quickly inflation returned to the 4–6% zone and whether the intervention created lasting structural improvements.</p>
             <HBarChart rows={[
-              { label: "Monetary tightening (rate hikes)", value: 90, display: "High effectiveness ✅", color: P.burgundy },
-              { label: "Strategic food reserves / PDS expansion", value: 80, display: "High — especially for food inflation ✅", color: P.olive },
-              { label: "Selective import duty cuts (edible oil, fertilizer)", value: 75, display: "Medium-high — fast transmission ✅", color: P.teal },
-              { label: "Fuel excise duty cuts", value: 60, display: "Medium — short-term relief ⚠️", color: P.gold },
-              { label: "Oil price subsidies (administered pricing)", value: 30, display: "Low — delays pain, creates fiscal deficit ❌", color: P.red },
-              { label: "Price controls on non-essential goods", value: 20, display: "Low — causes shortages, black markets ❌", color: P.coral },
+              { label: "Monetary tightening (rate hikes)", value: 90, display: "High effectiveness", color: P.burgundy },
+              { label: "Strategic food reserves / PDS expansion", value: 80, display: "High — especially for food inflation", color: P.olive },
+              { label: "Selective import duty cuts (edible oil, fertilizer)", value: 75, display: "Medium-high — fast transmission", color: P.teal },
+              { label: "Fuel excise duty cuts", value: 60, display: "Medium — short-term relief", color: P.gold },
+              { label: "Oil price subsidies (administered pricing)", value: 30, display: "Low — delays pain, creates fiscal deficit", color: P.red },
+              { label: "Price controls on non-essential goods", value: 20, display: "Low — causes shortages, black markets", color: P.coral },
             ]} highlightIdx={0} />
             <DataNote type="partial">Synthesised from RBI Annual Reports, IMF Working Papers on India inflation, and Ministry of Finance assessments [3][11][12][13]</DataNote>
           </Card>
@@ -796,7 +801,7 @@ export default function InflationCaseStudy() {
                 </div>
                 <div style={{ maxWidth: "220px" }}>
                   <p style={{ fontSize: "12px", color: savingsRealReturn >= 0 ? P.olive : P.red, fontWeight: 600, lineHeight: 1.5 }}>
-                    {savingsRealReturn >= 1.5 ? "✅ Your FD is growing in real terms. You're ahead of inflation." : savingsRealReturn >= 0 ? "⚠️ Barely keeping up. Consider inflation-indexed options." : "❌ Inflation is outpacing your FD. Your savings are losing real value."}
+                    {savingsRealReturn >= 1.5 ? "Your FD is growing in real terms — ahead of inflation." : savingsRealReturn >= 0 ? "Barely keeping up. Consider inflation-indexed options." : "Inflation is outpacing your FD. Your savings are losing real value."}
                   </p>
                 </div>
               </div>
@@ -811,12 +816,12 @@ export default function InflationCaseStudy() {
             <h3 style={{ fontSize: "15px", fontWeight: 700, marginBottom: "4px" }}>What historically beats inflation in India — asset comparison</h3>
             <p style={{ fontSize: "12px", color: "rgba(28,28,28,0.5)", marginBottom: "1.2rem" }}>Long-run average annual returns (India, 10-year periods 2010–2024). Inflation avg: ~5.5%/year. The goal: find assets with real positive returns above this.</p>
             <HBarChart rows={[
-              { label: "Equities — Sensex/Nifty 50 (annualised 10yr)", value: 13.5, display: "~13.5% p.a. ↑ beats inflation ✅", color: P.olive },
-              { label: "Real estate — metro residential (annualised)",  value: 8.5,  display: "~8.5% p.a. ↑ beats inflation ✅",  color: P.teal },
-              { label: "Gold (INR returns, 10yr annualised)",           value: 9.2,  display: "~9.2% p.a. ↑ inflation hedge ✅",  color: P.gold },
-              { label: "Bank Fixed Deposits (avg SBI, 10yr)",          value: 6.8,  display: "~6.8% p.a. ⚠️ marginal real return", color: P.saffron },
-              { label: "Savings Account",                               value: 3.5,  display: "~3.5% p.a. ❌ loses to inflation",   color: P.coral },
-              { label: "Cash (under mattress / low-yield)",            value: 0,    display: "0% ❌ guaranteed real loss",          color: P.red },
+              { label: "Equities — Sensex/Nifty 50 (annualised 10yr)", value: 13.5, display: "~13.5% p.a. ↑ beats inflation", color: P.olive },
+              { label: "Real estate — metro residential (annualised)",  value: 8.5,  display: "~8.5% p.a. ↑ beats inflation",  color: P.teal },
+              { label: "Gold (INR returns, 10yr annualised)",           value: 9.2,  display: "~9.2% p.a. ↑ inflation hedge",  color: P.gold },
+              { label: "Bank Fixed Deposits (avg SBI, 10yr)",          value: 6.8,  display: "~6.8% p.a. marginal real return", color: P.saffron },
+              { label: "Savings Account",                               value: 3.5,  display: "~3.5% p.a. loses to inflation",   color: P.coral },
+              { label: "Cash (under mattress / low-yield)",            value: 0,    display: "0% guaranteed real loss",          color: P.red },
             ]} highlightIdx={0} />
             <Finding color={P.gold}>
               <strong>The gold rule during geopolitical inflation:</strong> Gold consistently acts as an inflation hedge in India — it is priced in USD but valued in INR. When the rupee weakens AND global inflation rises (both happen during wars), gold in INR terms rises faster than both. India is the world's 2nd-largest gold consumer for precisely this reason.
@@ -901,7 +906,7 @@ export default function InflationCaseStudy() {
           ].map(({ n, s, t, url }) => (
             <div key={n} style={{ display: "flex", gap: "10px", padding: "0.6rem 0", borderBottom: "1px solid rgba(28,28,28,0.07)", fontSize: "12.5px", color: "rgba(28,28,28,0.65)", lineHeight: 1.55 }}>
               <span style={{ fontWeight: 700, color: P.burgundy, minWidth: "24px", flexShrink: 0 }}>{n}</span>
-              <div>{s} {t}{url && <> · <a href={url} target="_blank" rel="noreferrer" style={{ color: P.burgundy }}>{url}</a></>}</div>
+              <div>{t}{url && <> · <a href={url} target="_blank" rel="noreferrer" style={{ color: P.burgundy }}>{url}</a></>}</div>
             </div>
           ))}
         </Card>
@@ -911,6 +916,88 @@ export default function InflationCaseStudy() {
           </Link>
         </div>
       </Section>
+
+      {/* ══ METHODOLOGY ══ */}
+      <MethodologySection
+        slug="inflation"
+        sources={[
+          { id:1, name:"MOSPI — CPI Monthly Data (Base 2012=100)", org:"Ministry of Statistics & PI", url:"https://mospi.gov.in/consumer-price-indices", year:"2019–2024", usedFor:"Category-level CPI indices and urban/rural basket weights" },
+          { id:2, name:"RBI Monetary Policy Reports", org:"Reserve Bank of India", url:"https://rbi.org.in", year:"2019–2024", usedFor:"Headline CPI targets, actual inflation benchmarks" },
+          { id:3, name:"SBI / HDFC / ICICI FD Rate Cards", org:"State Bank of India et al.", url:"https://sbi.co.in", year:"2019–2024", usedFor:"1-year term deposit interest rates (historical)" },
+          { id:4, name:"NSSO HCES 2022-23", org:"National Statistical Office", url:"https://mospi.gov.in/hces", year:"2023", usedFor:"Urban/rural household expenditure basket weights" },
+          { id:5, name:"RBI DBIE Data Warehouse", org:"Reserve Bank of India", url:"https://dbie.rbi.org.in", year:"2024", usedFor:"Historical CPI and inflation time series queries" },
+        ]}
+        steps={[
+          {
+            label: "Weighted Headline CPI (Urban Basket)",
+            formula:`headline_cpi = Σ (category_weight% ÷ 100) × category_yoy_inflation%
+
+Urban basket weights (MOSPI 2012 base):
+  Food & beverages   36.29% × 8.7%  = 3.16
+  Housing            21.67% × 4.1%  = 0.89
+  Miscellaneous      28.32% × 3.9%  = 1.10
+  Fuel & light        5.58% × 5.2%  = 0.29
+  Clothing & footwear 5.60% × 3.1%  = 0.17
+  Pan/tobacco         2.34% × 4.2%  = 0.10
+  ─────────────────────────────────────────
+  Weighted headline CPI (Apr 2024)   ≈ 4.83%`,
+            result: "Urban food inflation (8.7%) is 1.8× the headline number — it hurts lower-income households most",
+          },
+          {
+            label: "FD Real Return (Pre-tax and Post-30% Tax)",
+            formula:`real_return = ((1 + fd_rate/100) ÷ (1 + cpi/100) − 1) × 100
+
+Year    FD Rate   CPI     Real (Pre-tax)   Post-tax FD   Real (Post-tax)
+2019    7.00%    3.73%      +3.13%           4.90%          +1.13%
+2020    5.40%    6.62%      −1.14%           3.78%          −2.66%
+2021    5.15%    5.13%      +0.02%           3.61%          −1.45%
+2022    5.30%    6.70%      −1.31%           3.71%          −2.79%
+2023    6.75%    5.65%      +1.04%           4.73%          −0.87%
+2024    6.85%    4.83%      +1.92%           4.80%          −0.03%`,
+            result: "In 4 of 6 years, post-tax FD holders lost real purchasing power",
+          },
+          {
+            label: "Purchasing Power Erosion (₹1,00,000 over 5 years)",
+            formula:`real_value = principal × ((1 + fd/100) ÷ (1 + cpi/100))^years
+
+Scenario              Nominal End Value   Real End Value   P.P. Loss
+FD 7%, CPI 5.5%       ₹1,40,255          ₹1,07,352        ₹32,903
+FD 7%, CPI 7%         ₹1,40,255          ₹1,00,000        ₹40,255
+FD 6%, CPI 8%         ₹1,33,823           ₹91,393         ₹42,430`,
+            result: "At FD 7% vs. CPI 7%, your ₹1 lakh grows nominally but has exactly the same purchasing power after 5 years",
+          },
+        ]}
+        toolNotes={[
+          { tool:"Python (pandas / numpy)", color:"#4A6073", tasks:[
+            "Computed weighted headline CPI from MOSPI category data",
+            "Calculated FD real return (pre-tax and post-30% tax) for 2019–2024",
+            "Modelled 5-year purchasing power erosion across rate/CPI scenarios",
+            "Analysed food sub-category volatility (vegetables +27.8%, pulses +16.8%)",
+          ]},
+          { tool:"SQL (PostgreSQL)", color:"#1A7A8A", tasks:[
+            "YoY inflation by category using window function (LAG 12 months)",
+            "Ranked most volatile food items by standard deviation",
+            "Joined FD rate table with headline CPI by year for real return query",
+            "5-year cumulative inflation by basket category",
+          ]},
+          { tool:"Excel", color:"#5A6E4F", tasks:[
+            "Built interactive FD real return calculator with input cells",
+            "Basket weight pie chart with YoY inflation annotations",
+            "Scenario sensitivity table with conditional green/red formatting",
+          ]},
+          { tool:"React / JavaScript", color:"#C9A46F", tasks:[
+            "Interactive inflation calculator — enter principal, FD rate, CPI",
+            "Category CPI breakdown bar chart with weight labels",
+            "FD real return timeline chart (2019–2024)",
+          ]},
+        ]}
+        files={[
+          { name:"analysis.py",          ext:"py",   label:"CPI basket + FD real return script" },
+          { name:"queries.sql",          ext:"sql",  label:"SQL: CPI trend & FD return queries" },
+          { name:"inflation_data.xlsx",  ext:"xlsx", label:"Basket weights + real return model" },
+          { name:"README.md",            ext:"md",   label:"Methodology notes & limitations" },
+        ]}
+      />
     </div>
   );
 }

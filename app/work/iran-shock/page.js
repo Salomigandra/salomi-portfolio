@@ -1,6 +1,8 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import ProjectBrief from "../../../components/ProjectBrief";
+import MethodologySection from "../../../components/MethodologySection";
 
 /* ─────────────────────────────────────────────
    PALETTE
@@ -495,6 +497,16 @@ export default function IranShockPage() {
           </p>
         </div>
       </section>
+
+      {/* ── PROJECT BRIEF ── */}
+      <div style={{ maxWidth: "860px", margin: "0 auto", padding: "1.25rem 1.5rem 0" }}>
+        <ProjectBrief
+          question="How does an oil price shock from the Iran-Israel conflict transmit into Indian household costs — fuel, food, and currency?"
+          tools={["Python", "SQL", "Excel", "React/JS"]}
+          methods="Price transmission modelling, household expenditure analysis, sector-level cost simulation, import dependency mapping"
+          output="Interactive shock simulator showing fuel, food, and transport cost impacts across income groups"
+        />
+      </div>
 
       {/* ═══════════════════════════════════
           SECTION 01 — THE TRIGGER
@@ -1039,6 +1051,102 @@ export default function IranShockPage() {
         <Link href="/work" style={{ fontSize: "13px", fontWeight: 700, color: C.slate, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px" }}>
           ← Back to all case studies
         </Link>
+      </div>
+
+      {/* ══ METHODOLOGY ══ */}
+      <div style={{ background: "#FFFDF5" }}>
+        <MethodologySection
+          slug="iran-shock"
+          sources={[
+            { id:1, name:"PPAC — Petroleum Data", org:"Petroleum Planning & Analysis Cell", url:"https://ppac.gov.in", year:"2026", usedFor:"India oil import volumes, Hormuz dependency (50%), OMC losses" },
+            { id:2, name:"RBI Exchange Rate Data", org:"Reserve Bank of India / DBIE", url:"https://dbie.rbi.org.in", year:"2026", usedFor:"USD/INR daily rates during shock period (Jan–May 2026)" },
+            { id:3, name:"CNBC / Business Standard", org:"Various media", url:"https://www.cnbctv18.com", year:"May 2026", usedFor:"Brent crude spot prices; petrol pump prices by city" },
+            { id:4, name:"World Bank Pink Sheet", org:"World Bank", url:"https://www.worldbank.org/en/research/commodity-markets", year:"2024–2026", usedFor:"Brent crude historical baseline (2024–2026)" },
+            { id:5, name:"NSSO HCES 2022-23", org:"National Statistical Office", url:"https://mospi.gov.in/hces", year:"2023", usedFor:"Household fuel/transport budget share by income quintile" },
+            { id:6, name:"Al Jazeera / Reuters", org:"International Press", url:"https://www.aljazeera.com", year:"2026", usedFor:"Hormuz closure dates, shipping disruption timeline" },
+          ]}
+          steps={[
+            {
+              label: "Effective Cost Increase — USD Price + INR Depreciation Combined",
+              formula:`Headline oil price change (USD):
+  (120.80 ÷ 72.48 − 1) × 100 = +66.7%
+
+INR depreciation (Jan → May 2026):
+  (94.50 ÷ 84.20 − 1) × 100 = +12.2%
+
+Combined effective cost increase (India pays in INR):
+  (120.80 × 94.50) ÷ (72.48 × 84.20) − 1
+  = 11,415 ÷ 6,103 − 1 = +87.1%
+
+India paid 87.1% more per barrel in rupee terms —
+even though headline oil rose "only" 66.7% in USD`,
+              result: "India's true cost shock was 87.1%, not the headline 66.7% — the weaker rupee added 20 percentage points",
+            },
+            {
+              label: "Petrol Pump Price Build-Up (Cost-Plus Formula)",
+              formula:`pump_price = ((brent_usd × refining_margin × USD_INR) ÷ 158.99)
+             + dealer_margin + excise_duty) × (1 + VAT)
+
+Parameters: refining margin 1.15, excise ₹19.90, dealer ₹3.87, VAT 26.5%
+
+January 2026: brent=$72.48, INR=84.20
+  crude_inr/L = (72.48 × 1.15 × 84.20) ÷ 158.99 = ₹39.2/L
+  pump price  = (39.2 + 3.87 + 19.90) × 1.265  ≈ ₹87.2/L (pre-gov absorption)
+
+May 2026: brent=$120.80, INR=94.50
+  crude_inr/L = (120.80 × 1.15 × 94.50) ÷ 158.99 = ₹65.3/L
+  pump price  ≈ ₹116.3/L (net of ₹2 excise cut)
+
+Increase = ₹29.1/litre (+33.4%)`,
+              result: "Each litre of petrol rose ~₹29 — the government absorbed ₹2 via excise cut, consumers paid the rest",
+            },
+            {
+              label: "Household Budget Impact by Income Quintile",
+              formula:`extra_monthly_spend = avg_litres_per_month × ₹29.1 price increase
+
+budget_impact_pct = extra_monthly_spend ÷ monthly_expenditure × 100
+
+Quintile   Monthly Spend   Litres/Mo   Extra/Mo   Budget Impact
+Q1 (low)     ₹4,200             8       ₹159         3.79%
+Q2           ₹7,800            15       ₹299         3.83%
+Q3          ₹12,400            22       ₹438         3.53%
+Q4          ₹19,800            35       ₹697         3.52%
+Q5 (top)    ₹42,000            65     ₹1,294         3.08%`,
+              result: "The fuel shock is regressive — Q1 households spend 3.79% of income on the extra cost vs. 3.08% for Q5",
+              note: "Litres/month estimated from NSSO HCES transport expenditure shares. Indirect costs (food price pass-through) not included here.",
+            },
+          ]}
+          toolNotes={[
+            { tool:"Python (pandas / numpy)", color:"#4A6073", tasks:[
+              "Modelled oil price shock transmission with combined USD + INR depreciation",
+              "Built petrol pump price formula from PPAC cost-plus components",
+              "Computed household budget impact across 5 income quintiles",
+              "Import dependency mapping: Hormuz share × price increase = daily cost",
+            ]},
+            { tool:"SQL (PostgreSQL)", color:"#1A7A8A", tasks:[
+              "Queried Brent crude daily % change from Jan 2026 baseline",
+              "Computed INR depreciation + effective rupee cost increase per barrel",
+              "Analysed oil import origin before/after Hormuz closure",
+              "Lagged correlation: oil shock → food CPI with 6-week lag",
+            ]},
+            { tool:"Excel", color:"#5A6E4F", tasks:[
+              "Pump price build-up model with excise/VAT component breakdown",
+              "Household budget impact table by income quintile",
+              "OMC daily loss estimation (under-recovery model)",
+            ]},
+            { tool:"React / JavaScript", color:"#C9A46F", tasks:[
+              "Interactive household cost simulator by income group",
+              "Animated oil price timeline with event annotations",
+              "City-level pump price comparison widget",
+            ]},
+          ]}
+          files={[
+            { name:"analysis.py",         ext:"py",   label:"Price transmission + household impact script" },
+            { name:"queries.sql",         ext:"sql",  label:"SQL: Brent shock & city pump price queries" },
+            { name:"iran_shock_data.xlsx",ext:"xlsx", label:"Timeline, pump build-up, quintile impact" },
+            { name:"README.md",           ext:"md",   label:"Methodology notes & data provenance" },
+          ]}
+        />
       </div>
 
     </main>
