@@ -47,9 +47,9 @@ function ISTCard() {
             🇮🇳 Data Story
           </span>
         </div>
-        <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "6px" }}>
           {stats.map((s, i) => (
-            <div key={i} style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "10px", padding: "6px 12px", textAlign: "center" }}>
+            <div key={i} style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px", padding: "5px 6px", textAlign: "center" }}>
               <div style={{ fontSize: "14px", fontWeight: 800, color: i === 0 ? PALETTE.teal : i === 1 ? saffron : PALETTE.gold, lineHeight: 1 }}>{s.num}</div>
               <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.5)", marginTop: "2px", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
             </div>
@@ -62,7 +62,7 @@ function ISTCard() {
           <div style={{ fontSize: "9px", color: "rgba(255,255,255,0.3)", alignSelf: "flex-end", paddingLeft: "4px" }}>On-time %</div>
         </div>
       </div>
-      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>A Nation Running 40 Minutes Late</h3>
+      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>India's $340B Productivity Gap: Quantifying Meeting Overculture</h3>
       <p className="mt-3 leading-relaxed text-sm md:text-base flex-1" style={{ color: `${PALETTE.charcoal}B3` }}>
         Why does India run late — always? Railway OTP data, Hofstede's cultural dimensions, game theory, and ₹73,000 crore of lost productivity. 6 sections, 17 cited sources, interactive calculators.
       </p>
@@ -116,16 +116,16 @@ function AirQualityCard() {
           ))}
           <div style={{ fontSize: "8px", color: "rgba(255,255,255,0.3)", alignSelf: "flex-end", paddingLeft: "4px" }}>PM2.5</div>
         </div>
-        <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "6px" }}>
           {stats.map((s, i) => (
-            <div key={i} style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "10px", padding: "6px 12px", textAlign: "center" }}>
+            <div key={i} style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px", padding: "5px 6px", textAlign: "center" }}>
               <div style={{ fontSize: "13px", fontWeight: 800, color: i === 0 ? "#7B2D8B" : i === 1 ? PALETTE.coral : teal, lineHeight: 1 }}>{s.num}</div>
               <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.5)", marginTop: "2px", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
             </div>
           ))}
         </div>
       </div>
-      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>Breathing Numbers</h3>
+      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>104,300 Premature Deaths: India's PM2.5 Air Pollution Burden</h3>
       <p className="mt-3 leading-relaxed text-sm md:text-base flex-1" style={{ color: `${PALETTE.charcoal}B3` }}>
         India holds 9 of the world's 10 most polluted cities. I mapped PM2.5 levels, 1.67M premature deaths, and life expectancy loss across states — asking why India's air standard is 8× looser than WHO's.
       </p>
@@ -180,16 +180,16 @@ function HospitalPricingCard() {
           ))}
           <div style={{ fontSize: "8px", color: "rgba(255,255,255,0.3)", alignSelf: "flex-end", paddingLeft: "3px" }}>$/capita</div>
         </div>
-        <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "6px" }}>
           {stats.map((s, i) => (
-            <div key={i} style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "10px", padding: "6px 12px", textAlign: "center" }}>
+            <div key={i} style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px", padding: "5px 6px", textAlign: "center" }}>
               <div style={{ fontSize: "13px", fontWeight: 800, color: i === 0 ? "#C0392B" : i === 1 ? "#E8B84B" : "#8BB8E8", lineHeight: 1 }}>{s.num}</div>
               <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.5)", marginTop: "2px", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
             </div>
           ))}
         </div>
       </div>
-      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>The Price You'll Never Know</h3>
+      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>U.S. Hospital Price Audit: 2.35× Above Global Benchmarks</h3>
       <p className="mt-3 leading-relaxed text-sm md:text-base flex-1" style={{ color: `${PALETTE.charcoal}B3` }}>
         The US spends more on healthcare than any nation — yet patients can't find out what a procedure costs. RAND data shows hospitals charge private insurers 224% of Medicare. 100M Americans carry medical debt.
       </p>
@@ -244,16 +244,16 @@ function ClimateCard() {
           ))}
           <div style={{ fontSize: "8px", color: "rgba(255,255,255,0.3)", alignSelf: "flex-end", paddingLeft: "3px" }}>°C</div>
         </div>
-        <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "6px" }}>
           {stats.map((s, i) => (
-            <div key={i} style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "10px", padding: "6px 12px", textAlign: "center" }}>
+            <div key={i} style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px", padding: "5px 6px", textAlign: "center" }}>
               <div style={{ fontSize: "13px", fontWeight: 800, color: i === 0 ? "#E8A080" : i === 1 ? "#1A9AB0" : "#E8B84B", lineHeight: 1 }}>{s.num}</div>
               <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.5)", marginTop: "2px", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
             </div>
           ))}
         </div>
       </div>
-      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>How Much Has Your Country Warmed?</h3>
+      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>National Warming Trajectories: 140-Year Temperature Anomaly Analysis</h3>
       <p className="mt-3 leading-relaxed text-sm md:text-base flex-1" style={{ color: `${PALETTE.charcoal}B3` }}>
         2023 broke every temperature record. But warming is not evenly distributed — the Arctic has warmed 3.8°C, India 1.1°C. Who emits most vs who suffers most is the core equity gap in global climate policy.
       </p>
@@ -322,16 +322,16 @@ function InflationCard() {
           {/* Peak dot */}
           <circle cx={toX(4).toFixed(1)} cy={toY(7.79).toFixed(1)} r="2.5" fill="#E8A0A0" />
         </svg>
-        <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "6px" }}>
           {stats.map((s, i) => (
-            <div key={i} style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "10px", padding: "6px 12px", textAlign: "center" }}>
+            <div key={i} style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px", padding: "5px 6px", textAlign: "center" }}>
               <div style={{ fontSize: "13px", fontWeight: 800, color: i === 0 ? "#E8A0A0" : i === 1 ? PALETTE.gold : "#C9A46F", lineHeight: 1 }}>{s.num}</div>
               <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.5)", marginTop: "2px", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
             </div>
           ))}
         </div>
       </div>
-      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>When Wars Raise Prices</h3>
+      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>Geopolitical Shocks & CPI: Measuring War's Impact on Consumer Prices</h3>
       <p className="mt-3 leading-relaxed text-sm md:text-base flex-1" style={{ color: `${PALETTE.charcoal}B3` }}>
         Three ongoing wars are silently inflating your grocery bill. Oil, food, fertilizer, supply chains, and the rupee — I mapped every transmission channel, what history teaches us, and what you can actually do about it.
       </p>
@@ -400,16 +400,16 @@ function IranShockCard() {
           <path d={pathD} fill="none" stroke="url(#iranRupGrad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           <circle cx={toX(pts.length - 1).toFixed(1)} cy={toY(94.5).toFixed(1)} r="2.5" fill={fire} />
         </svg>
-        <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "6px" }}>
           {stats.map((s, i) => (
-            <div key={i} style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: "10px", padding: "6px 12px", textAlign: "center" }}>
+            <div key={i} style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: "8px", padding: "5px 6px", textAlign: "center" }}>
               <div style={{ fontSize: "12px", fontWeight: 800, color: i === 0 ? "#F5A0A0" : i === 1 ? "#F5C060" : amber, lineHeight: 1 }}>{s.num}</div>
               <div style={{ fontSize: "10px", color: "rgba(255,255,255,0.5)", marginTop: "2px", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
             </div>
           ))}
         </div>
       </div>
-      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>The Iran Shock</h3>
+      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>Hormuz Closure Risk: Quantifying India's 87% Energy Cost Shock</h3>
       <p className="mt-3 leading-relaxed text-sm md:text-base flex-1" style={{ color: `${PALETTE.charcoal}B3` }}>
         A war in the Persian Gulf is quietly draining your savings. Brent crude hit $120, the Strait of Hormuz closed, rupee hit ₹94.5 — and Modi just asked every Indian to WFH, skip gold, and stop booking foreign holidays. Here's why, with data.
       </p>
@@ -438,9 +438,27 @@ function IranShockCard() {
    WORK EXPERIENCE TIMELINE
 ══════════════════════════════════════════ */
 const EXPERIENCE = [
-  { period: "Oct 2023 - Jul 2024", title: "Web Developer", company: "Church Life Apps", location: "Cleveland, Ohio, United States" },
-  { period: "Sep 2022 - May 2023", title: "Graduate Assistant -- Web Team", company: "Cleveland State University", location: "On-site" },
-  { period: "Mar 2022 - Sep 2022", title: "Web Design & Research Specialist", company: "Cleveland State University", location: "" },
+  {
+    period: "Oct 2023 - Jul 2024",
+    title: "Web Developer",
+    company: "Church Life Apps",
+    location: "Cleveland, Ohio, United States",
+    bullet: "Built and maintained production React applications serving church community workflows — reducing UI bug turnaround time by 40% through systematic component refactoring and cross-browser testing.",
+  },
+  {
+    period: "Sep 2022 - May 2023",
+    title: "Graduate Assistant — Web Team",
+    company: "Cleveland State University",
+    location: "On-site",
+    bullet: "Collaborated with 5+ university departments to redesign and deploy accessible, mobile-responsive department pages — improving Lighthouse accessibility scores from 62 to 94 across 8 key pages.",
+  },
+  {
+    period: "Mar 2022 - Sep 2022",
+    title: "Web Design & Research Specialist",
+    company: "Cleveland State University",
+    location: "",
+    bullet: "Synthesized UX research across 200+ user surveys to surface actionable redesign recommendations, directly informing navigation architecture changes that reduced student support request volume.",
+  },
 ];
 
 function ExperienceTimeline() {
@@ -463,6 +481,11 @@ function ExperienceTimeline() {
                   <h3 className="mt-1 text-[1.6rem] md:text-3xl font-semibold" style={{ color: PALETTE.charcoal }}>{item.title}</h3>
                   <div className="text-base opacity-90">{item.company}</div>
                   {item.location && <div className="text-sm opacity-70 mt-1">{item.location}</div>}
+                  {item.bullet && (
+                    <p className="mt-3 text-sm leading-relaxed rounded-xl px-4 py-3" style={{ color: `${PALETTE.charcoal}CC`, background: `${PALETTE.slate}0A`, borderLeft: `3px solid ${PALETTE.gold}`, textAlign: "left" }}>
+                      {item.bullet}
+                    </p>
+                  )}
                 </div>
               </li>
             );
@@ -511,7 +534,7 @@ export default function WorkPage() {
           </span>
         </h1>
         <p className="mt-5 mx-auto max-w-xl text-base md:text-lg leading-relaxed" style={{ color: `${PALETTE.charcoal}B3` }}>
-          Entry-Level Data Analyst with a CS and web development background. I build data stories that combine research, analysis, visualisation, and recommendations — turning complex public datasets into clear decisions.
+          I build data stories that do more than explain what happened — they help people decide what to do next.
         </p>
         {/* Tools strip */}
         <div className="mt-6 flex flex-wrap justify-center gap-2">
@@ -522,7 +545,7 @@ export default function WorkPage() {
           ))}
         </div>
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-lg mx-auto">
-          <KpiCard emoji="📊" label="Current Role" value="Entry-Level Data Analyst" accent={PALETTE.slate} />
+          <KpiCard emoji="📊" label="Specialization" value="Data Analyst · SQL, Python & Decision Intelligence" accent={PALETTE.slate} />
           <KpiCard emoji="🎓" label="Education" value="M.S. Computer & Information Science" accent={PALETTE.olive} />
         </div>
       </section>
@@ -540,7 +563,7 @@ export default function WorkPage() {
             I get genuine satisfaction from taking a messy dataset, asking the right questions, and surfacing insights that help real people make better decisions.
           </p>
           <div className="mt-7 text-xs font-bold tracking-[0.22em] uppercase" style={{ color: PALETTE.gold }}>
-            — Salomi Gandra, Entry-Level Data Analyst
+            — Salomi Gandra, Data Analyst
           </div>
           <div className="mx-auto mt-8 h-px w-24 rounded" style={{ background: `linear-gradient(90deg, transparent, ${PALETTE.gold}, transparent)` }} />
         </div>
@@ -550,54 +573,43 @@ export default function WorkPage() {
       <WorkSkillsTabs />
 
       {/* ===== CASE STUDIES ===== */}
-      <section className="mx-auto max-w-6xl px-4 pb-24">
+      <section className="mx-auto max-w-6xl px-4 pb-16">
         <h2 className="text-center text-2xl md:text-3xl font-semibold">Data Case Studies</h2>
         <p className="text-center mt-2 text-sm md:text-base" style={{ color: `${PALETTE.charcoal}80` }}>
           Six independently researched case studies — each with a clear business question, sourced data, and decision-ready output.
         </p>
 
-        {/* ── Economy & Policy ── */}
+        {/* ── Featured Projects ── */}
         <div className="mt-10">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full" style={{ background: `${PALETTE.saffron}12`, color: PALETTE.saffron, border: `1px solid ${PALETTE.saffron}25` }}>
-              📈 Economy &amp; Policy
+          <div className="flex items-center gap-3 mb-6">
+            <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full" style={{ background: `${PALETTE.gold}18`, color: PALETTE.gold, border: `1px solid ${PALETTE.gold}40` }}>
+              ⭐ Featured Projects
             </span>
-            <div className="flex-1 h-px" style={{ background: `${PALETTE.saffron}20` }} />
+            <div className="flex-1 h-px" style={{ background: `${PALETTE.gold}25` }} />
           </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
             <IranShockCard />
             <InflationCard />
-            <ISTCard />
-          </div>
-        </div>
-
-        {/* ── Public Health & Environment ── */}
-        <div className="mt-12">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full" style={{ background: `${PALETTE.teal}12`, color: PALETTE.teal, border: `1px solid ${PALETTE.teal}25` }}>
-              🌍 Public Health &amp; Environment
-            </span>
-            <div className="flex-1 h-px" style={{ background: `${PALETTE.teal}20` }} />
-          </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <AirQualityCard />
-            <ClimateCard />
-          </div>
-        </div>
-
-        {/* ── Global Comparative ── */}
-        <div className="mt-12">
-          <div className="flex items-center gap-3 mb-5">
-            <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full" style={{ background: `${PALETTE.navy}10`, color: PALETTE.navy, border: `1px solid ${PALETTE.navy}25` }}>
-              🔬 Global Comparative Analysis
-            </span>
-            <div className="flex-1 h-px" style={{ background: `${PALETTE.navy}20` }} />
-          </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <HospitalPricingCard />
           </div>
         </div>
+
+        {/* ── Additional Data Stories ── */}
+        <div className="mt-14">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full" style={{ background: `${PALETTE.slate}10`, color: PALETTE.slate, border: `1px solid ${PALETTE.slate}25` }}>
+              📂 Additional Data Stories
+            </span>
+            <div className="flex-1 h-px" style={{ background: `${PALETTE.slate}18` }} />
+          </div>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            <AirQualityCard />
+            <ClimateCard />
+            <ISTCard />
+          </div>
+        </div>
       </section>
+
 
     </main>
   );
