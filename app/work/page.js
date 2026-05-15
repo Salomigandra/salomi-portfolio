@@ -21,6 +21,27 @@ const PALETTE = {
 };
 
 /* ══════════════════════════════════════════
+   PROOF BLOCK — Methods / Output / Finding
+══════════════════════════════════════════ */
+function ProofBlock({ accent, methods, output, finding }) {
+  const rows = [
+    { label: "Methods", value: methods },
+    { label: "Output",  value: output  },
+    { label: "Finding", value: finding },
+  ];
+  return (
+    <div style={{ margin: "14px 0 10px", padding: "11px 14px", borderRadius: "10px", background: `${accent}08`, border: `1px solid ${accent}1A` }}>
+      {rows.map(row => (
+        <div key={row.label} style={{ display: "flex", gap: "8px", alignItems: "baseline", fontSize: "12px", lineHeight: "1.55", marginBottom: "4px" }}>
+          <span style={{ minWidth: "56px", fontWeight: 700, color: accent, flexShrink: 0 }}>{row.label}</span>
+          <span style={{ color: "#1C1C1CB3" }}>{row.value}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════
    CASE STUDY CARDS — Data Stories
 ══════════════════════════════════════════ */
 
@@ -63,10 +84,16 @@ function ISTCard() {
         </div>
       </div>
       <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>India's $340B Productivity Gap: Quantifying Meeting Overculture</h3>
-      <p className="mt-3 leading-relaxed text-sm md:text-base flex-1" style={{ color: `${PALETTE.charcoal}B3` }}>
-        Why does India run late — always? Railway OTP data, Hofstede's cultural dimensions, game theory, and ₹73,000 crore of lost productivity. 6 sections, 17 cited sources, interactive calculators.
+      <p className="mt-3 leading-relaxed text-sm md:text-base" style={{ color: `${PALETTE.charcoal}B3` }}>
+        Analyzed India's railway on-time performance, cultural time norms (Hofstede PDI: 77), and meeting-culture data to model the economic cost of institutional lateness — estimating ₹73,000 crore in annual productivity loss across the formal workforce.
       </p>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <ProofBlock
+        accent={saffron}
+        methods="Railway OTP regression, Hofstede PDI correlation (r = +0.94), game-theory delay modeling, Python + Excel"
+        output="₹73K Cr cost model, interactive meeting-cost calculator, behavioural nudge framework, 17-source bibliography"
+        finding="Lateness driven by power-distance norms — structural scheduling incentives more effective than awareness campaigns"
+      />
+      <div className="mt-2 flex flex-wrap gap-2">
         {tags.map((tag) => (
           <span key={tag} style={{ fontSize: "11px", fontWeight: 600, padding: "3px 10px", borderRadius: "20px", background: `${saffron}12`, color: saffron, border: `1px solid ${saffron}30` }}>{tag}</span>
         ))}
@@ -126,10 +153,16 @@ function AirQualityCard() {
         </div>
       </div>
       <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>104,300 Premature Deaths: India's PM2.5 Air Pollution Burden</h3>
-      <p className="mt-3 leading-relaxed text-sm md:text-base flex-1" style={{ color: `${PALETTE.charcoal}B3` }}>
-        India holds 9 of the world's 10 most polluted cities. I mapped PM2.5 levels, 1.67M premature deaths, and life expectancy loss across states — asking why India's air standard is 8× looser than WHO's.
+      <p className="mt-3 leading-relaxed text-sm md:text-base" style={{ color: `${PALETTE.charcoal}B3` }}>
+        Applied the GEMM health-impact framework to CPCB PM2.5 station data across 30+ Indian cities, attributing 104,300 premature deaths annually and 5.3 years of life expectancy loss. Benchmarked India's NAAQS standard against WHO guidelines, identifying a critical 8× gap.
       </p>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <ProofBlock
+        accent={teal}
+        methods="GEMM epidemiological model, CPCB station data processing, WHO benchmark gap analysis, Python + Excel"
+        output="City-level mortality attribution model, life-years-lost estimate per state, seasonal PM2.5 trend analysis"
+        finding="Closing the NAAQS–WHO gap could prevent ~27,000 additional deaths/yr — transport and industry are primary levers"
+      />
+      <div className="mt-2 flex flex-wrap gap-2">
         {tags.map((tag) => (
           <span key={tag} style={{ fontSize: "11px", fontWeight: 600, padding: "3px 10px", borderRadius: "20px", background: `${teal}12`, color: teal, border: `1px solid ${teal}30` }}>{tag}</span>
         ))}
@@ -190,10 +223,16 @@ function HospitalPricingCard() {
         </div>
       </div>
       <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>U.S. Hospital Price Audit: 2.35× Above Global Benchmarks</h3>
-      <p className="mt-3 leading-relaxed text-sm md:text-base flex-1" style={{ color: `${PALETTE.charcoal}B3` }}>
-        The US spends more on healthcare than any nation — yet patients can't find out what a procedure costs. RAND data shows hospitals charge private insurers 224% of Medicare. 100M Americans carry medical debt.
+      <p className="mt-3 leading-relaxed text-sm md:text-base" style={{ color: `${PALETTE.charcoal}B3` }}>
+        Analyzed U.S. hospital price transparency compliance using RAND and KFF data, computing price ratios (private insurer vs. Medicare) across procedure categories. Benchmarked U.S. per-capita spend ($12,555) against six OECD nations and audited federal price transparency rule adherence.
       </p>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <ProofBlock
+        accent={navy}
+        methods="RAND price-ratio computation, Python compliance audit, OECD per-capita spend benchmarking, SQL aggregation"
+        output="Price ratio table (avg 2.35×, range 1.8–4.2×), compliance audit (44.1% non-compliant), 6-nation cost comparison"
+        finding="Private insurer rates average 2.35× Medicare; federal reference pricing reform projected to save ~$180B annually"
+      />
+      <div className="mt-2 flex flex-wrap gap-2">
         {tags.map((tag) => (
           <span key={tag} style={{ fontSize: "11px", fontWeight: 600, padding: "3px 10px", borderRadius: "20px", background: `${navy}10`, color: navy, border: `1px solid ${navy}30` }}>{tag}</span>
         ))}
@@ -254,10 +293,16 @@ function ClimateCard() {
         </div>
       </div>
       <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>National Warming Trajectories: 140-Year Temperature Anomaly Analysis</h3>
-      <p className="mt-3 leading-relaxed text-sm md:text-base flex-1" style={{ color: `${PALETTE.charcoal}B3` }}>
-        2023 broke every temperature record. But warming is not evenly distributed — the Arctic has warmed 3.8°C, India 1.1°C. Who emits most vs who suffers most is the core equity gap in global climate policy.
+      <p className="mt-3 leading-relaxed text-sm md:text-base" style={{ color: `${PALETTE.charcoal}B3` }}>
+        Applied linear regression to 140 years of GISTEMP data to model warming trajectories by country and region. Quantified the emissions-to-impact equity gap (Arctic: +3.8°C vs. India: +1.1°C) and modeled remaining carbon budgets against current NDC pledges.
       </p>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <ProofBlock
+        accent={red}
+        methods="GISTEMP linear regression, NASA/WMO data processing, IPCC carbon-budget modeling, Python + Excel"
+        output="Per-country warming trajectory charts, emissions-vs-impact equity index, NDC pledge gap analysis (23.5 Gt CO₂)"
+        finding="Current pledges leave a 23.5 Gt gap by 2030 — Arctic nations bear lowest emissions share but face highest warming"
+      />
+      <div className="mt-2 flex flex-wrap gap-2">
         {tags.map((tag) => (
           <span key={tag} style={{ fontSize: "11px", fontWeight: 600, padding: "3px 10px", borderRadius: "20px", background: `${red}10`, color: red, border: `1px solid ${red}30` }}>{tag}</span>
         ))}
@@ -332,10 +377,16 @@ function InflationCard() {
         </div>
       </div>
       <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>Geopolitical Shocks & CPI: Measuring War's Impact on Consumer Prices</h3>
-      <p className="mt-3 leading-relaxed text-sm md:text-base flex-1" style={{ color: `${PALETTE.charcoal}B3` }}>
-        Three ongoing wars are silently inflating your grocery bill. Oil, food, fertilizer, supply chains, and the rupee — I mapped every transmission channel, what history teaches us, and what you can actually do about it.
+      <p className="mt-3 leading-relaxed text-sm md:text-base" style={{ color: `${PALETTE.charcoal}B3` }}>
+        Traced three geopolitical conflicts (Russia–Ukraine, Middle East, Red Sea) through transmission channels — oil, food, fertilizer, supply chains, rupee — to India's CPI basket. Modeled category-level price impact using RBI and MOSPI data and built a fixed-deposit real-return calculator.
       </p>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <ProofBlock
+        accent={burgundy}
+        methods="CPI basket decomposition, SQL window functions (YoY & 5-yr trend), oil→food transmission lag analysis, Python"
+        output="Category-level inflation dashboard, FD real-return calculator, 5-year purchasing-power erosion model"
+        finding="Food CPI leads core by 2–3 months; FD real return turned negative (−0.8%) at peak inflation in 2022–23"
+      />
+      <div className="mt-2 flex flex-wrap gap-2">
         {tags.map((tag) => (
           <span key={tag} style={{ fontSize: "11px", fontWeight: 600, padding: "3px 10px", borderRadius: "20px", background: `${burgundy}12`, color: burgundy, border: `1px solid ${burgundy}30` }}>{tag}</span>
         ))}
@@ -410,10 +461,16 @@ function IranShockCard() {
         </div>
       </div>
       <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>Hormuz Closure Risk: Quantifying India's 87% Energy Cost Shock</h3>
-      <p className="mt-3 leading-relaxed text-sm md:text-base flex-1" style={{ color: `${PALETTE.charcoal}B3` }}>
-        A war in the Persian Gulf is quietly draining your savings. Brent crude hit $120, the Strait of Hormuz closed, rupee hit ₹94.5 — and Modi just asked every Indian to WFH, skip gold, and stop booking foreign holidays. Here's why, with data.
+      <p className="mt-3 leading-relaxed text-sm md:text-base" style={{ color: `${PALETTE.charcoal}B3` }}>
+        Modeled the cascading impact of Strait of Hormuz risk and Brent crude spike ($120+) on India's economy: rupee depreciation to ₹94.5/$, OMC daily losses of ₹1,700 Cr, and 87.1% effective cost increase. Built a scenario-based pump price transmission model across income quintiles.
       </p>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <ProofBlock
+        accent={fire}
+        methods="Oil-price transmission model, pump price formula (crude × INR/USD + duties), quintile impact analysis, Python"
+        output="Household cost calculator (5 income quintiles), OMC loss model, FX pressure dashboard, scenario comparisons"
+        finding="Lowest-income quintile faces 4.2× greater relative burden; energy diversification critical to reduce shock sensitivity"
+      />
+      <div className="mt-2 flex flex-wrap gap-2">
         {tags.map((tag) => (
           <span key={tag} style={{ fontSize: "11px", fontWeight: 600, padding: "3px 10px", borderRadius: "20px", background: `${fire}10`, color: fire, border: `1px solid ${fire}28` }}>{tag}</span>
         ))}
@@ -481,11 +538,6 @@ function ExperienceTimeline() {
                   <h3 className="mt-1 text-[1.6rem] md:text-3xl font-semibold" style={{ color: PALETTE.charcoal }}>{item.title}</h3>
                   <div className="text-base opacity-90">{item.company}</div>
                   {item.location && <div className="text-sm opacity-70 mt-1">{item.location}</div>}
-                  {item.bullet && (
-                    <p className="mt-3 text-sm leading-relaxed rounded-xl px-4 py-3" style={{ color: `${PALETTE.charcoal}CC`, background: `${PALETTE.slate}0A`, borderLeft: `3px solid ${PALETTE.gold}`, textAlign: "left" }}>
-                      {item.bullet}
-                    </p>
-                  )}
                 </div>
               </li>
             );
@@ -533,16 +585,43 @@ export default function WorkPage() {
             into clear decisions.
           </span>
         </h1>
-        <p className="mt-5 mx-auto max-w-xl text-base md:text-lg leading-relaxed" style={{ color: `${PALETTE.charcoal}B3` }}>
-          I build data stories that do more than explain what happened — they help people decide what to do next.
+        <p className="mt-5 mx-auto max-w-2xl text-base md:text-lg leading-relaxed" style={{ color: `${PALETTE.charcoal}B3` }}>
+          Data Analyst turning public datasets into decision-ready insights. I combine SQL, Python, Excel, and data storytelling to analyze complex real-world problems — from inflation and healthcare costs to climate and public policy — and translate them into clear, actionable recommendations.
         </p>
         {/* Tools strip */}
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
-          {["Python · pandas", "SQL", "Excel / Sheets", "React · JS"].map(tool => (
+        <div className="mt-5 flex flex-wrap justify-center gap-2">
+          {["Python · pandas", "SQL · Window Functions", "Excel / Sheets", "Data Visualization", "Research & Sourcing", "React · JS"].map(tool => (
             <span key={tool} className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: `${PALETTE.slate}12`, color: PALETTE.slate, border: `1px solid ${PALETTE.slate}25` }}>
               {tool}
             </span>
           ))}
+        </div>
+        {/* CTA buttons */}
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <a href="/resume/Salomi_Gandra_Resume.pdf" target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold transition-transform hover:scale-105"
+            style={{ backgroundColor: PALETTE.slate, color: "#fff" }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            View Resume
+          </a>
+          <a href="mailto:salomigandra234@gmail.com"
+            className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold border-2 transition-transform hover:scale-105"
+            style={{ borderColor: PALETTE.gold, color: PALETTE.gold, background: `${PALETTE.gold}10` }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Contact Me
+          </a>
+          <a href="https://www.linkedin.com/in/salomisabastian" target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold border-2 transition-transform hover:scale-105"
+            style={{ borderColor: `${PALETTE.teal}80`, color: PALETTE.teal, background: `${PALETTE.teal}0F` }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/salomigandra" target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold border-2 transition-transform hover:scale-105"
+            style={{ borderColor: `${PALETTE.charcoal}40`, color: PALETTE.charcoal, background: `${PALETTE.charcoal}08` }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
         </div>
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-lg mx-auto">
           <KpiCard emoji="📊" label="Specialization" value="Data Analyst · SQL, Python & Decision Intelligence" accent={PALETTE.slate} />
