@@ -60,6 +60,7 @@ export default function Header() {
         {/* Desktop nav links — hidden on mobile */}
         <div className="hidden md:flex gap-8 text-base md:text-lg font-semibold">
           <NavLink href="/work">Work</NavLink>
+          <NavLink href="/blog">Blog</NavLink>
           <NavLink href="/about">About</NavLink>
           <NavLink href="/resume">Resume</NavLink>
         </div>
@@ -97,6 +98,7 @@ export default function Header() {
       >
         <div className="border-t border-white/20 px-4 py-3 flex flex-col gap-2 text-base font-semibold">
           <NavLink href="/work" onClick={() => setMobileOpen(false)}>Work</NavLink>
+          <NavLink href="/blog" onClick={() => setMobileOpen(false)}>Blog</NavLink>
           <NavLink href="/about" onClick={() => setMobileOpen(false)}>About</NavLink>
           <NavLink href="/resume" onClick={() => setMobileOpen(false)}>Resume</NavLink>
         </div>

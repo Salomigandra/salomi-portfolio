@@ -4,13 +4,14 @@ const nextConfig = {
     loader: 'default',
     path: '/_next/image',
     formats: ['image/avif', 'image/webp'],
-    // DO NOT set `unoptimized: true` if you use the optimizer
   },
   async redirects() {
     return [
       { source: '/', destination: '/work', permanent: true },
     ];
   },
+  // Allows Next.js to recognise .md and .mdx as page extensions
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
 };
 
 module.exports = nextConfig;
