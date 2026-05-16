@@ -225,9 +225,7 @@ function ISTCard() {
         <span style={{ color: saffron }}>Proves:</span> Python analysis · SQL querying · Excel cost modeling · correlation analysis · business recommendations
       </p>
       <div className="mt-2 flex flex-wrap gap-3">
-        <a href="/methodology/ist/README.md" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Methodology</a>
-        <a href="/methodology/ist/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Python Script</a>
-        <a href="https://github.com/salomigandra/data-analytics-case-studies/blob/main/ist/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
+        <a href="https://github.com/salomigandra/data-analytics-case-studies/tree/main/ist" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
       </div>
       <Link href="/blog/india-stretchable-time"
         className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
@@ -302,9 +300,7 @@ function AirQualityCard() {
         <span style={{ color: teal }}>Proves:</span> Python health modeling · epidemiological data · SQL aggregation · statistical benchmarking · policy recommendations
       </p>
       <div className="mt-2 flex flex-wrap gap-3">
-        <a href="/methodology/air-quality/README.md" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Methodology</a>
-        <a href="/methodology/air-quality/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Python Script</a>
-        <a href="https://github.com/salomigandra/data-analytics-case-studies/blob/main/air-quality/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
+        <a href="https://github.com/salomigandra/data-analytics-case-studies/tree/main/air-quality" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
       </div>
       <Link href="/blog/india-air-quality-interactive"
         className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
@@ -380,9 +376,7 @@ function HospitalPricingCard() {
         <span style={{ color: navy }}>Proves:</span> Python compliance audit · SQL joins & aggregation · OECD benchmarking · dashboarding · policy analysis
       </p>
       <div className="mt-2 flex flex-wrap gap-3">
-        <a href="/methodology/hospital-pricing/README.md" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Methodology</a>
-        <a href="/methodology/hospital-pricing/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Python Script</a>
-        <a href="https://github.com/salomigandra/data-analytics-case-studies/blob/main/hospital-pricing/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
+        <a href="https://github.com/salomigandra/data-analytics-case-studies/tree/main/hospital-pricing" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
       </div>
       <Link href="/blog/us-hospital-price-gap"
         className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
@@ -458,9 +452,7 @@ function ClimateCard() {
         <span style={{ color: red }}>Proves:</span> Linear regression · Python · NASA data processing · carbon budget modeling · visualization
       </p>
       <div className="mt-2 flex flex-wrap gap-3">
-        <a href="/methodology/climate/README.md" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Methodology</a>
-        <a href="/methodology/climate/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Python Script</a>
-        <a href="https://github.com/salomigandra/data-analytics-case-studies/blob/main/climate/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
+        <a href="https://github.com/salomigandra/data-analytics-case-studies/tree/main/climate" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
       </div>
       <Link href="/blog/climate-data-2023"
         className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
@@ -550,10 +542,7 @@ function InflationCard() {
         <span style={{ color: burgundy }}>Proves:</span> SQL window functions · CPI time-series · Python analysis · Excel dashboarding · economic research
       </p>
       <div className="mt-2 flex flex-wrap gap-3">
-        <a href="/methodology/inflation/README.md" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Methodology</a>
-        <a href="/methodology/inflation/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Python Script</a>
-        <a href="/methodology/inflation/queries.sql" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>SQL Queries</a>
-        <a href="https://github.com/salomigandra/data-analytics-case-studies/blob/main/inflation/queries.sql" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
+        <a href="https://github.com/salomigandra/data-analytics-case-studies/tree/main/inflation" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
       </div>
       <Link href="/blog/india-inflation-decoded"
         className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
@@ -643,10 +632,7 @@ function IranShockCard() {
         <span style={{ color: fire }}>Proves:</span> Python transmission modeling · SQL aggregation · Excel scenario analysis · quintile impact modeling · business recommendations
       </p>
       <div className="mt-2 flex flex-wrap gap-3">
-        <a href="/methodology/iran-shock/README.md" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Methodology</a>
-        <a href="/methodology/iran-shock/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Python Script</a>
-        <a href="/methodology/iran-shock/queries.sql" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>SQL Queries</a>
-        <a href="https://github.com/salomigandra/data-analytics-case-studies/blob/main/iran-shock/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
+        <a href="https://github.com/salomigandra/data-analytics-case-studies/tree/main/iran-shock" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
       </div>
       <Link href="/blog/iran-shock-india-economy"
         className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
