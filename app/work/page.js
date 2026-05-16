@@ -21,6 +21,124 @@ const PALETTE = {
 };
 
 /* ══════════════════════════════════════════
+   WHAT I BRING — Hard Skills Grid
+══════════════════════════════════════════ */
+const SKILLS = [
+  { icon: "SQL",  skill: "SQL",                  detail: "Complex queries, window functions, multi-table joins, aggregation, time-series analysis" },
+  { icon: "PY",   skill: "Python",                detail: "pandas, NumPy, data cleaning, statistical modeling, automated analysis scripts" },
+  { icon: "XL",   skill: "Excel & Sheets",        detail: "Pivot tables, scenario models, conditional formatting, dynamic charts, VLOOKUP / XLOOKUP" },
+  { icon: "VIZ",  skill: "Data Visualization",    detail: "Interactive React dashboards, chart design, narrative data storytelling for non-technical audiences" },
+  { icon: "STAT", skill: "Statistical Analysis",  detail: "Linear regression, Pearson correlation, time-series, sensitivity & scenario modeling" },
+  { icon: "RES",  skill: "Research & Synthesis",  detail: "12–17 cited sources per study, assumption documentation, structured stakeholder-ready recommendations" },
+];
+
+/* ══════════════════════════════════════════
+   WHAT I CAN DO — Business Use Cases
+══════════════════════════════════════════ */
+const USE_CASES = [
+  {
+    headline: "Healthcare Operations Analysis",
+    detail: "Track patient flow, readmission rates, and operational KPIs. Identify inefficiencies in staffing, billing, or supply chains using SQL and Python — and present findings in plain language for clinical and admin stakeholders.",
+    tag: "Healthcare · Operations",
+    accent: PALETTE.teal,
+  },
+  {
+    headline: "Sales Reporting & Pipeline Tracking",
+    detail: "Build automated weekly/monthly dashboards that show revenue by region, rep, or product. Flag deals at risk, calculate conversion rates, and surface the 'so what' — not just the numbers.",
+    tag: "Sales · Revenue Analytics",
+    accent: PALETTE.olive,
+  },
+  {
+    headline: "Automated Business Reports",
+    detail: "Replace manual Excel copy-paste with Python scripts that pull, clean, and format data automatically. One-click reports that used to take 4 hours now run in minutes — scheduled, repeatable, error-free.",
+    tag: "Automation · Reporting",
+    accent: PALETTE.saffron,
+  },
+  {
+    headline: "Product & User Behaviour Analysis",
+    detail: "Investigate where users drop off, which features drive retention, and what segments behave differently. SQL cohort queries + visualisation to help product and growth teams decide where to focus next.",
+    tag: "Product · User Analytics",
+    accent: PALETTE.navy,
+  },
+  {
+    headline: "Data Cleaning & Quality Audits",
+    detail: "Messy data, duplicate records, inconsistent formats — I fix it. Then I go a step further: I document what was wrong, why it matters to the business, and what decisions were at risk because of it.",
+    tag: "Data Quality · ETL",
+    accent: PALETTE.coral,
+  },
+  {
+    headline: "Business Insight Storytelling",
+    detail: "The real skill is not running the analysis — it is explaining what the data means in a way that makes a non-technical stakeholder say 'now I know exactly what to do.' That is what I deliver.",
+    tag: "Insights · Decision Support",
+    accent: PALETTE.gold,
+  },
+];
+
+function CanDoForBusiness() {
+  return (
+    <section className="mx-auto max-w-6xl px-4 pt-12 pb-6">
+      <div className="text-center mb-8">
+        <span className="text-xs font-bold tracking-[0.18em] uppercase px-3 py-1 rounded-full"
+          style={{ background: `${PALETTE.saffron}15`, color: PALETTE.saffron, border: `1px solid ${PALETTE.saffron}30` }}>
+          Business Value
+        </span>
+        <h2 className="mt-3 text-2xl md:text-3xl font-extrabold" style={{ color: PALETTE.charcoal }}>What I can do for your team</h2>
+        <p className="mt-2 text-sm md:text-base max-w-xl mx-auto" style={{ color: `${PALETTE.charcoal}75` }}>
+          Every capability below maps to a real business problem — not a textbook exercise. Each one is demonstrable through the case studies on this page.
+        </p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {USE_CASES.map(({ headline, detail, tag, accent }) => (
+          <div key={headline}
+            className="flex flex-col rounded-2xl p-5 gap-3"
+            style={{ background: "#fff", border: `1px solid ${accent}22`, boxShadow: "0 2px 14px rgba(0,0,0,0.04)" }}>
+            <div className="flex items-start justify-between gap-2">
+              <span className="text-[10px] font-bold tracking-wide px-2 py-0.5 rounded-full flex-shrink-0"
+                style={{ background: `${accent}12`, color: accent, border: `1px solid ${accent}25` }}>
+                {tag}
+              </span>
+            </div>
+            <div className="text-sm font-bold leading-snug" style={{ color: PALETTE.charcoal }}>{headline}</div>
+            <div className="text-xs leading-relaxed flex-1" style={{ color: `${PALETTE.charcoal}75` }}>{detail}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function WhatIBring() {
+  return (
+    <section className="mx-auto max-w-6xl px-4 pt-4 pb-12">
+      <div className="text-center mb-8">
+        <span className="text-xs font-bold tracking-[0.18em] uppercase px-3 py-1 rounded-full"
+          style={{ background: `${PALETTE.slate}12`, color: PALETTE.slate, border: `1px solid ${PALETTE.slate}25` }}>
+          Hard Skills
+        </span>
+        <h2 className="mt-3 text-2xl md:text-3xl font-extrabold" style={{ color: PALETTE.charcoal }}>What I bring</h2>
+        <p className="mt-2 text-sm md:text-base" style={{ color: `${PALETTE.charcoal}80` }}>
+          The technical toolkit behind every case study — not just listed, but applied and demonstrable.
+        </p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {SKILLS.map(({ icon, skill, detail }) => (
+          <div key={skill} className="flex gap-4 rounded-2xl p-5"
+            style={{ background: "#fff", border: `1px solid ${PALETTE.slate}18`, boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
+            <span className="flex-shrink-0 mt-0.5 w-9 h-9 rounded-lg flex items-center justify-center text-[10px] font-black tracking-tight"
+              style={{ background: `${PALETTE.slate}12`, color: PALETTE.slate, border: `1px solid ${PALETTE.slate}22` }}
+              aria-hidden="true">{icon}</span>
+            <div>
+              <div className="text-sm font-bold" style={{ color: PALETTE.charcoal }}>{skill}</div>
+              <div className="mt-1 text-xs leading-relaxed" style={{ color: `${PALETTE.charcoal}80` }}>{detail}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ══════════════════════════════════════════
    PROOF BLOCK — Methods / Output / Finding
 ══════════════════════════════════════════ */
 function ProofBlock({ accent, methods, output, finding }) {
@@ -65,7 +183,7 @@ function ISTCard() {
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 60% 50% at 50% 50%, ${saffron}28, transparent 70%)` }} />
         <div style={{ position: "absolute", top: "1rem", left: "1.1rem" }}>
           <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: saffron, background: `${saffron}22`, border: `1px solid ${saffron}40`, padding: "3px 10px", borderRadius: "20px" }}>
-            🇮🇳 Data Story
+            Data Story
           </span>
         </div>
         <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "6px" }}>
@@ -103,8 +221,16 @@ function ISTCard() {
           <span key={t} style={{fontSize:"10px",fontWeight:600,padding:"2px 8px",borderRadius:"20px",background:"rgba(74,96,115,0.08)",color:"#4A6073",border:"1px solid rgba(74,96,115,0.18)"}}>{t}</span>
         ))}
       </div>
+      <p className="mt-3 text-xs font-semibold" style={{ color: `${saffron}CC` }}>
+        <span style={{ color: saffron }}>Proves:</span> Python analysis · SQL querying · Excel cost modeling · correlation analysis · business recommendations
+      </p>
+      <div className="mt-2 flex flex-wrap gap-3">
+        <a href="/methodology/ist/README.md" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Methodology</a>
+        <a href="/methodology/ist/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Python Script</a>
+        <a href="https://github.com/salomigandra/data-analytics-case-studies/blob/main/ist/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
+      </div>
       <Link href="/blog/india-stretchable-time"
-        className="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
+        className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
         style={{ backgroundColor: saffron, color: "#fff", outlineColor: saffron }}
         aria-label="Explore the IST data story">
         Explore the data story
@@ -134,7 +260,7 @@ function AirQualityCard() {
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 60% 50% at 50% 50%, ${teal}28, transparent 70%)` }} />
         <div style={{ position: "absolute", top: "1rem", left: "1.1rem" }}>
           <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: teal, background: `${teal}22`, border: `1px solid ${teal}40`, padding: "3px 10px", borderRadius: "20px" }}>
-            🇮🇳 Data Story
+            Data Story
           </span>
         </div>
         <div aria-hidden="true" style={{ position: "absolute", top: "2.8rem", right: "1.1rem", display: "flex", alignItems: "flex-end", gap: "3px", height: "52px" }}>
@@ -172,8 +298,16 @@ function AirQualityCard() {
           <span key={t} style={{fontSize:"10px",fontWeight:600,padding:"2px 8px",borderRadius:"20px",background:"rgba(74,96,115,0.08)",color:"#4A6073",border:"1px solid rgba(74,96,115,0.18)"}}>{t}</span>
         ))}
       </div>
+      <p className="mt-3 text-xs font-semibold" style={{ color: `${teal}CC` }}>
+        <span style={{ color: teal }}>Proves:</span> Python health modeling · epidemiological data · SQL aggregation · statistical benchmarking · policy recommendations
+      </p>
+      <div className="mt-2 flex flex-wrap gap-3">
+        <a href="/methodology/air-quality/README.md" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Methodology</a>
+        <a href="/methodology/air-quality/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Python Script</a>
+        <a href="https://github.com/salomigandra/data-analytics-case-studies/blob/main/air-quality/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
+      </div>
       <Link href="/blog/india-air-quality-interactive"
-        className="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
+        className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
         style={{ backgroundColor: teal, color: "#fff", outlineColor: teal }}
         aria-label="Explore the Air Quality data story">
         Explore the data story
@@ -203,7 +337,7 @@ function HospitalPricingCard() {
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 60% 50% at 50% 50%, ${navy}40, transparent 70%)` }} />
         <div style={{ position: "absolute", top: "1rem", left: "1.1rem" }}>
           <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#8BB8E8", background: `${navy}60`, border: "1px solid rgba(139,184,232,0.3)", padding: "3px 10px", borderRadius: "20px" }}>
-            🇺🇸 Data Story
+            Data Story
           </span>
         </div>
         {/* Bar chart: US vs peers health spend */}
@@ -242,8 +376,16 @@ function HospitalPricingCard() {
           <span key={t} style={{fontSize:"10px",fontWeight:600,padding:"2px 8px",borderRadius:"20px",background:"rgba(74,96,115,0.08)",color:"#4A6073",border:"1px solid rgba(74,96,115,0.18)"}}>{t}</span>
         ))}
       </div>
+      <p className="mt-3 text-xs font-semibold" style={{ color: `${navy}CC` }}>
+        <span style={{ color: navy }}>Proves:</span> Python compliance audit · SQL joins & aggregation · OECD benchmarking · dashboarding · policy analysis
+      </p>
+      <div className="mt-2 flex flex-wrap gap-3">
+        <a href="/methodology/hospital-pricing/README.md" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Methodology</a>
+        <a href="/methodology/hospital-pricing/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Python Script</a>
+        <a href="https://github.com/salomigandra/data-analytics-case-studies/blob/main/hospital-pricing/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
+      </div>
       <Link href="/blog/us-hospital-price-gap"
-        className="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
+        className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
         style={{ backgroundColor: navy, color: "#fff", outlineColor: navy }}
         aria-label="Explore the Hospital Pricing data story">
         Explore the data story
@@ -273,7 +415,7 @@ function ClimateCard() {
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 60% 50% at 50% 50%, ${red}28, transparent 70%)` }} />
         <div style={{ position: "absolute", top: "1rem", left: "1.1rem" }}>
           <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#E8A080", background: `${red}25`, border: `1px solid ${red}40`, padding: "3px 10px", borderRadius: "20px" }}>
-            🌍 Global Data Story
+            Global Data Story
           </span>
         </div>
         {/* Warming bar chart (regions) */}
@@ -312,8 +454,16 @@ function ClimateCard() {
           <span key={t} style={{fontSize:"10px",fontWeight:600,padding:"2px 8px",borderRadius:"20px",background:"rgba(74,96,115,0.08)",color:"#4A6073",border:"1px solid rgba(74,96,115,0.18)"}}>{t}</span>
         ))}
       </div>
+      <p className="mt-3 text-xs font-semibold" style={{ color: `${red}CC` }}>
+        <span style={{ color: red }}>Proves:</span> Linear regression · Python · NASA data processing · carbon budget modeling · visualization
+      </p>
+      <div className="mt-2 flex flex-wrap gap-3">
+        <a href="/methodology/climate/README.md" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Methodology</a>
+        <a href="/methodology/climate/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Python Script</a>
+        <a href="https://github.com/salomigandra/data-analytics-case-studies/blob/main/climate/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
+      </div>
       <Link href="/blog/climate-data-2023"
-        className="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
+        className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
         style={{ backgroundColor: red, color: "#fff", outlineColor: red }}
         aria-label="Explore the Climate data story">
         Explore the data story
@@ -351,7 +501,7 @@ function InflationCard() {
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 60% 50% at 50% 50%, ${burgundy}30, transparent 70%)` }} />
         <div style={{ position: "absolute", top: "1rem", left: "1.1rem" }}>
           <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#E8A0A0", background: `${burgundy}30`, border: `1px solid ${burgundy}50`, padding: "3px 10px", borderRadius: "20px" }}>
-            🇮🇳 + 🌍 Data Story
+            Data Story
           </span>
         </div>
         {/* Decorative CPI sparkline */}
@@ -396,8 +546,17 @@ function InflationCard() {
           <span key={t} style={{fontSize:"10px",fontWeight:600,padding:"2px 8px",borderRadius:"20px",background:"rgba(74,96,115,0.08)",color:"#4A6073",border:"1px solid rgba(74,96,115,0.18)"}}>{t}</span>
         ))}
       </div>
+      <p className="mt-3 text-xs font-semibold" style={{ color: `${burgundy}CC` }}>
+        <span style={{ color: burgundy }}>Proves:</span> SQL window functions · CPI time-series · Python analysis · Excel dashboarding · economic research
+      </p>
+      <div className="mt-2 flex flex-wrap gap-3">
+        <a href="/methodology/inflation/README.md" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Methodology</a>
+        <a href="/methodology/inflation/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Python Script</a>
+        <a href="/methodology/inflation/queries.sql" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>SQL Queries</a>
+        <a href="https://github.com/salomigandra/data-analytics-case-studies/blob/main/inflation/queries.sql" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
+      </div>
       <Link href="/blog/india-inflation-decoded"
-        className="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
+        className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
         style={{ backgroundColor: burgundy, color: "#fff", outlineColor: burgundy }}
         aria-label="Explore the Inflation data story">
         Explore the data story
@@ -436,7 +595,7 @@ function IranShockCard() {
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 60% 50% at 50% 50%, ${fire}25, transparent 70%)` }} />
         <div style={{ position: "absolute", top: "1rem", left: "1.1rem" }}>
           <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#F5A0A0", background: `${fire}28`, border: `1px solid ${fire}45`, padding: "3px 10px", borderRadius: "20px" }}>
-            🇮🇳 + 🌍 Live Crisis
+            Live Crisis Analysis
           </span>
         </div>
         {/* Rupee sparkline */}
@@ -480,8 +639,17 @@ function IranShockCard() {
           <span key={t} style={{fontSize:"10px",fontWeight:600,padding:"2px 8px",borderRadius:"20px",background:"rgba(74,96,115,0.08)",color:"#4A6073",border:"1px solid rgba(74,96,115,0.18)"}}>{t}</span>
         ))}
       </div>
+      <p className="mt-3 text-xs font-semibold" style={{ color: `${fire}CC` }}>
+        <span style={{ color: fire }}>Proves:</span> Python transmission modeling · SQL aggregation · Excel scenario analysis · quintile impact modeling · business recommendations
+      </p>
+      <div className="mt-2 flex flex-wrap gap-3">
+        <a href="/methodology/iran-shock/README.md" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Methodology</a>
+        <a href="/methodology/iran-shock/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>Python Script</a>
+        <a href="/methodology/iran-shock/queries.sql" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.teal }}>SQL Queries</a>
+        <a href="https://github.com/salomigandra/data-analytics-case-studies/blob/main/iran-shock/analysis.py" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
+      </div>
       <Link href="/blog/iran-shock-india-economy"
-        className="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
+        className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
         style={{ backgroundColor: fire, color: "#fff", outlineColor: fire }}
         aria-label="Explore the Iran Shock data story">
         Explore the data story
@@ -551,11 +719,10 @@ function ExperienceTimeline() {
 /* ══════════════════════════════════════════
    KPI HERO CARD
 ══════════════════════════════════════════ */
-function KpiCard({ emoji, label, value, accent }) {
+function KpiCard({ label, value, accent }) {
   return (
     <div className="flex flex-col items-center rounded-2xl px-5 py-6"
       style={{ backgroundColor: `${accent}0F`, border: `1.5px solid ${accent}30`, boxShadow: `0 4px 20px ${accent}15` }}>
-      <span className="text-4xl mb-3" aria-hidden="true">{emoji}</span>
       <div className="text-[10px] uppercase tracking-[0.18em] font-semibold mb-1.5" style={{ color: accent }}>{label}</div>
       <div className="text-lg md:text-xl font-extrabold text-center leading-snug" style={{ color: PALETTE.charcoal }}>{value}</div>
     </div>
@@ -578,7 +745,11 @@ export default function WorkPage() {
             <Image src="/images/memoji.png?v=3" alt="Salomi memoji" fill sizes="224px" className="object-contain p-2" priority />
           </div>
         </div>
-        <h1 className="mt-8 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-tight">
+        <div className="mt-8 inline-block text-sm font-semibold px-4 py-1.5 rounded-full"
+          style={{ background: `${PALETTE.slate}12`, color: PALETTE.slate, border: `1px solid ${PALETTE.slate}30` }}>
+          Data Analyst with a developer&apos;s edge — SQL · Python · Excel · Dashboards · Decision Storytelling
+        </div>
+        <h1 className="mt-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-tight">
           Turning raw data
           <br />
           <span style={{ background: `linear-gradient(90deg, ${PALETTE.slate} 0%, ${PALETTE.gold} 100%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
@@ -624,10 +795,16 @@ export default function WorkPage() {
           </a>
         </div>
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-lg mx-auto">
-          <KpiCard emoji="📊" label="Specialization" value="Data Analyst · SQL, Python & Decision Intelligence" accent={PALETTE.slate} />
-          <KpiCard emoji="🎓" label="Education" value="M.S. Computer & Information Science" accent={PALETTE.olive} />
+          <KpiCard label="Specialization" value="Data Analyst · SQL, Python & Decision Intelligence" accent={PALETTE.slate} />
+          <KpiCard label="Education" value="M.S. Computer & Information Science" accent={PALETTE.olive} />
         </div>
       </section>
+
+      {/* ===== WHAT I CAN DO ===== */}
+      <CanDoForBusiness />
+
+      {/* ===== WHAT I BRING ===== */}
+      <WhatIBring />
 
       {/* ===== WORK EXPERIENCE ===== */}
       <ExperienceTimeline />
@@ -662,7 +839,7 @@ export default function WorkPage() {
         <div className="mt-10">
           <div className="flex items-center gap-3 mb-6">
             <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full" style={{ background: `${PALETTE.gold}18`, color: PALETTE.gold, border: `1px solid ${PALETTE.gold}40` }}>
-              ⭐ Featured Projects
+              Featured Projects
             </span>
             <div className="flex-1 h-px" style={{ background: `${PALETTE.gold}25` }} />
           </div>
@@ -677,7 +854,7 @@ export default function WorkPage() {
         <div className="mt-14">
           <div className="flex items-center gap-3 mb-6">
             <span className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full" style={{ background: `${PALETTE.slate}10`, color: PALETTE.slate, border: `1px solid ${PALETTE.slate}25` }}>
-              📂 Additional Data Stories
+              Additional Data Stories
             </span>
             <div className="flex-1 h-px" style={{ background: `${PALETTE.slate}18` }} />
           </div>

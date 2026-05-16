@@ -2,7 +2,6 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import ProjectBrief from "../../../components/ProjectBrief";
-import MethodologySection from "../../../components/MethodologySection";
 
 /* ─────────────────────────────────────────────
    PALETTE
@@ -374,17 +373,17 @@ export default function IranShockPage() {
       url: "https://www.weforum.org/stories/2026/04/iran-war-india-steel-production-fuel-shortages-rising-costs/",
     },
     {
-      icon: "✈️", label: "Travel & Flights", color: C.teal,
-      title: "ATF up 25% + rupee at ₹94.5 = foreign trips now cost ₹27,000 more",
-      body: "Aviation turbine fuel (ATF) is priced directly off crude oil. Airlines have hiked domestic fares 15–25% since March 2026 and international fares even more. But the bigger hit is currency: each dollar now costs ₹94.5 instead of ₹85.5. A $3,000 trip to Europe costs ₹2.83 lakh now vs ₹2.56 lakh a year ago — ₹27,000 extra. Destination weddings abroad are an especially significant combined forex drain.",
+      icon: "✈️", label: "Airlines & ATF Crisis", color: C.teal,
+      title: "ATF doubled to ₹2.07 lakh/kl — Indian aviation on the verge of collapse",
+      body: "Aviation turbine fuel (ATF) in India doubled to ₹2,07,341 per kilolitre on April 1, 2026 — a 114.5% hike driven by Brent above $110 and rupee at ₹95.7. ATF now accounts for 55–60% of airline operating costs (up from 30–40% pre-crisis). The Federation of Indian Airlines warned the sector is 'on the verge of collapse'. Air India Express cut international flights from 959 to 451 per week — a 53% reduction. Across all carriers, 1,034 weekly international flights were cut in May vs a year ago (25% decline). Air India suspended the Delhi–Chicago route. The currency hit makes it worse: a $3,000 Europe trip now costs ₹2.87 lakh vs ₹2.56 lakh a year ago — ₹31,000 extra.",
       stats: [
-        { label: "USD/INR now", val: "₹94.5", color: C.fire },
-        { label: "Extra cost on $3,000 trip", val: "₹27,000", color: C.amber },
-        { label: "ATF price rise est.", val: "+25%", color: C.teal },
-        { label: "Domestic fare hike", val: "+15–25%", color: "#7B3F00" },
+        { label: "ATF price Delhi (Apr 2026)", val: "₹2.07L/kl", color: C.fire },
+        { label: "ATF hike since Feb 2026", val: "+114.5%", color: C.amber },
+        { label: "Int'l flights cut (May)", val: "−1,034/week (−25%)", color: C.teal },
+        { label: "Air India Express cut", val: "−53% int'l flights", color: "#7B3F00" },
       ],
-      source: "RBI forex data; CNBC fare analysis 2026",
-      url: "https://univest.in/blogs/indian-rupee-depreciation-2026-causes-impact-inr-outlook",
+      source: "Outlook Business; Zee Biz; Republic World; Aviation Week — May 2026",
+      url: "https://www.outlookbusiness.com/corporate/turbulence-ahead-how-soaring-atf-prices-are-pushing-indian-airlines-to-the-brink",
     },
     {
       icon: "🏠", label: "EMIs & Savings", color: C.slate,
@@ -468,7 +467,7 @@ export default function IranShockPage() {
         <div aria-hidden style={{ position: "absolute", top: 0, right: 0, width: "300px", height: "300px", background: `radial-gradient(ellipse, ${C.amber}10, transparent 70%)`, pointerEvents: "none" }} />
         <div style={{ maxWidth: "780px", margin: "0 auto", position: "relative" }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "20px" }}>
-            {["🇮🇳 India", "🌍 Geopolitics", "💰 Economy", "May 2026 — Live Data"].map(t => (
+            {["India", "Geopolitics", "Economy", "May 2026 — Live Data"].map(t => (
               <span key={t} style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", color: C.amber, background: `${C.amber}18`, border: `1px solid ${C.amber}35`, padding: "4px 12px", borderRadius: "20px" }}>{t}</span>
             ))}
           </div>
@@ -480,8 +479,8 @@ export default function IranShockPage() {
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "12px", marginBottom: "28px" }}>
             {[
-              { num: "₹94.5", label: "USD/INR (May 2026)", sub: "vs ₹85.5 a year ago", color: C.fire },
-              { num: "$120+", label: "Brent crude peak", sub: "surged 66% from $72 in Feb", color: C.amber },
+              { num: "₹95.7", label: "USD/INR (May 2026)", sub: "vs ₹85.5 a year ago — all-time low", color: C.fire },
+              { num: "$114", label: "Brent crude peak (2026)", sub: "surged 57% from $72 in Feb 2026", color: C.amber },
               { num: "₹1,700 Cr", label: "OMC daily losses", sub: "₹1 lakh Cr in 10 weeks", color: "#E8A040" },
               { num: "50%", label: "India's oil via Hormuz", sub: "strait effectively closed Mar 4", color: C.teal },
             ].map((s, i) => (
@@ -505,6 +504,7 @@ export default function IranShockPage() {
           tools={["Python", "SQL", "Excel", "React/JS"]}
           methods="Price transmission modelling, household expenditure analysis, sector-level cost simulation, import dependency mapping"
           output="Interactive shock simulator showing fuel, food, and transport cost impacts across income groups"
+          slug="iran-shock"
         />
       </div>
 
@@ -657,6 +657,83 @@ export default function IranShockPage() {
       </section>
 
       {/* ═══════════════════════════════════
+          SECTION 04B — AVIATION & SUPPLY CHAIN RIPPLE
+      ══════════════════════════════════ */}
+      <section style={{ background: "linear-gradient(180deg, #F0EDE4 0%, #E8E4DA 100%)", padding: "48px 20px" }}>
+        <div style={{ maxWidth: "860px", margin: "0 auto" }}>
+          <SHead
+            num="04B — THE RIPPLE EFFECTS"
+            title="Two Hidden Crises the Headlines Missed"
+            sub="Beyond petrol and LPG — the Hormuz disruption is quietly grounding flights and threatening India's next harvest."
+          />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "24px" }}>
+
+            {/* Aviation Crisis */}
+            <div style={{ background: C.cream, borderRadius: "16px", padding: "24px", border: `1px solid ${C.teal}30`, boxShadow: "0 2px 16px rgba(0,0,0,0.04)" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+                <span style={{ fontSize: "2rem" }}>✈️</span>
+                <div>
+                  <div style={{ fontSize: "11px", fontWeight: 800, color: C.teal, textTransform: "uppercase", letterSpacing: "0.12em" }}>Aviation Fuel Crisis</div>
+                  <div style={{ fontSize: "1rem", fontWeight: 800, color: C.ink }}>Indian Airlines on the Brink</div>
+                </div>
+              </div>
+              <p style={{ fontSize: "13px", color: `${C.ink}80`, lineHeight: 1.7, marginBottom: "16px" }}>
+                Aviation Turbine Fuel (ATF) doubled to <strong>₹2,07,341/kl</strong> on April 1, 2026 — a 114.5% surge. ATF now makes up <strong>55–60% of airline operating costs</strong>, up from 30–40% before the crisis. The Federation of Indian Airlines has warned the sector is "on the verge of collapse."
+              </p>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginBottom: "14px" }}>
+                {[
+                  { label: "ATF price (Apr 1, 2026)", val: "₹2.07L/kl", color: C.fire },
+                  { label: "ATF hike vs Feb 2026", val: "+114.5%", color: C.amber },
+                  { label: "Int'l flights cut in May", val: "−1,034/week", color: C.teal },
+                  { label: "Air India Express cut", val: "−53% int'l", color: "#7B3F00" },
+                ].map((s, i) => (
+                  <div key={i} style={{ background: `${s.color}08`, border: `1px solid ${s.color}20`, borderRadius: "10px", padding: "10px 12px" }}>
+                    <div style={{ fontSize: "1rem", fontWeight: 900, color: s.color }}>{s.val}</div>
+                    <div style={{ fontSize: "10px", color: `${C.ink}70`, marginTop: "3px" }}>{s.label}</div>
+                  </div>
+                ))}
+              </div>
+              <p style={{ fontSize: "12px", color: `${C.ink}60`, lineHeight: 1.6, margin: "0 0 10px" }}>
+                Air India suspended its Delhi–Chicago route. IndiGo is operating at reduced frequency on Gulf routes. Airlines are caught in a double squeeze: Brent above $100 drives ATF costs, and the weak rupee (₹95.7/$) inflates every dollar-denominated cost.
+              </p>
+              <a href="https://www.outlookbusiness.com/corporate/turbulence-ahead-how-soaring-atf-prices-are-pushing-indian-airlines-to-the-brink" target="_blank" rel="noopener noreferrer" style={{ fontSize: "11px", color: C.teal, fontWeight: 700 }}>Outlook Business: Airlines crisis deep-dive →</a>
+            </div>
+
+            {/* Fertilizer & Food Supply Chain */}
+            <div style={{ background: C.cream, borderRadius: "16px", padding: "24px", border: `1px solid ${C.olive}30`, boxShadow: "0 2px 16px rgba(0,0,0,0.04)" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+                <span style={{ fontSize: "2rem" }}>🌾</span>
+                <div>
+                  <div style={{ fontSize: "11px", fontWeight: 800, color: C.olive, textTransform: "uppercase", letterSpacing: "0.12em" }}>Fertilizer & Food Security</div>
+                  <div style={{ fontSize: "1rem", fontWeight: 800, color: C.ink }}>The Kharif Season Is at Risk</div>
+                </div>
+              </div>
+              <p style={{ fontSize: "13px", color: `${C.ink}80`, lineHeight: 1.7, marginBottom: "16px" }}>
+                India sources roughly <strong>35% of its fertilizers from the Gulf</strong> and applies over 120 kg of nitrogen per hectare. The Hormuz blockade has stranded urea and potash shipments at sea. Indian fertilizer manufacturers have already cut urea output as LNG input costs surge — threatening the critical Kharif sowing season (June–July 2026).
+              </p>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginBottom: "14px" }}>
+                {[
+                  { label: "Gulf fertilizer import share", val: "~35%", color: C.olive },
+                  { label: "Fertilizer subsidy FY26–27", val: "$18.6B", color: C.amber },
+                  { label: "Food inflation (Apr 2026)", val: "4.2%", color: C.fire },
+                  { label: "Global food price index", val: "3-yr high", color: "#7B3F00" },
+                ].map((s, i) => (
+                  <div key={i} style={{ background: `${s.color}08`, border: `1px solid ${s.color}20`, borderRadius: "10px", padding: "10px 12px" }}>
+                    <div style={{ fontSize: "1rem", fontWeight: 900, color: s.color }}>{s.val}</div>
+                    <div style={{ fontSize: "10px", color: `${C.ink}70`, marginTop: "3px" }}>{s.label}</div>
+                  </div>
+                ))}
+              </div>
+              <p style={{ fontSize: "12px", color: `${C.ink}60`, lineHeight: 1.6, margin: "0 0 10px" }}>
+                Higher urea costs and delayed imports mean India's monsoon crop could be undersupplied with inputs — pushing vegetable and grain prices higher through Q3 2026. The FAO Chief Economist has flagged India as facing "rising food inflation risks" heading into the harvest cycle.
+              </p>
+              <a href="https://www.cnbc.com/2026/03/25/fertilizer-price-iran-war-food-security-inflation-urea-potash-nitrogen-farmers.html" target="_blank" rel="noopener noreferrer" style={{ fontSize: "11px", color: C.olive, fontWeight: 700 }}>CNBC: Fertilizer crisis & food inflation →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+            {/* ═══════════════════════════════════
           SECTION 05 — MODI'S PLAYBOOK + INTERACTIVE IMPACT
       ══════════════════════════════════ */}
       <section style={{ maxWidth: "900px", margin: "0 auto", padding: "64px 20px 56px" }}>
@@ -670,7 +747,7 @@ export default function IranShockPage() {
         <div style={{ background: C.cream, borderRadius: "14px", padding: "20px 24px", marginBottom: "20px", border: `1px solid ${C.ink}12` }}>
           <div style={{ fontSize: "12px", fontWeight: 700, color: `${C.ink}70`, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "12px" }}>Your household commute type</div>
           <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-            {[["2w", "🛵 2-Wheeler only"], ["car", "🚗 Car only"], ["both", "🛵 + 🚗 Both"]].map(([val, label]) => (
+            {[["2w", "2-Wheeler only"], ["car", "Car only"], ["both", "Both"]].map(([val, label]) => (
               <button key={val} onClick={() => setVehicleType(val)}
                 style={{ padding: "8px 20px", borderRadius: "24px", border: `1.5px solid ${vehicleType === val ? C.amber : `${C.ink}20`}`, background: vehicleType === val ? `${C.amber}15` : "transparent", color: vehicleType === val ? C.amber : `${C.ink}70`, fontWeight: 700, fontSize: "13px", cursor: "pointer" }}>
                 {label}
@@ -712,7 +789,7 @@ export default function IranShockPage() {
 
                 {/* 2-wheeler note */}
                 <div style={{ background: `${C.amber}10`, border: `1px solid ${C.amber}25`, borderRadius: "10px", padding: "14px 18px", marginBottom: "22px" }}>
-                  <div style={{ fontSize: "11px", fontWeight: 800, color: C.amber, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "6px" }}>🛵 Two-Wheeler Impact (Most Relevant for India)</div>
+                  <div style={{ fontSize: "11px", fontWeight: 800, color: C.amber, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "6px" }}>Two-Wheeler Impact (Most Relevant for India)</div>
                   <p style={{ fontSize: "13px", color: `${C.ink}CC`, lineHeight: 1.65, margin: 0 }}>{m.twoWheelerNote}</p>
                 </div>
 
@@ -983,13 +1060,13 @@ export default function IranShockPage() {
         <SHead num="07 — YOUR ACTION PLAN" title="What You Can Actually Do Right Now" sub="Beyond what Modi asked — a practical personal finance playbook built for the Iran shock era." />
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "16px" }}>
           {[
-            { priority: "Do now", color: C.fire, icon: "🛵", title: "Switch to 2-wheeler for city commutes", body: "A 2-wheeler at 45 km/L is 3× more fuel-efficient than a car at 15 km/L. For city distances under 15 km, the 2-wheeler wins on both cost and time. Every litre you avoid buying at ₹108 (post-hike) saves you money and reduces OMC burden." },
-            { priority: "Do now", color: C.fire, icon: "🏦", title: "Lock in FD rates before rate cuts", body: "RBI holds at 5.25% but growth may force cuts. Fixed deposits at 6.5–7.5% are available now. Lock in 1–3 year FDs before a rate cut erodes your interest income." },
-            { priority: "This month", color: C.amber, icon: "🚇", title: "Metro/bus for 3+ days a week", body: "Metro and bus eliminate fuel cost entirely for those commutes. A city commuter doing 600 km/month on a 2-wheeler saves ~₹1,500–₹2,000/month by switching to metro 3 days/week — plus avoids the looming petrol price hike." },
-            { priority: "This month", color: C.amber, icon: "💼", title: "Don't pause equity SIPs", body: "Inflation erodes fixed income. Equity — especially domestic consumption stocks — historically outperforms during supply-side inflation. Keep SIPs running. The panic sell is almost always the wrong move." },
-            { priority: "This quarter", color: C.olive, icon: "🌐", title: "Delay forex purchases by 2–3 months", body: "Rupee at ₹94.5 is a historic low. Buying dollars now locks in the worst rate. If ceasefire talks progress, the rupee could recover to ₹88–90. Wait if you can." },
-            { priority: "This quarter", color: C.olive, icon: "🔌", title: "Seriously evaluate EV or rooftop solar", body: "This crisis is the strongest possible signal to reduce fossil fuel dependency. India's solar installation costs are at all-time lows. An EV eliminates petrol exposure entirely. The maths now work better than ever." },
-          ].map((a, i) => (
+            { priority: "Do now", color: C.fire, icon: "🚇", title: "Use public transport for daily commutes", body: "Metro and bus eliminate petrol spend entirely for those trips. With ATF-driven airfares spiking and petrol hikes imminent, every litre not burned at the pump reduces your cost exposure and eases the OMC subsidy drain that\'s costing India ₹1,700 Cr a day." },
+            { priority: "Do now", color: C.fire, icon: "🏦", title: "Lock in FD rates before rate cuts", body: "RBI holds at 5.25% but growth pressure may force cuts. Fixed deposits at 6.5–7.5% are available now. Lock in 1–3 year FDs before a rate cut erodes your interest income." },
+            { priority: "This month", color: C.amber, icon: "🚂", title: "Choose train over flight for domestic travel", body: "Indian airlines slashed 1,034 weekly international flights in May and ATF has doubled to ₹2.07 lakh/kl. For journeys under 800 km, trains are dramatically cheaper, more reliable, and insulated from the aviation fuel crisis entirely. IndiGo and Air India are hiking fares as fast as regulators allow." },
+            { priority: "This month", color: C.amber, icon: "💼", title: "Don\'t pause equity SIPs", body: "Inflation erodes fixed income. Equity — especially domestic consumption stocks — historically outperforms during supply-side inflation. Keep SIPs running. The panic sell is almost always the wrong move." },
+            { priority: "This quarter", color: C.olive, icon: "🌐", title: "Delay forex purchases by 2–3 months", body: "Rupee at ₹95.7 is at an all-time historic low. Buying dollars now locks in the worst rate ever. If ceasefire talks progress and Hormuz partially reopens, the rupee could recover toward ₹88–90. Wait if you can." },
+            { priority: "This quarter", color: C.olive, icon: "🔌", title: "Seriously evaluate EV or rooftop solar", body: "This crisis is the strongest possible signal to reduce fossil fuel dependency. India\'s solar installation costs are at all-time lows. An EV eliminates petrol exposure entirely — the maths have never been more compelling." },
+                    ].map((a, i) => (
             <div key={i} style={{ background: C.cream, border: `1px solid ${a.color}30`, borderRadius: "14px", padding: "20px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
                 <span style={{ fontSize: "1.5rem" }}>{a.icon}</span>
@@ -1055,98 +1132,6 @@ export default function IranShockPage() {
 
       {/* ══ METHODOLOGY ══ */}
       <div style={{ background: "#FFFDF5" }}>
-        <MethodologySection
-          slug="iran-shock"
-          sources={[
-            { id:1, name:"PPAC — Petroleum Data", org:"Petroleum Planning & Analysis Cell", url:"https://ppac.gov.in", year:"2026", usedFor:"India oil import volumes, Hormuz dependency (50%), OMC losses" },
-            { id:2, name:"RBI Exchange Rate Data", org:"Reserve Bank of India / DBIE", url:"https://dbie.rbi.org.in", year:"2026", usedFor:"USD/INR daily rates during shock period (Jan–May 2026)" },
-            { id:3, name:"CNBC / Business Standard", org:"Various media", url:"https://www.cnbctv18.com", year:"May 2026", usedFor:"Brent crude spot prices; petrol pump prices by city" },
-            { id:4, name:"World Bank Pink Sheet", org:"World Bank", url:"https://www.worldbank.org/en/research/commodity-markets", year:"2024–2026", usedFor:"Brent crude historical baseline (2024–2026)" },
-            { id:5, name:"NSSO HCES 2022-23", org:"National Statistical Office", url:"https://mospi.gov.in/hces", year:"2023", usedFor:"Household fuel/transport budget share by income quintile" },
-            { id:6, name:"Al Jazeera / Reuters", org:"International Press", url:"https://www.aljazeera.com", year:"2026", usedFor:"Hormuz closure dates, shipping disruption timeline" },
-          ]}
-          steps={[
-            {
-              label: "Effective Cost Increase — USD Price + INR Depreciation Combined",
-              formula:`Headline oil price change (USD):
-  (120.80 ÷ 72.48 − 1) × 100 = +66.7%
-
-INR depreciation (Jan → May 2026):
-  (94.50 ÷ 84.20 − 1) × 100 = +12.2%
-
-Combined effective cost increase (India pays in INR):
-  (120.80 × 94.50) ÷ (72.48 × 84.20) − 1
-  = 11,415 ÷ 6,103 − 1 = +87.1%
-
-India paid 87.1% more per barrel in rupee terms —
-even though headline oil rose "only" 66.7% in USD`,
-              result: "India's true cost shock was 87.1%, not the headline 66.7% — the weaker rupee added 20 percentage points",
-            },
-            {
-              label: "Petrol Pump Price Build-Up (Cost-Plus Formula)",
-              formula:`pump_price = ((brent_usd × refining_margin × USD_INR) ÷ 158.99)
-             + dealer_margin + excise_duty) × (1 + VAT)
-
-Parameters: refining margin 1.15, excise ₹19.90, dealer ₹3.87, VAT 26.5%
-
-January 2026: brent=$72.48, INR=84.20
-  crude_inr/L = (72.48 × 1.15 × 84.20) ÷ 158.99 = ₹39.2/L
-  pump price  = (39.2 + 3.87 + 19.90) × 1.265  ≈ ₹87.2/L (pre-gov absorption)
-
-May 2026: brent=$120.80, INR=94.50
-  crude_inr/L = (120.80 × 1.15 × 94.50) ÷ 158.99 = ₹65.3/L
-  pump price  ≈ ₹116.3/L (net of ₹2 excise cut)
-
-Increase = ₹29.1/litre (+33.4%)`,
-              result: "Each litre of petrol rose ~₹29 — the government absorbed ₹2 via excise cut, consumers paid the rest",
-            },
-            {
-              label: "Household Budget Impact by Income Quintile",
-              formula:`extra_monthly_spend = avg_litres_per_month × ₹29.1 price increase
-
-budget_impact_pct = extra_monthly_spend ÷ monthly_expenditure × 100
-
-Quintile   Monthly Spend   Litres/Mo   Extra/Mo   Budget Impact
-Q1 (low)     ₹4,200             8       ₹159         3.79%
-Q2           ₹7,800            15       ₹299         3.83%
-Q3          ₹12,400            22       ₹438         3.53%
-Q4          ₹19,800            35       ₹697         3.52%
-Q5 (top)    ₹42,000            65     ₹1,294         3.08%`,
-              result: "The fuel shock is regressive — Q1 households spend 3.79% of income on the extra cost vs. 3.08% for Q5",
-              note: "Litres/month estimated from NSSO HCES transport expenditure shares. Indirect costs (food price pass-through) not included here.",
-            },
-          ]}
-          toolNotes={[
-            { tool:"Python (pandas / numpy)", color:"#4A6073", tasks:[
-              "Modelled oil price shock transmission with combined USD + INR depreciation",
-              "Built petrol pump price formula from PPAC cost-plus components",
-              "Computed household budget impact across 5 income quintiles",
-              "Import dependency mapping: Hormuz share × price increase = daily cost",
-            ]},
-            { tool:"SQL (PostgreSQL)", color:"#1A7A8A", tasks:[
-              "Queried Brent crude daily % change from Jan 2026 baseline",
-              "Computed INR depreciation + effective rupee cost increase per barrel",
-              "Analysed oil import origin before/after Hormuz closure",
-              "Lagged correlation: oil shock → food CPI with 6-week lag",
-            ]},
-            { tool:"Excel", color:"#5A6E4F", tasks:[
-              "Pump price build-up model with excise/VAT component breakdown",
-              "Household budget impact table by income quintile",
-              "OMC daily loss estimation (under-recovery model)",
-            ]},
-            { tool:"React / JavaScript", color:"#C9A46F", tasks:[
-              "Interactive household cost simulator by income group",
-              "Animated oil price timeline with event annotations",
-              "City-level pump price comparison widget",
-            ]},
-          ]}
-          files={[
-            { name:"analysis.py",         ext:"py",   label:"Price transmission + household impact script" },
-            { name:"queries.sql",         ext:"sql",  label:"SQL: Brent shock & city pump price queries" },
-            { name:"iran_shock_data.xlsx",ext:"xlsx", label:"Timeline, pump build-up, quintile impact" },
-            { name:"README.md",           ext:"md",   label:"Methodology notes & data provenance" },
-          ]}
-        />
       </div>
 
     </main>

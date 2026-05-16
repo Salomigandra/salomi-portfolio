@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, useInView, animate } from "framer-motion";
 import ProjectBrief from "../../../components/ProjectBrief";
-import MethodologySection from "../../../components/MethodologySection";
 
 /* ─── PALETTE ─── */
 const P = {
@@ -429,6 +428,7 @@ export default function InflationCaseStudy() {
           tools={["Python", "SQL", "Excel", "React/JS"]}
           methods="Basket weight analysis, category-level CPI decomposition, purchasing power modelling, FD real-return comparison"
           output="Interactive inflation calculator showing real returns on savings vs. category-level price rises"
+          slug="inflation"
         />
       </div>
 
@@ -438,7 +438,7 @@ export default function InflationCaseStudy() {
         <div style={{ maxWidth: "760px", margin: "0 auto", position: "relative" }}>
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: P.burgundy, background: P.burgundyLight, border: "1px solid rgba(123,29,29,.2)", padding: "5px 16px", borderRadius: "20px", marginBottom: "1.5rem" }}>
-              🇮🇳 Data Analysis · Economics · Policy
+              Data Analysis · Economics · Policy
             </div>
             <h1 style={{ fontSize: "clamp(2.2rem, 5.5vw, 3.6rem)", fontWeight: 900, lineHeight: 1.07, letterSpacing: "-0.03em", color: P.charcoal, marginBottom: "1rem" }}>
               When Wars{" "}<span style={{ color: P.burgundy }}>Raise Prices</span>
@@ -521,7 +521,7 @@ export default function InflationCaseStudy() {
             </ul>
 
             <div style={{ background: `${war.color}08`, border: `1px solid ${war.color}20`, borderRadius: "10px", padding: "0.65rem 1rem", fontSize: "12px", fontWeight: 600, color: war.color, marginBottom: "8px" }}>
-              📊 {war.data}
+              {war.data}
             </div>
             <DataNote type="verified">{war.src}</DataNote>
           </Card>
@@ -733,7 +733,7 @@ export default function InflationCaseStudy() {
         {/* Calculator 1: Purchasing power */}
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
           <Card accent={P.burgundy}>
-            <h3 style={{ fontSize: "15px", fontWeight: 700, marginBottom: "0.4rem" }}>💸 Purchasing power erosion calculator</h3>
+            <h3 style={{ fontSize: "15px", fontWeight: 700, marginBottom: "0.4rem" }}>Purchasing power erosion calculator</h3>
             <p style={{ fontSize: "13px", color: "rgba(28,28,28,0.6)", marginBottom: "1.25rem" }}>How much will your ₹ salary buy in the future if inflation continues?</p>
 
             {[
@@ -769,7 +769,7 @@ export default function InflationCaseStudy() {
         {/* Calculator 2: Savings real return */}
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ marginTop: "1.2rem" }}>
           <Card accent={P.olive}>
-            <h3 style={{ fontSize: "15px", fontWeight: 700, marginBottom: "0.4rem" }}>🏦 Is your FD beating inflation?</h3>
+            <h3 style={{ fontSize: "15px", fontWeight: 700, marginBottom: "0.4rem" }}>Is your FD beating inflation?</h3>
             <p style={{ fontSize: "13px", color: "rgba(28,28,28,0.6)", marginBottom: "1.25rem" }}>Fixed deposits feel safe — but if the FD rate is below inflation, you're losing money in real terms. Enter your numbers.</p>
 
             {[
@@ -916,88 +916,6 @@ export default function InflationCaseStudy() {
           </Link>
         </div>
       </Section>
-
-      {/* ══ METHODOLOGY ══ */}
-      <MethodologySection
-        slug="inflation"
-        sources={[
-          { id:1, name:"MOSPI — CPI Monthly Data (Base 2012=100)", org:"Ministry of Statistics & PI", url:"https://mospi.gov.in/consumer-price-indices", year:"2019–2024", usedFor:"Category-level CPI indices and urban/rural basket weights" },
-          { id:2, name:"RBI Monetary Policy Reports", org:"Reserve Bank of India", url:"https://rbi.org.in", year:"2019–2024", usedFor:"Headline CPI targets, actual inflation benchmarks" },
-          { id:3, name:"SBI / HDFC / ICICI FD Rate Cards", org:"State Bank of India et al.", url:"https://sbi.co.in", year:"2019–2024", usedFor:"1-year term deposit interest rates (historical)" },
-          { id:4, name:"NSSO HCES 2022-23", org:"National Statistical Office", url:"https://mospi.gov.in/hces", year:"2023", usedFor:"Urban/rural household expenditure basket weights" },
-          { id:5, name:"RBI DBIE Data Warehouse", org:"Reserve Bank of India", url:"https://dbie.rbi.org.in", year:"2024", usedFor:"Historical CPI and inflation time series queries" },
-        ]}
-        steps={[
-          {
-            label: "Weighted Headline CPI (Urban Basket)",
-            formula:`headline_cpi = Σ (category_weight% ÷ 100) × category_yoy_inflation%
-
-Urban basket weights (MOSPI 2012 base):
-  Food & beverages   36.29% × 8.7%  = 3.16
-  Housing            21.67% × 4.1%  = 0.89
-  Miscellaneous      28.32% × 3.9%  = 1.10
-  Fuel & light        5.58% × 5.2%  = 0.29
-  Clothing & footwear 5.60% × 3.1%  = 0.17
-  Pan/tobacco         2.34% × 4.2%  = 0.10
-  ─────────────────────────────────────────
-  Weighted headline CPI (Apr 2024)   ≈ 4.83%`,
-            result: "Urban food inflation (8.7%) is 1.8× the headline number — it hurts lower-income households most",
-          },
-          {
-            label: "FD Real Return (Pre-tax and Post-30% Tax)",
-            formula:`real_return = ((1 + fd_rate/100) ÷ (1 + cpi/100) − 1) × 100
-
-Year    FD Rate   CPI     Real (Pre-tax)   Post-tax FD   Real (Post-tax)
-2019    7.00%    3.73%      +3.13%           4.90%          +1.13%
-2020    5.40%    6.62%      −1.14%           3.78%          −2.66%
-2021    5.15%    5.13%      +0.02%           3.61%          −1.45%
-2022    5.30%    6.70%      −1.31%           3.71%          −2.79%
-2023    6.75%    5.65%      +1.04%           4.73%          −0.87%
-2024    6.85%    4.83%      +1.92%           4.80%          −0.03%`,
-            result: "In 4 of 6 years, post-tax FD holders lost real purchasing power",
-          },
-          {
-            label: "Purchasing Power Erosion (₹1,00,000 over 5 years)",
-            formula:`real_value = principal × ((1 + fd/100) ÷ (1 + cpi/100))^years
-
-Scenario              Nominal End Value   Real End Value   P.P. Loss
-FD 7%, CPI 5.5%       ₹1,40,255          ₹1,07,352        ₹32,903
-FD 7%, CPI 7%         ₹1,40,255          ₹1,00,000        ₹40,255
-FD 6%, CPI 8%         ₹1,33,823           ₹91,393         ₹42,430`,
-            result: "At FD 7% vs. CPI 7%, your ₹1 lakh grows nominally but has exactly the same purchasing power after 5 years",
-          },
-        ]}
-        toolNotes={[
-          { tool:"Python (pandas / numpy)", color:"#4A6073", tasks:[
-            "Computed weighted headline CPI from MOSPI category data",
-            "Calculated FD real return (pre-tax and post-30% tax) for 2019–2024",
-            "Modelled 5-year purchasing power erosion across rate/CPI scenarios",
-            "Analysed food sub-category volatility (vegetables +27.8%, pulses +16.8%)",
-          ]},
-          { tool:"SQL (PostgreSQL)", color:"#1A7A8A", tasks:[
-            "YoY inflation by category using window function (LAG 12 months)",
-            "Ranked most volatile food items by standard deviation",
-            "Joined FD rate table with headline CPI by year for real return query",
-            "5-year cumulative inflation by basket category",
-          ]},
-          { tool:"Excel", color:"#5A6E4F", tasks:[
-            "Built interactive FD real return calculator with input cells",
-            "Basket weight pie chart with YoY inflation annotations",
-            "Scenario sensitivity table with conditional green/red formatting",
-          ]},
-          { tool:"React / JavaScript", color:"#C9A46F", tasks:[
-            "Interactive inflation calculator — enter principal, FD rate, CPI",
-            "Category CPI breakdown bar chart with weight labels",
-            "FD real return timeline chart (2019–2024)",
-          ]},
-        ]}
-        files={[
-          { name:"analysis.py",          ext:"py",   label:"CPI basket + FD real return script" },
-          { name:"queries.sql",          ext:"sql",  label:"SQL: CPI trend & FD return queries" },
-          { name:"inflation_data.xlsx",  ext:"xlsx", label:"Basket weights + real return model" },
-          { name:"README.md",            ext:"md",   label:"Methodology notes & limitations" },
-        ]}
-      />
     </div>
   );
 }

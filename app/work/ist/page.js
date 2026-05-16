@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion, useInView, animate } from "framer-motion";
 import { useEffect } from "react";
 import ProjectBrief from "../../../components/ProjectBrief";
-import MethodologySection from "../../../components/MethodologySection";
 
 /* ─── PALETTE ─── */
 const P = {
@@ -238,6 +237,7 @@ export default function ISTCaseStudy() {
           tools={["Python", "Excel", "React/JS"]}
           methods="Comparative cultural analysis, scenario modelling, Hofstede PDI correlation, Nash equilibrium framing"
           output="Interactive data story with GDP cost estimates, FD calculator, and behavioural science framework"
+          slug="ist"
         />
       </div>
 
@@ -247,7 +247,7 @@ export default function ISTCaseStudy() {
         <div style={{ maxWidth: "760px", margin: "0 auto", position: "relative" }}>
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: P.saffron, background: P.saffronLight, border: "1px solid rgba(232,99,26,.2)", padding: "5px 16px", borderRadius: "20px", marginBottom: "1.5rem" }}>
-              🇮🇳 Data Story · Culture · Behavioural Science
+              Data Story · Culture · Behavioural Science
             </div>
             <h1 style={{ fontSize: "clamp(2.2rem, 5.5vw, 3.8rem)", fontWeight: 900, lineHeight: 1.07, letterSpacing: "-0.03em", color: P.charcoal, marginBottom: "1rem" }}>
               A Nation Running{" "}<span style={{ color: P.saffron }}>Late</span>
@@ -295,7 +295,7 @@ export default function ISTCaseStudy() {
       <Section eyebrow="">
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
           <Card accent={P.gold} style={{ background: P.goldLight }}>
-            <p style={{ fontSize: "13px", fontWeight: 700, color: P.charcoal, marginBottom: "0.5rem" }}>📋 Analyst's transparency note</p>
+            <p style={{ fontSize: "13px", fontWeight: 700, color: P.charcoal, marginBottom: "0.5rem" }}>Analyst's transparency note</p>
             <p style={{ fontSize: "13px", color: "rgba(28,28,28,0.75)", lineHeight: 1.75 }}>
               This case study was fully fact-checked before publishing. <strong>Seven statistics from an earlier draft were removed</strong> after audit — they were either unverifiable, misattributed, or fabricated (including a "LinkedIn India" meeting survey, a "WeddingWire" wedding-delay survey, Swiggy/Zomato delivery stats, and an "Upwork punctuality ranking"). Every remaining claim is sourced to a verifiable, publicly available document. The economic cost figure is a scenario-based model — clearly labelled as such. Where a precise figure could not be independently confirmed, an approximate or range is used.
             </p>
@@ -533,7 +533,7 @@ export default function ISTCaseStudy() {
         {/* Confirmed: Delhi Metro */}
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ marginBottom: "1.2rem" }}>
           <Card accent={P.teal}>
-            <h3 style={{ fontSize: "14px", fontWeight: 700, color: P.teal, marginBottom: "0.4rem" }}>🚇 Delhi Metro: what reliable infrastructure produces</h3>
+            <h3 style={{ fontSize: "14px", fontWeight: 700, color: P.teal, marginBottom: "0.4rem" }}>Delhi Metro: what reliable infrastructure produces</h3>
             <p style={{ fontSize: "13px", color: "rgba(28,28,28,0.65)", lineHeight: 1.6, marginBottom: "0.5rem" }}>
               Delhi Metro operates on a consistent, reliable schedule. DMRC's Annual Report 2022–23 documents high operational performance. When infrastructure is dependable, commuter behaviour adapts. This is the clearest natural experiment available in India.
             </p>
@@ -545,7 +545,7 @@ export default function ISTCaseStudy() {
         {/* IR OTP recovery discussion */}
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ marginBottom: "1.2rem" }}>
           <Card accent={P.saffron}>
-            <h3 style={{ fontSize: "14px", fontWeight: 700, color: P.saffron, marginBottom: "0.4rem" }}>🚂 Indian Railways OTP: institutional pressure is building</h3>
+            <h3 style={{ fontSize: "14px", fontWeight: 700, color: P.saffron, marginBottom: "0.4rem" }}>Indian Railways OTP: institutional pressure is building</h3>
             <p style={{ fontSize: "13px", color: "rgba(28,28,28,0.65)", lineHeight: 1.6, marginBottom: "0.5rem" }}>
               Parliament's Public Accounts Committee (Feb 2026) formally called out the OTP decline as a governance failure — recommending specific accountability measures. This represents the formal system recognising and naming the problem.
             </p>
@@ -649,81 +649,6 @@ export default function ISTCaseStudy() {
           </Link>
         </div>
       </Section>
-
-      {/* ══ METHODOLOGY ══ */}
-      <MethodologySection
-        slug="ist"
-        sources={[
-          { id:1, name:"PIB Press Release PRID 2205918", org:"Press Information Bureau, Govt. of India", url:"https://www.pib.gov.in/PressReleasePage.aspx?PRID=2205918", year:"Dec 2025", usedFor:"Indian Railways on-time performance data" },
-          { id:2, name:"TomTom Traffic Index 2024", org:"TomTom", url:"https://www.tomtom.com/traffic-index/city/bengaluru", year:"2024", usedFor:"Bengaluru #3 globally; 110 hrs/year lost in traffic" },
-          { id:3, name:"KPMG India Workplace Survey", org:"KPMG India", url:"https://kpmg.com/in", year:"2023", usedFor:"Average meeting delay (19 min), meetings per day (2.3)" },
-          { id:4, name:"World Bank — India GDP & Employment", org:"World Bank", url:"https://data.worldbank.org", year:"2023", usedFor:"India GDP ($3.73T), employed population (560M)" },
-          { id:5, name:"Hofstede Insights — PDI Scores", org:"Hofstede Insights", url:"https://www.hofstede-insights.com", year:"2023", usedFor:"Power Distance Index by country for lateness correlation" },
-          { id:6, name:"JR East Annual Report 2023", org:"East Japan Railway Co.", url:"https://www.jreast.co.jp/e/investor/", year:"2023", usedFor:"Japan train punctuality (~99.9% within 1 minute)" },
-          { id:7, name:"Hall, E.T. — The Silent Language", org:"Doubleday", url:null, year:"1959", usedFor:"Monochronic vs. polychronic time culture framework" },
-        ]}
-        steps={[
-          {
-            label: "Annual GDP Loss from Lateness",
-            formula:`delay_hours_per_person = (19 min ÷ 60) × 2.3 meetings × 250 days
-                   = 182.4 hours lost per worker per year
-
-gdp_per_worker   = $3,730,000,000,000 ÷ 560,000,000 = $6,661/worker
-avg_hourly_wage  = $6,661 ÷ (250 days × 8 hrs)     = $3.33/hr
-
-total_gdp_loss   = 182.4 h × 560M workers × $3.33/hr
-                 ≈ $340 billion/year`,
-            result: "~$340B GDP lost annually ≈ 9.1% of India's GDP",
-            note: "Uses average wage across all workers. Actual impact varies by sector and seniority.",
-          },
-          {
-            label: "Hofstede PDI vs. Meeting Delay Correlation",
-            formula:`Country       PDI Score   Avg Delay (min)
-India             77             19
-Brazil            69             22
-Japan             54              1
-USA               40              8
-Germany           35              3
-Switzerland       34              2
-
-Pearson correlation coefficient r = +0.94
-(high PDI → meetings wait for authority figure → longer delays)`,
-            result: "r = +0.94 — strong positive correlation between PDI and meeting lateness",
-          },
-          {
-            label: "FD Real Return (post-inflation)",
-            formula:`real_return = ((1 + fd_rate/100) / (1 + cpi/100) − 1) × 100
-
-Pre-tax  : FD 7.0%, CPI 5.5% → ((1.070 / 1.055) − 1) × 100 = +1.42%
-Post-tax : FD effective = 7.0% × 0.70 = 4.9% (30% tax bracket)
-           real (post-tax) = ((1.049 / 1.055) − 1) × 100 = −0.57%`,
-            result: "FD holders in the 30% bracket actually lost purchasing power in 4 of 6 years (2019–2024)",
-          },
-        ]}
-        toolNotes={[
-          { tool:"Python (pandas / numpy)", color:"#4A6073", tasks:[
-            "Computed GDP loss formula with World Bank workforce data",
-            "Built Hofstede PDI correlation table and Pearson r",
-            "Modelled FD real-return scenarios across 6 rate/CPI combinations",
-            "Generated scenario sensitivity table (25%/50%/75% delay reduction)",
-          ]},
-          { tool:"Excel", color:"#5A6E4F", tasks:[
-            "Built interactive FD calculator with input sliders",
-            "Formatted PDI comparison table for chart export",
-            "Created GDP loss scenario table with conditional formatting",
-          ]},
-          { tool:"React / JavaScript", color:"#C9A46F", tasks:[
-            "Animated dual clock showing IST vs. actual time",
-            "Live FD calculator widget with real-time result update",
-            "Scenario comparison slider with GDP bar chart",
-          ]},
-        ]}
-        files={[
-          { name:"analysis.py",  ext:"py",   label:"Full GDP & PDI calculation script" },
-          { name:"ist_data.xlsx",ext:"xlsx", label:"Scenario model + FD calculator" },
-          { name:"README.md",    ext:"md",   label:"Methodology notes & assumptions" },
-        ]}
-      />
     </div>
   );
 }
