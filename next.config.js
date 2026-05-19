@@ -7,13 +7,6 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // Redirect www → non-www (fixes "Alternative page with proper canonical tag" in Search Console)
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.salomigandra.me' }],
-        destination: 'https://salomigandra.me/:path*',
-        permanent: true,
-      },
       // Redirect bare / → /work
       { source: '/', destination: '/work', permanent: true },
     ];

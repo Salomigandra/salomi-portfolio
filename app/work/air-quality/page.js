@@ -1,13 +1,13 @@
 import AirQualityCaseStudy from "./PageClient";
 
 const BASE = "https://salomigandra.me";
-const URL  = `${BASE}/work/air-quality`;
+const PAGE_URL = `${BASE}/work/air-quality`;
 
 export const metadata = {
   title: "India Air Quality Data Analysis: AQI Across 50+ Cities | Salomi Gandra",
   description:
     "Interactive analysis of India's AQI data across 50+ cities — seasonal pollution patterns, worst offenders, and why India's official air quality numbers may be undercounting the problem.",
-  alternates: { canonical: URL },
+  alternates: { canonical: PAGE_URL },
   keywords: [
     "india air quality analysis", "india AQI data 2024",
     "india pollution data cities", "delhi air quality data",
@@ -17,7 +17,7 @@ export const metadata = {
     title: "India Air Quality Data Analysis: AQI Across 50+ Cities",
     description:
       "What AQI data from 50+ Indian cities reveals about pollution patterns — and why the official numbers may be misleading.",
-    url: URL,
+    url: PAGE_URL,
     type: "article",
     siteName: "Salomi Gandra",
     images: [{ url: `${BASE}/images/og-cover.png`, width: 1200, height: 630 }],

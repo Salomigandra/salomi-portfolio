@@ -3,13 +3,13 @@
 import IranShockPage from "./PageClient";
 
 const BASE = "https://salomigandra.me";
-const URL  = `${BASE}/work/iran-shock`;
+const PAGE_URL = `${BASE}/work/iran-shock`;
 
 export const metadata = {
   title: "Iran War Oil Shock: Impact on India's Economy | Salomi Gandra",
   description:
     "Interactive data analysis of how the 2026 Iran war oil shock rippled through India's economy — crude oil prices, rupee depreciation, fuel inflation, and trade balance impact. Built with Python, SQL, and React.",
-  alternates: { canonical: URL },
+  alternates: { canonical: PAGE_URL },
   keywords: [
     "iran war oil shock india", "india crude oil price impact",
     "rupee depreciation 2026", "india fuel inflation data",
@@ -19,7 +19,7 @@ export const metadata = {
     title: "Iran War Oil Shock: Impact on India's Economy",
     description:
       "How the 2026 Iran war sent oil prices surging — and what the data shows about the impact on India's rupee, inflation, and trade.",
-    url: URL,
+    url: PAGE_URL,
     type: "article",
     siteName: "Salomi Gandra",
     images: [{ url: `${BASE}/images/og-cover.png`, width: 1200, height: 630 }],

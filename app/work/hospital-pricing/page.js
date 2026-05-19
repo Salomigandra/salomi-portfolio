@@ -1,13 +1,13 @@
 import HospitalPricingCaseStudy from "./PageClient";
 
 const BASE = "https://salomigandra.me";
-const URL  = `${BASE}/work/hospital-pricing`;
+const PAGE_URL = `${BASE}/work/hospital-pricing`;
 
 export const metadata = {
   title: "US Hospital Price Transparency: Data Analysis | Salomi Gandra",
   description:
     "Data analysis of the US hospital price transparency mandate — exploring pricing gaps between hospitals, hidden costs, and what the publicly released data reveals about American healthcare pricing.",
-  alternates: { canonical: URL },
+  alternates: { canonical: PAGE_URL },
   keywords: [
     "us hospital price transparency analysis", "hospital pricing data",
     "american healthcare costs data", "hospital chargemaster analysis",
@@ -17,7 +17,7 @@ export const metadata = {
     title: "US Hospital Price Transparency: Data Analysis",
     description:
       "What hospital pricing data reveals about the gap between what hospitals charge — and what patients actually pay.",
-    url: URL,
+    url: PAGE_URL,
     type: "article",
     siteName: "Salomi Gandra",
     images: [{ url: `${BASE}/images/og-cover.png`, width: 1200, height: 630 }],

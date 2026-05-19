@@ -1,13 +1,13 @@
 import ISTCaseStudy from "./PageClient";
 
 const BASE = "https://salomigandra.me";
-const URL  = `${BASE}/work/ist`;
+const PAGE_URL = `${BASE}/work/ist`;
 
 export const metadata = {
   title: "India Stretchable Time (IST): A Data Case Study | Salomi Gandra",
   description:
     "An interactive data case study on India's relationship with time — analysing punctuality patterns, the IST stereotype, and what transport, meeting, and event data actually reveals.",
-  alternates: { canonical: URL },
+  alternates: { canonical: PAGE_URL },
   keywords: [
     "india stretchable time data", "IST india punctuality data",
     "india time management analysis", "india late culture data",
@@ -17,7 +17,7 @@ export const metadata = {
     title: "India Stretchable Time (IST): A Data Case Study",
     description:
       "Is the IST stereotype backed by data? An interactive analysis of punctuality patterns across Indian transport, events, and workplaces.",
-    url: URL,
+    url: PAGE_URL,
     type: "article",
     siteName: "Salomi Gandra",
     images: [{ url: `${BASE}/images/og-cover.png`, width: 1200, height: 630 }],
