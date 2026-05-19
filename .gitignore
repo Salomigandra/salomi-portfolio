@@ -10,8 +10,3 @@ pnpm-*.log*
 .vscode
 .idea
 *.swp
-
-# Cowork / Claude internal files — never commit these
-.claude/
-CLAUDE.md
-Salomi\ Portfolio/CLAUDE.md
