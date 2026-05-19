@@ -6,7 +6,8 @@ import { getAllSlugs } from "../lib/blog";
 const BASE = "https://salomigandra.me";
 
 const STATIC_PAGES = [
-  { url: "/",                        priority: 1.0, changefreq: "weekly"  },
+  // NOTE: "/" is intentionally excluded — it 301-redirects to /work.
+  // Submitting redirect URLs to Google causes "Page with redirect" errors in Search Console.
   { url: "/work",                    priority: 1.0, changefreq: "weekly"  },
   { url: "/blog",                    priority: 0.9, changefreq: "weekly"  },
   { url: "/about",                   priority: 0.7, changefreq: "monthly" },

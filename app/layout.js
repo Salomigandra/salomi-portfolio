@@ -72,7 +72,7 @@ const personSchema = {
   url: BASE,
   sameAs: [
     "https://github.com/salomigandra",
-    "https://linkedin.com/in/salomigandra",
+    "https://linkedin.com/in/salomisabastian",
   ],
   jobTitle: "Data Analyst",
   knowsAbout: [
