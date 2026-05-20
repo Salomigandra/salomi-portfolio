@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import liveData from "../../../data/iran-shock-live.json";
 import ProjectBrief from "../../../components/ProjectBrief";
 
 /* ─────────────────────────────────────────────
@@ -101,11 +102,12 @@ function RupeeLine() {
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
-  const pts = [85.53, 84.8, 84.5, 83.9, 84.2, 84.0, 84.7, 85.6, 86.8, 88.2, 90.5, 92.1, 96.82];
-  const labels = ["Mar'25","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Feb'26","Apr'26","May 20"];
+  const INR_CLOSE = liveData.usdInr.closing;
+  const pts = [85.53, 84.8, 84.5, 83.9, 84.2, 84.0, 84.7, 85.6, 86.8, 88.2, 90.5, 92.1, INR_CLOSE];
+  const labels = ["Mar'25","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Feb'26","Apr'26",liveData.lastUpdated.slice(5)];
   const W = 520, H = 130, PL = 42, PR = 16, PT = 12, PB = 28;
   const cW = W - PL - PR, cH = H - PT - PB;
-  const minV = 83, maxV = 99;
+  const minV = 83, maxV = Math.max(99, Math.ceil(INR_CLOSE) + 2);
   const toX = (i) => PL + (i / (pts.length - 1)) * cW;
   const toY = (v) => PT + ((maxV - v) / (maxV - minV)) * cH;
   const lineD = pts.map((v, i) => `${i === 0 ? "M" : "L"} ${toX(i).toFixed(1)} ${toY(v).toFixed(1)}`).join(" ");
@@ -123,7 +125,7 @@ function RupeeLine() {
               style={{ transition: "width 1.8s cubic-bezier(.17,.67,.35,1)" }} />
           </clipPath>
         </defs>
-        {[84, 87, 90, 93, 96, 99].map(v => (
+        {[84, 87, 90, 93, 96, 99].filter(v => v <= maxV).map(v => (
           <g key={v}>
             <line x1={PL} y1={toY(v)} x2={W - PR} y2={toY(v)} stroke={`${C.ink}10`} strokeWidth="1" />
             <text x={PL - 4} y={toY(v) + 4} textAnchor="end" fontSize="9" fill={`${C.ink}50`}>₹{v}</text>
@@ -134,8 +136,8 @@ function RupeeLine() {
         {pts.map((_, i) => i % 3 === 0 && (
           <text key={i} x={toX(i)} y={H - 4} textAnchor="middle" fontSize="9" fill={`${C.ink}60`}>{labels[i]}</text>
         ))}
-        <circle cx={toX(pts.length - 1)} cy={toY(96.82)} r="4" fill={C.fire} opacity={drawn ? 1 : 0} style={{ transition: "opacity 0.4s 1.8s" }} />
-        <text x={toX(pts.length - 1) - 6} y={toY(96.82) - 8} textAnchor="end" fontSize="10" fontWeight="700" fill={C.fire} opacity={drawn ? 1 : 0} style={{ transition: "opacity 0.4s 1.8s" }}>₹96.82</text>
+        <circle cx={toX(pts.length - 1)} cy={toY(INR_CLOSE)} r="4" fill={C.fire} opacity={drawn ? 1 : 0} style={{ transition: "opacity 0.4s 1.8s" }} />
+        <text x={toX(pts.length - 1) - 6} y={toY(INR_CLOSE) - 8} textAnchor="end" fontSize="10" fontWeight="700" fill={C.fire} opacity={drawn ? 1 : 0} style={{ transition: "opacity 0.4s 1.8s" }}>₹{INR_CLOSE}</text>
         <circle cx={toX(0)} cy={toY(85.53)} r="3.5" fill={C.olive} />
         <text x={toX(0) + 5} y={toY(85.53) - 6} fontSize="10" fontWeight="700" fill={C.olive}>₹85.5</text>
       </svg>
@@ -156,11 +158,12 @@ function OilLine() {
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
-  const pts = [72.48, 76, 80, 112.57, 118, 122, 120, 115, 110];
-  const events = [null, null, "US-Israel ops begin (Feb 2026)", "Hormuz closed (Mar 4)", "Brent peaks $122", null, null, null, null];
+  const BRENT_NOW = liveData.brentCrude.current;
+  const pts = [72.48, 76, 80, 112.57, 118, 122, 120, 115, BRENT_NOW];
+  const events = [null, null, "US-Israel ops begin (Feb 2026)", "Hormuz closed (Mar 4)", `Brent peaks $${liveData.brentCrude.peak}`, null, null, null, null];
   const W = 520, H = 140, PL = 36, PR = 16, PT = 14, PB = 28;
   const cW = W - PL - PR, cH = H - PT - PB;
-  const minV = 65, maxV = 130;
+  const minV = 65, maxV = Math.max(130, Math.ceil(liveData.brentCrude.peak) + 10);
   const toX = (i) => PL + (i / (pts.length - 1)) * cW;
   const toY = (v) => PT + ((maxV - v) / (maxV - minV)) * cH;
   const lineD = pts.map((v, i) => `${i === 0 ? "M" : "L"} ${toX(i).toFixed(1)} ${toY(v).toFixed(1)}`).join(" ");
@@ -305,10 +308,10 @@ export default function IranShockPage() {
   // Gold: 24k retail ~₹9,500/g in India (gold at ~$3,100/oz, ₹96.82/$ = ₹9,65,460/oz → ~₹31,040/g → retail markup included)
   const GOLD_INR_PER_G = 9500;
   const goldRupees     = goldGrams * GOLD_INR_PER_G;
-  const goldUsd        = Math.round(goldRupees / 96.82);
+  const goldUsd        = Math.round(goldRupees / liveData.usdInr.closing);
 
   // Travel: rupee cost extra
-  const travelRupeeExtra = Math.round(travelUsd * (96.82 - 85.5)); // extra vs last year
+  const travelRupeeExtra = Math.round(travelUsd * (liveData.usdInr.closing - liveData.usdInr.baseline)); // extra vs last year
 
   // National aggregate math
   // India: ~18Cr 2-wheelers, ~5.5Cr cars (registered, active subset used for commute)
@@ -323,7 +326,7 @@ export default function IranShockPage() {
      ACTIVE_CAR_CR * 1e7 * ADOPT_RATE * carLitresSaved * PETROL_HIKE) / 1e7
   );
 
-  const goldNationalSaving = Math.round(goldGrams * 1e7 * 0.3 * GOLD_INR_PER_G / 96.82 / 1e9); // $B if 1Cr families pause
+  const goldNationalSaving = Math.round(goldGrams * 1e7 * 0.3 * GOLD_INR_PER_G / liveData.usdInr.closing / 1e9); // $B if 1Cr families pause
   const travelNationalSaving = Math.round(travelUsd * 1e7 * 0.25 / 1e9); // $B if 1Cr families skip
 
   /* ── Section 06 cost math ── */
@@ -479,9 +482,9 @@ export default function IranShockPage() {
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "12px", marginBottom: "28px" }}>
             {[
-              { num: "₹96.96", label: "USD/INR — intraday low (May 20, 2026)", sub: "Closing ₹96.82 · vs ₹85.5 a year ago · all-time low", color: C.fire },
-              { num: "$114", label: "Brent crude peak · ~$110 (May 2026)", sub: "surged from $72.5 at Feb 2026 start", color: C.amber },
-              { num: "₹1,700 Cr", label: "OMC daily under-recovery", sub: "cumulative ~₹1 lakh Cr over 10 weeks", color: "#E8A040" },
+              { num: `₹${liveData.usdInr.intradayLow}`, label: `USD/INR — intraday low (${liveData.lastUpdated})`, sub: `Closing ₹${liveData.usdInr.closing} · vs ₹${liveData.usdInr.baseline} a year ago · all-time low`, color: C.fire },
+              { num: `$${liveData.brentCrude.peak}`, label: `Brent crude peak · ~$${liveData.brentCrude.current} (${liveData.lastUpdated.slice(0,7)})`, sub: `surged from $${liveData.brentCrude.baseline} at Feb 2026 start`, color: C.amber },
+              { num: `₹${liveData.omcLoss.dailyCrore.toLocaleString("en-IN")} Cr`, label: "OMC daily under-recovery", sub: `cumulative ~₹${(liveData.omcLoss.cumulativeCrore / 100000).toFixed(1)} lakh Cr`, color: "#E8A040" },
               { num: "90%", label: "India's crude import dependency", sub: "~50% of that transits Hormuz", color: C.teal },
             ].map((s, i) => (
               <div key={i} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "14px", padding: "14px 16px" }}>
@@ -552,7 +555,7 @@ export default function IranShockPage() {
             <span style={{ fontWeight: 700, fontSize: "14px" }}>Brent Crude — Feb to May 2026</span>
             <a href="https://www.cnbc.com/2026/04/21/oil-price-iran-war-middle-east.html" target="_blank" rel="noopener noreferrer" style={{ fontSize: "11px", color: C.teal }}>CNBC Oil Price Timeline →</a>
           </div>
-          <p style={{ fontSize: "12px", color: `${C.ink}60`, margin: "4px 0 14px" }}>55% spike in 4 weeks following Hormuz closure — Brent peaked at $122</p>
+          <p style={{ fontSize: "12px", color: `${C.ink}60`, margin: "4px 0 14px" }}>55% spike in 4 weeks following Hormuz closure — Brent peaked at ${liveData.brentCrude.peak}, currently ~${liveData.brentCrude.current}</p>
           <OilLine />
         </div>
       </section>

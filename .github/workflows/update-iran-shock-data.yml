@@ -1,0 +1,59 @@
+name: Update Iran Shock Live Data
+
+# ── Schedule ────────────────────────────────────────────────────────────────
+# 12:30 UTC = 6:00 PM IST, every day.
+# Why 6 PM IST?
+#   • NSE / BSE close at 3:30 PM IST
+#   • RBI publishes reference USD/INR rate at ~4:45 PM IST
+#   • 6:00 PM gives everything time to settle
+#
+# On weekends the script still runs — it fetches the Friday closing rate
+# so the site always shows a valid, labelled number over the weekend.
+# ────────────────────────────────────────────────────────────────────────────
+
+on:
+  schedule:
+    - cron: '30 12 * * *'   # 12:30 UTC = 6:00 PM IST daily
+
+  workflow_dispatch:         # Manual trigger from GitHub → Actions tab (useful for testing)
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write        # Needed to commit and push back to the repo
+
+    steps:
+      # 1. Check out the repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Set up Python
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 3. Install the only dependency (requests)
+      - name: Install dependencies
+        run: pip install requests --quiet
+
+      # 4. Run the fetch script
+      - name: Fetch live USD/INR and Brent crude
+        run: python scripts/fetch_iran_shock_data.py
+
+      # 5. Commit and push only if the JSON actually changed
+      #    (git diff --staged --quiet exits 0 if no changes → skip commit)
+      - name: Commit updated data file
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name  "github-actions[bot]"
+          git add data/iran-shock-live.json
+          if git diff --staged --quiet; then
+            echo "No data changes — skipping commit."
+          else
+            git commit -m "chore(data): auto-update Iran Shock live data [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+            git push
+            echo "✓ Data committed and pushed — Vercel will redeploy automatically."
+          fi

@@ -1,0 +1,35 @@
+{
+  "lastUpdated": "2026-05-20",
+  "lastUpdatedIST": "2026-05-20 18:00 IST",
+  "usdInr": {
+    "closing": 96.82,
+    "intradayLow": 96.96,
+    "baseline": 85.5,
+    "changePercent": 13.2
+  },
+  "brentCrude": {
+    "current": 110.0,
+    "peak": 114.0,
+    "baseline": 72.5,
+    "unit": "USD/barrel"
+  },
+  "pumpPrices": {
+    "delhiPetrol": 98.64,
+    "delhiDiesel": 91.58,
+    "mumbaiPetrol": 107.59,
+    "hyderabadPetrol": 111.84,
+    "lastVerified": "2026-05-20",
+    "note": "Government-administered prices. Updated manually when PPAC revises."
+  },
+  "omcLoss": {
+    "dailyCrore": 1700,
+    "cumulativeCrore": 100000,
+    "lastVerified": "2026-05-20",
+    "note": "Updated manually from Business Standard / IOCL disclosures."
+  },
+  "forexReserves": {
+    "billionUsd": 690.7,
+    "weeklyChangeBillionUsd": -7.79,
+    "lastVerified": "2026-05-20"
+  }
+}

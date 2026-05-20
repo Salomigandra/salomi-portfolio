@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import WorkSkillsTabs from "../../components/WorkSkillsTabs";
+import liveData from "../../data/iran-shock-live.json";
 
 export const metadata = { title: "Work -- Salomi Gandra | Data Analyst" };
 
@@ -559,15 +560,16 @@ function InflationCard() {
 function IranShockCard() {
   const fire = "#C0392B";
   const amber = "#D97706";
+  const INR_CLOSE = liveData.usdInr.closing;
   const stats = [
-    { num: "₹96.82/$", label: "Rupee closing low · May 20, 2026" },
-    { num: "~68%",      label: "Modeled pump price shock" },
-    { num: "₹1,700Cr",  label: "OMC daily under-recovery" },
+    { num: `₹${INR_CLOSE}/$`, label: `Rupee closing low · ${liveData.lastUpdated}` },
+    { num: "~68%",             label: "Modeled pump price shock" },
+    { num: "₹1,700Cr",         label: "OMC daily under-recovery" },
   ];
   const tags = ["Price Transmission Model", "Quintile Analysis", "RBI · PPAC · EIA · MOSPI", "8 Sources"];
 
-  // Mini rupee sparkline: ₹85.5 → ₹96.82
-  const pts = [85.53, 84.8, 84.5, 83.9, 84.2, 84.0, 84.7, 85.6, 86.8, 88.2, 90.5, 92.1, 96.82];
+  // Mini rupee sparkline: ₹85.5 → live close
+  const pts = [85.53, 84.8, 84.5, 83.9, 84.2, 84.0, 84.7, 85.6, 86.8, 88.2, 90.5, 92.1, INR_CLOSE];
   const W = 68, H = 34;
   const minV = 83, maxV = 99;
   const toX = (i) => (i / (pts.length - 1)) * W;
@@ -597,7 +599,7 @@ function IranShockCard() {
           </defs>
           <path d={`${pathD} L ${W} ${H} L 0 ${H} Z`} fill={`${fire}20`} />
           <path d={pathD} fill="none" stroke="url(#iranRupGrad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx={toX(pts.length - 1).toFixed(1)} cy={toY(96.82).toFixed(1)} r="2.5" fill={fire} />
+          <circle cx={toX(pts.length - 1).toFixed(1)} cy={toY(INR_CLOSE).toFixed(1)} r="2.5" fill={fire} />
         </svg>
         <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "6px" }}>
           {stats.map((s, i) => (
@@ -610,7 +612,7 @@ function IranShockCard() {
       </div>
       <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>The Iran Shock: Modeling How an Oil Crisis Reaches Indian Household Budgets</h3>
       <p className="mt-3 leading-relaxed text-sm md:text-base" style={{ color: `${PALETTE.charcoal}B3` }}>
-        Built a crude-to-pump-price transmission model using PPAC, EIA, RBI, and MOSPI data. Quantified the compound shock of Brent crude surge and rupee depreciation (₹85.5 → ₹96.82) across 5 income quintiles — and deployed the findings as an interactive household cost simulator.
+        Built a crude-to-pump-price transmission model using PPAC, EIA, RBI, and MOSPI data. Quantified the compound shock of Brent crude surge and rupee depreciation (₹{liveData.usdInr.baseline} → ₹{liveData.usdInr.closing}) across 5 income quintiles — and deployed the findings as an interactive household cost simulator.
       </p>
       <ProofBlock
         accent={fire}
