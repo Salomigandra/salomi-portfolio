@@ -1,8 +1,8 @@
 ---
-title: "Iran War Impact on India Economy 2026 — Oil, Rupee & ATF Crisis"
+title: "The Iran Shock: Modeling How an Oil Crisis Impacts Indian Households"
 date: "2026-05-10"
-excerpt: "The 2026 US-Iran war sent Brent crude to $114/barrel, weakened the rupee to ₹95.7/$, doubled Aviation Turbine Fuel prices, and raised India's import bill by $35–50 billion. Data analysis with household impact calculators."
-tags: ["iran war india", "iran war oil price", "india economy 2026", "oil price india", "rupee weakness 2026", "ATF crisis india", "data analysis"]
+excerpt: "The 2026 US-Israel military operations against Iran sent Brent crude near $110–114/barrel, weakened the rupee to a record closing low of ₹96.82/$ (May 20, 2026), doubled Aviation Turbine Fuel prices, and raised India's import bill by an estimated $50 billion. Data analysis with interactive household impact calculators."
+tags: ["india economy 2026", "oil price india", "rupee depreciation", "ATF crisis india", "data analysis", "energy economics"]
 readTime: "12 min read"
 cover: ""
 caseStudyUrl: "/work/iran-shock"
@@ -10,49 +10,61 @@ caseStudyUrl: "/work/iran-shock"
 
 > **This is a data case study with live impact calculators for your household.** [View the full interactive version →](/work/iran-shock)
 
+## Assumptions & Data Notes
+
+Data updated to **May 20, 2026**. **₹96.96/$** = intraday low; **₹96.82/$** = May 20, 2026 closing rate (Federal Reserve H.10 / RBI DBIE) — used in household calculations. Brent crude near **$110/barrel** (peak was $114). Actual administered pump prices: Delhi petrol ₹98.64/L, Delhi diesel ₹91.58/L, Mumbai petrol ₹107.59/L, Hyderabad petrol ₹111.84/L. India crude import dependency: **~90%**. Household impact estimates are scenario-based with simplified pass-through assumptions — actual costs depend on government pricing decisions. Conflict timeline: US-Israel operations began **February 2026**; Hormuz closure **March 4, 2026**; April–May 2026 = escalation phase.
+
+---
+
+## My Role
+
+I built an interactive React-based economic shock simulator, modeled fuel, LPG, and food price pass-through assumptions from first principles, structured public macroeconomic data from PPAC, RBI, EIA, and MOSPI, and translated the findings into a household-level decision tool. The calculator lets users input their own commute distance, vehicle type, gold holdings, and travel budget to estimate their personal monthly exposure to the oil and currency shock.
+
+[View the full interactive case study →](/work/iran-shock)
+
+---
+
 ## How a War Reaches Your Kitchen
 
-When the United States launched strikes on Iranian nuclear facilities in April 2026, Brent crude crossed **$110/barrel** within 48 hours. The Strait of Hormuz — through which 20% of the world's seaborne oil passes — entered partial closure. India, which imports **88% of its crude oil**, had no insulation from what followed.
+When the United States and Israel launched military operations against Iranian nuclear facilities in **February 2026**, Brent crude crossed **$110/barrel** within days. The Strait of Hormuz — through which roughly 20% of the world's seaborne oil passes — entered partial closure on March 4, 2026. India, which imports approximately **90% of its crude oil**, had limited insulation from what followed.
 
-The rupee fell to **₹90.72/$** (May 2026 intraday lows). Foreign Portfolio Investors withdrew an estimated **$17–19 billion** in six weeks — the fastest FPI outflow since the 2013 taper tantrum. India's forex reserves dropped by approximately **$7.79 billion** in a month. The RBI intervened but could not stop the slide without exhausting reserves.
-
-None of this was your decision. But all of it is affecting your budget.
+The rupee hit an intraday low of **₹96.96/$** and closed at **₹96.82/$** on May 20, 2026 — down approximately 13.2% from ₹85.5 a year earlier, and an all-time record low closing rate. Foreign Portfolio Investors withdrew an estimated **$17–19 billion** over six weeks. India's forex reserves declined by approximately **$7.79 billion** in a single week as the RBI intervened to defend the currency.
 
 ## The Oil Import Arithmetic
 
-India's **annual crude oil import bill** at $65/barrel was approximately $123 billion. At $110/barrel, the same volume costs roughly **$174.9 billion** — an additional $51.9 billion per year, or about **₹4.7 lakh crore**.
+India's **annual crude oil import bill** at $65/barrel (FY24 average) was approximately $123 billion. At $110/barrel, the same import volume costs roughly **$174.9 billion** — an additional ~$51 billion per year, or approximately **₹4.7 lakh crore** at current exchange rates.
 
-This is not an abstract government number. It flows through to:
+This additional cost flows through to consumers via several channels:
 
-- **Fuel prices**: Petrol and diesel are partially administered in India, but sustained high crude creates fiscal pressure to pass through costs. Every ₹10/litre increase in petrol costs a 2-wheeler owner (assuming 1,000 km/month at 45 km/L) approximately **₹222 extra per month**
-- **LPG**: At $110 crude, an LPG cylinder's market price would be approximately **₹1,100–1,200**, vs. ₹912 before the conflict. HPCL, BPCL, and IOC (India's three major OMCs) collectively absorb over **₹800 crore/day** in under-recoveries
-- **Food**: Fertiliser prices (linked to natural gas) rise with energy, pushing up production costs for wheat, rice, and vegetables
-- **Rupee pass-through**: Every imported good — electronics, edibles, medicines — becomes more expensive when the rupee is at ₹90 vs. ₹83
+- **Fuel prices**: Petrol and diesel are partially administered in India, so sustained high crude creates fiscal pressure on Oil Marketing Companies (OMCs) to pass costs through. At an expected ₹14/litre price increase, a 2-wheeler owner (1,000 km/month at 45 km/L) would pay approximately **₹311 extra per month**
+- **LPG cooking gas**: At $110 crude, market-reflective LPG pricing would put a cylinder at approximately **₹1,200–1,400**, vs. ₹993 current retail. HPCL, BPCL, and IOC collectively absorb an estimated **₹1,700 crore/day** in under-recoveries across fuel and LPG combined
+- **Food**: Fertiliser prices (linked to natural gas) rise with energy costs, increasing production costs for wheat, rice, and vegetables. Food CPI reached **4.2% in April 2026**
+- **Import pass-through**: Every imported good — electronics, edibles, medicines — becomes more expensive when the rupee is at ₹96.82 vs. ₹85.5 a year ago (~13.2% pass-through on import-linked goods)
 
-## What PM Modi Asked India to Do — And Why the Math Works
+## What PM Modi Asked India to Do
 
-PM Modi made four specific public asks in May 2026:
+PM Modi made four specific public requests in May 2026, each with a measurable economic rationale:
 
 **1. Reduce fuel consumption (WFH 2 days/week, 2-wheeler carpooling)**
-A typical 2-wheeler commuter covering 40 km/day, working 5 days/week, uses roughly 156 litres/month (at 45 km/L). Cutting 2 WFH days saves ~62 litres/month = **₹3,600–4,200/year** per household at current prices.
+A typical 2-wheeler commuter covering 40 km/day, 5 days/week, uses roughly 156 litres/month (at 45 km/L). Adopting 2 WFH days saves approximately 62 litres/month — worth **₹3,600–4,200/year** per household at expected price levels.
 
-Nationally, if 20% of India's ~7 crore commuter 2-wheelers reduce consumption this way, the OMC relief is approximately **₹850–1,100 crore/month**.
+Nationally, if 20% of approximately 7 crore active commuter 2-wheelers reduce consumption this way, OMC relief is approximately **₹850–1,100 crore/month**.
 
 **2. Reduce gold imports**
-India imports 700–800 tonnes of gold per year — a significant current account drain. Every 10% reduction in gold demand saves approximately **$3–4 billion** annually in foreign exchange. This directly reduces rupee selling pressure.
+India imports 700–800 tonnes of gold per year — a significant current account drain. Every 10% reduction in gold demand saves approximately **$3–4 billion** annually in foreign exchange, directly reducing rupee selling pressure.
 
 **3. Reduce outbound foreign travel**
-At ₹90/$, overseas travel costs 8.4% more than at ₹83/$. Each dollar spent abroad exits India's forex pool. A 10% reduction in leisure outbound travel (from India's ~2 crore annual outbound travellers) saves an estimated **$800M–1B** in annual forex.
+At ₹96.82/$, overseas travel costs approximately 13.2% more than at ₹85.5 a year ago. A 10% reduction in leisure outbound travel (from India's ~2 crore annual outbound travellers) saves an estimated **$800M–1B** in annual forex.
 
 **4. Shift to domestic alternatives**
-Substituting imported goods with Indian-made equivalents reduces the trade deficit. For every ₹100 of imports substituted, approximately **₹7–10 of forex pressure** is relieved.
+Substituting imported goods with domestically produced equivalents reduces the trade deficit. Each rupee of imports substituted relieves proportional forex pressure.
 
 ## The Interactive Impact Calculator
 
 The full case study includes:
-- A **household impact calculator**: input your vehicle type (2-wheeler or car), WFH days, km per day, gold holdings, and overseas travel budget — see your personal monthly impact from the rupee and oil shock
-- A **national aggregate calculator**: shows what happens to OMC losses and forex reserves if a given percentage of India's population adopts each of Modi's four asks
-- Interactive charts: rupee trend, crude oil price, FPI flow, forex reserves — all updated to May 2026
+- A **household impact calculator**: input your vehicle type, WFH days, km per day, gold holdings, and overseas travel budget to see your estimated monthly impact from the oil and currency shock
+- A **national aggregate calculator**: models what happens to OMC losses and forex reserves if a given share of India's population adopts each of Modi's four asks
+- Interactive charts: rupee trend, crude oil price, FPI outflows, and forex reserves — all updated to May 2026
 
 ---
 

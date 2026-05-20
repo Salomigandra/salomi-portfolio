@@ -101,11 +101,11 @@ function RupeeLine() {
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
-  const pts = [85.53, 84.8, 84.5, 83.9, 84.2, 84.0, 84.7, 85.6, 86.8, 88.2, 90.5, 92.1, 94.5];
-  const labels = ["Mar'25","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Feb'26","Apr'26","May'26"];
+  const pts = [85.53, 84.8, 84.5, 83.9, 84.2, 84.0, 84.7, 85.6, 86.8, 88.2, 90.5, 92.1, 96.82];
+  const labels = ["Mar'25","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","Feb'26","Apr'26","May 20"];
   const W = 520, H = 130, PL = 42, PR = 16, PT = 12, PB = 28;
   const cW = W - PL - PR, cH = H - PT - PB;
-  const minV = 83, maxV = 96;
+  const minV = 83, maxV = 99;
   const toX = (i) => PL + (i / (pts.length - 1)) * cW;
   const toY = (v) => PT + ((maxV - v) / (maxV - minV)) * cH;
   const lineD = pts.map((v, i) => `${i === 0 ? "M" : "L"} ${toX(i).toFixed(1)} ${toY(v).toFixed(1)}`).join(" ");
@@ -123,7 +123,7 @@ function RupeeLine() {
               style={{ transition: "width 1.8s cubic-bezier(.17,.67,.35,1)" }} />
           </clipPath>
         </defs>
-        {[84, 87, 90, 93, 96].map(v => (
+        {[84, 87, 90, 93, 96, 99].map(v => (
           <g key={v}>
             <line x1={PL} y1={toY(v)} x2={W - PR} y2={toY(v)} stroke={`${C.ink}10`} strokeWidth="1" />
             <text x={PL - 4} y={toY(v) + 4} textAnchor="end" fontSize="9" fill={`${C.ink}50`}>₹{v}</text>
@@ -134,8 +134,8 @@ function RupeeLine() {
         {pts.map((_, i) => i % 3 === 0 && (
           <text key={i} x={toX(i)} y={H - 4} textAnchor="middle" fontSize="9" fill={`${C.ink}60`}>{labels[i]}</text>
         ))}
-        <circle cx={toX(pts.length - 1)} cy={toY(94.5)} r="4" fill={C.fire} opacity={drawn ? 1 : 0} style={{ transition: "opacity 0.4s 1.8s" }} />
-        <text x={toX(pts.length - 1) - 6} y={toY(94.5) - 8} textAnchor="end" fontSize="10" fontWeight="700" fill={C.fire} opacity={drawn ? 1 : 0} style={{ transition: "opacity 0.4s 1.8s" }}>₹94.5</text>
+        <circle cx={toX(pts.length - 1)} cy={toY(96.82)} r="4" fill={C.fire} opacity={drawn ? 1 : 0} style={{ transition: "opacity 0.4s 1.8s" }} />
+        <text x={toX(pts.length - 1) - 6} y={toY(96.82) - 8} textAnchor="end" fontSize="10" fontWeight="700" fill={C.fire} opacity={drawn ? 1 : 0} style={{ transition: "opacity 0.4s 1.8s" }}>₹96.82</text>
         <circle cx={toX(0)} cy={toY(85.53)} r="3.5" fill={C.olive} />
         <text x={toX(0) + 5} y={toY(85.53) - 6} fontSize="10" fontWeight="700" fill={C.olive}>₹85.5</text>
       </svg>
@@ -157,7 +157,7 @@ function OilLine() {
     return () => obs.disconnect();
   }, []);
   const pts = [72.48, 76, 80, 112.57, 118, 122, 120, 115, 110];
-  const events = [null, null, "US-Israel strikes Iran", "Hormuz closed", "Brent $122", null, null, null, null];
+  const events = [null, null, "US-Israel ops begin (Feb 2026)", "Hormuz closed (Mar 4)", "Brent peaks $122", null, null, null, null];
   const W = 520, H = 140, PL = 36, PR = 16, PT = 14, PB = 28;
   const cW = W - PL - PR, cH = H - PT - PB;
   const minV = 65, maxV = 130;
@@ -302,13 +302,13 @@ export default function IranShockPage() {
   );
   const totalFuelSaving = bikeHouseholdSaving + carHouseholdSaving;
 
-  // Gold: ₹7,400/gram approx (gold at ~$3,100/oz, ₹94.5 = ₹9,40,000/oz → ₹30,193/g → but 24k retail ~₹9,000-10,000/g in India)
+  // Gold: 24k retail ~₹9,500/g in India (gold at ~$3,100/oz, ₹96.82/$ = ₹9,65,460/oz → ~₹31,040/g → retail markup included)
   const GOLD_INR_PER_G = 9500;
   const goldRupees     = goldGrams * GOLD_INR_PER_G;
-  const goldUsd        = Math.round(goldRupees / 94.5);
+  const goldUsd        = Math.round(goldRupees / 96.82);
 
   // Travel: rupee cost extra
-  const travelRupeeExtra = Math.round(travelUsd * (94.5 - 85.5)); // extra vs last year
+  const travelRupeeExtra = Math.round(travelUsd * (96.82 - 85.5)); // extra vs last year
 
   // National aggregate math
   // India: ~18Cr 2-wheelers, ~5.5Cr cars (registered, active subset used for commute)
@@ -323,7 +323,7 @@ export default function IranShockPage() {
      ACTIVE_CAR_CR * 1e7 * ADOPT_RATE * carLitresSaved * PETROL_HIKE) / 1e7
   );
 
-  const goldNationalSaving = Math.round(goldGrams * 1e7 * 0.3 * GOLD_INR_PER_G / 94.5 / 1e9); // $B if 1Cr families pause
+  const goldNationalSaving = Math.round(goldGrams * 1e7 * 0.3 * GOLD_INR_PER_G / 96.82 / 1e9); // $B if 1Cr families pause
   const travelNationalSaving = Math.round(travelUsd * 1e7 * 0.25 / 1e9); // $B if 1Cr families skip
 
   /* ── Section 06 cost math ── */
@@ -336,7 +336,7 @@ export default function IranShockPage() {
     {
       icon: "⛽", label: "Petrol & Diesel", color: C.amber,
       title: "OMCs losing ₹1,700 Cr/day to keep your petrol at ₹94",
-      body: "IOC, BPCL and HPCL are absorbing ₹14/L on petrol and ₹42/L on diesel to prevent a price shock at the pump. After 10 weeks, cumulative losses crossed ₹1 lakh crore. The government cut excise duty by ₹10/L on March 27 to help — but with Brent above $115, the math doesn't work. A petrol price hike to ₹108+ and diesel to ₹129+ is widely expected once the ceasefire situation is clearer.",
+      body: "IOC, BPCL and HPCL are absorbing estimated under-recoveries to prevent a pump price shock. Current administered prices (May 20, 2026): Delhi petrol ₹98.64/L, Delhi diesel ₹91.58/L, Mumbai petrol ₹107.59/L, Hyderabad petrol ₹111.84/L. At Brent ~$110 and ₹96.82/$, the free-market cost of petrol would be substantially higher. Cumulative OMC under-recoveries have crossed ₹1 lakh crore over 10 weeks. The government cut excise duty by ₹10/L on March 27 to partially offset this. A further price revision is widely anticipated once the supply outlook stabilises.",
       stats: [
         { label: "OMC daily loss", val: "₹1,700 Cr", color: C.fire },
         { label: "10-week total", val: "₹1 lakh Cr", color: C.amber },
@@ -435,7 +435,7 @@ export default function IranShockPage() {
       title: "Postpone Foreign Travel",
       color: C.fire,
       subtitle: "Keep rupees inside India — every dollar you buy weakens the currency",
-      why: "When Indians book foreign holidays or destination weddings abroad, they buy foreign currency — which means selling rupees. The rupee is at ₹94.5/$, a historic low. India's outbound tourism spend was ~$30 billion/year before the crisis. Even a 25% reduction saves $7–8B in outflows annually, providing significant support to the rupee and helping the RBI's reserves defence. Domestic tourism spending — in Goa, Rajasthan, Kerala, Himachal — goes straight into the Indian economy.",
+      why: "When Indians book foreign holidays or destination weddings abroad, they buy foreign currency — which means selling rupees. The rupee closed at ₹96.82/$ on May 20, 2026 — an all-time low. India's outbound tourism spend was ~$30 billion/year before the crisis. Even a 25% reduction saves $7–8B in outflows annually, providing significant support to the rupee and helping the RBI's reserves defence. Domestic tourism spending — in Goa, Rajasthan, Kerala, Himachal — goes straight into the Indian economy.",
       twoWheelerNote: "This particularly affects middle-class families considering destination weddings, Dubai shopping trips, and Europe tours. Switching one ₹3 lakh foreign trip to a domestic equivalent saves ~₹30,000+ in rupee-depreciation loss alone.",
     },
   ];
@@ -472,17 +472,17 @@ export default function IranShockPage() {
             ))}
           </div>
           <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 900, color: "#FFFDF5", lineHeight: 1.1, margin: "0 0 16px" }}>
-            The Iran Shock
+            The Iran Shock: Modeling How an Oil Crisis Impacts Indian Households
           </h1>
           <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.35rem)", color: "rgba(255,253,245,0.75)", lineHeight: 1.65, marginBottom: "36px", maxWidth: "640px" }}>
-            A war you didn't start is quietly draining your savings, inflating your grocery bill, weakening your currency, and making your cooking gas more expensive — right now. Here is every number, every mechanism, and exactly what you can do about it.
+            An interactive economic impact simulator that models how crude oil shocks, rupee depreciation, and fuel-price pass-through affect Indian household budgets — and what behavioral changes can measurably reduce the pressure.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "12px", marginBottom: "28px" }}>
             {[
-              { num: "₹95.7", label: "USD/INR (May 2026)", sub: "vs ₹85.5 a year ago — all-time low", color: C.fire },
-              { num: "$114", label: "Brent crude peak (2026)", sub: "surged 57% from $72 in Feb 2026", color: C.amber },
-              { num: "₹1,700 Cr", label: "OMC daily losses", sub: "₹1 lakh Cr in 10 weeks", color: "#E8A040" },
-              { num: "50%", label: "India's oil via Hormuz", sub: "strait effectively closed Mar 4", color: C.teal },
+              { num: "₹96.96", label: "USD/INR — intraday low (May 20, 2026)", sub: "Closing ₹96.82 · vs ₹85.5 a year ago · all-time low", color: C.fire },
+              { num: "$114", label: "Brent crude peak · ~$110 today", sub: "surged from $72.5 at Feb 2026 start", color: C.amber },
+              { num: "₹1,700 Cr", label: "OMC daily under-recovery", sub: "cumulative ~₹1 lakh Cr over 10 weeks", color: "#E8A040" },
+              { num: "90%", label: "India's crude import dependency", sub: "~50% of that transits Hormuz", color: C.teal },
             ].map((s, i) => (
               <div key={i} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "14px", padding: "14px 16px" }}>
                 <div style={{ fontSize: "1.4rem", fontWeight: 900, color: s.color, lineHeight: 1 }}>{s.num}</div>
@@ -508,18 +508,34 @@ export default function IranShockPage() {
         />
       </div>
 
+      {/* ── MY ROLE ── */}
+      <div style={{ maxWidth: "860px", margin: "0 auto", padding: "0 1.5rem" }}>
+        <div style={{ background: "#FFFDF5", border: `1px solid ${C.teal}30`, borderLeft: `4px solid ${C.teal}`, borderRadius: "12px", padding: "20px 24px", marginBottom: "12px" }}>
+          <div style={{ fontSize: "11px", fontWeight: 800, letterSpacing: "0.15em", color: C.teal, textTransform: "uppercase", marginBottom: "8px" }}>My Role</div>
+          <p style={{ fontSize: "13px", lineHeight: 1.7, color: `#1C1C1CCC`, margin: 0 }}>
+            Built an interactive React-based shock simulator; modeled fuel, LPG, and food price pass-through from first principles; structured public macroeconomic data from PPAC, RBI, EIA, and MOSPI; and translated the findings into a household-level decision tool. The calculator lets users input their own commute distance, vehicle type, gold holdings, and travel budget to estimate personal monthly exposure to the oil and currency shock.
+          </p>
+        </div>
+        <div style={{ background: `${C.amber}08`, border: `1px solid ${C.amber}30`, borderLeft: `4px solid ${C.amber}`, borderRadius: "12px", padding: "20px 24px", marginBottom: "28px" }}>
+          <div style={{ fontSize: "11px", fontWeight: 800, letterSpacing: "0.15em", color: C.amber, textTransform: "uppercase", marginBottom: "8px" }}>Assumptions & Data Notes</div>
+          <p style={{ fontSize: "13px", lineHeight: 1.7, color: `#1C1C1CCC`, margin: 0 }}>
+            Data updated to <strong>May 20, 2026</strong>. <strong>₹96.96/$</strong> = intraday low; <strong>₹96.82/$</strong> = May 20 closing rate (Federal Reserve H.10 / RBI DBIE) — used in all household calculations. Brent crude near <strong>$110/barrel</strong> (peak was $114). Actual pump prices: Delhi petrol ₹98.64/L, Delhi diesel ₹91.58/L, Mumbai petrol ₹107.59/L, Hyderabad petrol ₹111.84/L (government-administered; below free-market cost). India crude import dependency: <strong>~90%</strong>. Conflict timeline: US-Israel operations began <strong>February 2026</strong>; Hormuz closure <strong>March 4, 2026</strong>; April–May 2026 = escalation phase. Household impact estimates are scenario-based with simplified pass-through assumptions.
+          </p>
+        </div>
+      </div>
+
       {/* ═══════════════════════════════════
           SECTION 01 — THE TRIGGER
       ══════════════════════════════════ */}
       <section style={{ maxWidth: "860px", margin: "0 auto", padding: "64px 20px 48px" }}>
-        <SHead num="01 — THE TRIGGER" title="What Actually Happened" sub="Three months. Six events. An economy under siege." />
+        <SHead num="01 — THE TRIGGER" title="What Actually Happened" sub="Three months. Six events. A measurable economic transmission from conflict to household budgets." />
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "16px", marginBottom: "36px" }}>
           {[
             { date: "Feb 2026", event: "US & Israel launch military operations against Iran's nuclear programme", icon: "💥", color: C.fire },
             { date: "Mar 4, 2026", event: "Iran declares Strait of Hormuz 'closed' — attacks ships attempting to transit", icon: "🚢", color: C.amber },
             { date: "Mar 4–27", event: "Brent crude surges from $72.48 → $112.57 — a 55.3% spike in under 4 weeks", icon: "📈", color: "#7B3F00" },
             { date: "Mar 27", event: "India cuts excise duty on petrol & diesel by ₹10/L to absorb the shock", icon: "🏛️", color: C.olive },
-            { date: "Apr–May 2026", event: "Brent above $115. OMC losses hit ₹1 lakh crore. Rupee at ₹94.5 — historic low.", icon: "📉", color: C.slate },
+            { date: "Apr–May 2026", event: "Brent near $110–115. OMC losses hit ₹1 lakh crore. Rupee at ₹96.82 as of May 20 — all-time closing low.", icon: "📉", color: C.slate },
             { date: "May 10–11, 2026", event: "PM Modi from Hyderabad: WFH, use public transport, skip gold, pause foreign travel", icon: "🗣️", color: C.teal },
           ].map((e, i) => (
             <div key={i} style={{ background: C.cream, border: `1px solid ${e.color}35`, borderLeft: `4px solid ${e.color}`, borderRadius: "12px", padding: "16px" }}>
@@ -549,7 +565,7 @@ export default function IranShockPage() {
           <SHead num="02 — INDIA'S ACHILLES HEEL" title="Why India Hurts More Than Most" sub="When the Persian Gulf choke point tightens, India feels it faster than almost any country on earth." />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "20px", marginBottom: "32px" }}>
             {[
-              { icon: "🛢️", label: "Crude oil import dependency", value: 85, unit: "%", color: C.fire, sub: "India imports ~85% of crude needs — all paid in USD" },
+              { icon: "🛢️", label: "Crude oil import dependency", value: 90, unit: "%", color: C.fire, sub: "India imports ~90% of crude needs — all paid in USD" },
               { icon: "🌊", label: "Crude oil via Strait of Hormuz", value: 50, unit: "%", color: C.amber, sub: "Half of all crude transits the now-disrupted strait" },
               { icon: "🔥", label: "LPG imports via Hormuz", value: 75, unit: "%+", color: "#7B3F00", sub: "Most LPG imports (60% of India's total LPG demand)" },
               { icon: "⚡", label: "LNG supply via Hormuz", value: 60, unit: "%", color: C.teal, sub: "60% of liquefied natural gas imports at risk" },
@@ -584,13 +600,13 @@ export default function IranShockPage() {
           SECTION 03 — THE RUPEE SLIDE
       ══════════════════════════════════ */}
       <section style={{ maxWidth: "860px", margin: "0 auto", padding: "64px 20px 48px" }}>
-        <SHead num="03 — THE RUPEE SLIDE" title="₹85 → ₹94.5: How Your Money Lost 10% in 14 Months" sub="The rupee didn't just weaken — it set record lows week after week. Here's exactly why." />
+        <SHead num="03 — THE RUPEE SLIDE" title="₹85.5 → ₹96.82: How Your Money Lost 13% in 14 Months" sub="The rupee didn't just weaken — it set record lows week after week. Here's exactly why." />
         <div style={{ background: C.cream, border: `1px solid ${C.fire}30`, borderRadius: "16px", padding: "24px", marginBottom: "28px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "8px", marginBottom: "8px" }}>
             <span style={{ fontWeight: 700, fontSize: "14px" }}>USD/INR — Mar 2025 → May 2026</span>
             <a href="https://www.kotakmf.com/Information/blogs/understanding-the-dynamics-of-india-rupee" target="_blank" rel="noopener noreferrer" style={{ fontSize: "11px", color: C.teal }}>Kotak MF Rupee Analysis →</a>
           </div>
-          <p style={{ fontSize: "12px", color: `${C.ink}60`, margin: "0 0 14px" }}>Rupee at historic low ₹94.5 — down 10.5% in 14 months. New record low set almost every week.</p>
+          <p style={{ fontSize: "12px", color: `${C.ink}60`, margin: "0 0 14px" }}>Rupee closed at ₹96.82/$ on May 20, 2026 — down 13.2% in 14 months. Intraday low hit ₹96.96. New record low set almost every week.</p>
           <RupeeLine />
         </div>
         <h3 style={{ fontSize: "1rem", fontWeight: 700, marginBottom: "16px", color: C.ink }}>The 5 forces pulling the rupee down simultaneously</h3>
@@ -664,7 +680,7 @@ export default function IranShockPage() {
           <SHead
             num="04B — THE RIPPLE EFFECTS"
             title="Two Hidden Crises the Headlines Missed"
-            sub="Beyond petrol and LPG — the Hormuz disruption is quietly grounding flights and threatening India's next harvest."
+            sub="Beyond petrol and LPG — the Hormuz disruption is reducing airline capacity and putting pressure on India's Kharif fertilizer supply chain."
           />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "24px" }}>
 
@@ -694,7 +710,7 @@ export default function IranShockPage() {
                 ))}
               </div>
               <p style={{ fontSize: "12px", color: `${C.ink}60`, lineHeight: 1.6, margin: "0 0 10px" }}>
-                Air India suspended its Delhi–Chicago route. IndiGo is operating at reduced frequency on Gulf routes. Airlines are caught in a double squeeze: Brent above $100 drives ATF costs, and the weak rupee (₹95.7/$) inflates every dollar-denominated cost.
+                Air India suspended its Delhi–Chicago route. IndiGo is operating at reduced frequency on Gulf routes. Airlines are caught in a double squeeze: Brent near $110 drives ATF costs, and the weak rupee (₹96.82/$ closing on May 20) inflates every dollar-denominated cost.
               </p>
               <a href="https://www.outlookbusiness.com/corporate/turbulence-ahead-how-soaring-atf-prices-are-pushing-indian-airlines-to-the-brink" target="_blank" rel="noopener noreferrer" style={{ fontSize: "11px", color: C.teal, fontWeight: 700 }}>Outlook Business: Airlines crisis deep-dive →</a>
             </div>
@@ -836,7 +852,7 @@ export default function IranShockPage() {
                   {mKey === "travel" && (
                     <div style={{ maxWidth: "360px", marginBottom: "20px" }}>
                       <div style={{ fontSize: "11px", fontWeight: 600, color: `${C.ink}70`, marginBottom: "4px" }}>Planned foreign travel spend (USD)</div>
-                      <div style={{ fontSize: "1.4rem", fontWeight: 900, color: m.color, marginBottom: "6px" }}>${travelUsd.toLocaleString()} = ₹{Math.round(travelUsd * 94.5).toLocaleString("en-IN")}</div>
+                      <div style={{ fontSize: "1.4rem", fontWeight: 900, color: m.color, marginBottom: "6px" }}>${travelUsd.toLocaleString()} = ₹{Math.round(travelUsd * 96.82).toLocaleString("en-IN")}</div>
                       <input type="range" min={0} max={10000} step={250} value={travelUsd} onChange={e => setTravelUsd(Number(e.target.value))} style={{ width: "100%", accentColor: m.color }} />
                       <div style={{ display: "flex", justifyContent: "space-between", fontSize: "10px", color: `${C.ink}50` }}><span>$0</span><span>$10,000</span></div>
                     </div>
@@ -887,7 +903,7 @@ export default function IranShockPage() {
                         <>
                           <div style={{ fontSize: "10px", color: `${C.ink}60`, marginBottom: "6px" }}>Extra cost vs March 2025 rate (₹85.5/$)</div>
                           <div style={{ fontSize: "1.6rem", fontWeight: 900, color: m.color }}>₹{travelRupeeExtra.toLocaleString("en-IN")}</div>
-                          <div style={{ fontSize: "10px", color: `${C.ink}50`, marginTop: "4px" }}>on ${travelUsd.toLocaleString()} spend at ₹94.5</div>
+                          <div style={{ fontSize: "10px", color: `${C.ink}50`, marginTop: "4px" }}>on ${travelUsd.toLocaleString()} spend at ₹96.82 vs ₹85.5</div>
                           <div style={{ fontSize: "10px", color: `${C.ink}50`, marginTop: "4px" }}>Forex drain: ${travelUsd.toLocaleString()} if you travel</div>
                         </>
                       )}
@@ -1064,7 +1080,7 @@ export default function IranShockPage() {
             { priority: "Do now", color: C.fire, icon: "🏦", title: "Lock in FD rates before rate cuts", body: "RBI holds at 5.25% but growth pressure may force cuts. Fixed deposits at 6.5–7.5% are available now. Lock in 1–3 year FDs before a rate cut erodes your interest income." },
             { priority: "This month", color: C.amber, icon: "🚂", title: "Choose train over flight for domestic travel", body: "Indian airlines slashed 1,034 weekly international flights in May and ATF has doubled to ₹2.07 lakh/kl. For journeys under 800 km, trains are dramatically cheaper, more reliable, and insulated from the aviation fuel crisis entirely. IndiGo and Air India are hiking fares as fast as regulators allow." },
             { priority: "This month", color: C.amber, icon: "💼", title: "Don\'t pause equity SIPs", body: "Inflation erodes fixed income. Equity — especially domestic consumption stocks — historically outperforms during supply-side inflation. Keep SIPs running. The panic sell is almost always the wrong move." },
-            { priority: "This quarter", color: C.olive, icon: "🌐", title: "Delay forex purchases by 2–3 months", body: "Rupee at ₹95.7 is at an all-time historic low. Buying dollars now locks in the worst rate ever. If ceasefire talks progress and Hormuz partially reopens, the rupee could recover toward ₹88–90. Wait if you can." },
+            { priority: "This quarter", color: C.olive, icon: "🌐", title: "Delay forex purchases by 2–3 months", body: "Rupee closed at ₹96.82/$ on May 20, 2026 — an all-time low. Buying dollars now locks in the worst rate on record. If ceasefire talks progress and Hormuz partially reopens, the rupee could recover toward ₹88–90. Wait if you can." },
             { priority: "This quarter", color: C.olive, icon: "🔌", title: "Seriously evaluate EV or rooftop solar", body: "This crisis is the strongest possible signal to reduce fossil fuel dependency. India\'s solar installation costs are at all-time lows. An EV eliminates petrol exposure entirely — the maths have never been more compelling." },
                     ].map((a, i) => (
             <div key={i} style={{ background: C.cream, border: `1px solid ${a.color}30`, borderRadius: "14px", padding: "20px" }}>
