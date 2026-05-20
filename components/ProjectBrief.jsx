@@ -56,10 +56,10 @@ export default function ProjectBrief({ question, tools, methods, output, slug })
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem" }}>
 
-        {/* Business Question */}
+        {/* Problem Statement */}
         <div>
           <p style={{ fontSize: "10px", fontWeight: 700, color: `${INK}50`, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "5px" }}>
-            Business Question
+            Problem Statement
           </p>
           <p style={{ fontSize: "13px", color: INK, lineHeight: 1.55, fontWeight: 500 }}>
             {question}

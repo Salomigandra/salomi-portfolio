@@ -480,7 +480,7 @@ export default function IranShockPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "12px", marginBottom: "28px" }}>
             {[
               { num: "₹96.96", label: "USD/INR — intraday low (May 20, 2026)", sub: "Closing ₹96.82 · vs ₹85.5 a year ago · all-time low", color: C.fire },
-              { num: "$114", label: "Brent crude peak · ~$110 today", sub: "surged from $72.5 at Feb 2026 start", color: C.amber },
+              { num: "$114", label: "Brent crude peak · ~$110 (May 2026)", sub: "surged from $72.5 at Feb 2026 start", color: C.amber },
               { num: "₹1,700 Cr", label: "OMC daily under-recovery", sub: "cumulative ~₹1 lakh Cr over 10 weeks", color: "#E8A040" },
               { num: "90%", label: "India's crude import dependency", sub: "~50% of that transits Hormuz", color: C.teal },
             ].map((s, i) => (

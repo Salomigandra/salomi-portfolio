@@ -560,16 +560,16 @@ function IranShockCard() {
   const fire = "#C0392B";
   const amber = "#D97706";
   const stats = [
-    { num: "₹94.5/$", label: "Rupee historic low" },
-    { num: "$120+",   label: "Brent crude peak" },
-    { num: "₹1,700Cr",label: "OMC daily losses" },
+    { num: "₹96.82/$", label: "Rupee closing low · May 20, 2026" },
+    { num: "~68%",      label: "Modeled pump price shock" },
+    { num: "₹1,700Cr",  label: "OMC daily under-recovery" },
   ];
-  const tags = ["Geopolitics", "Macroeconomics", "RBI · MOSPI · CNBC", "14 Sources"];
+  const tags = ["Price Transmission Model", "Quintile Analysis", "RBI · PPAC · EIA · MOSPI", "8 Sources"];
 
-  // Mini rupee sparkline: ₹85.5 → ₹94.5
-  const pts = [85.53, 84.8, 84.5, 83.9, 84.2, 84.0, 84.7, 85.6, 86.8, 88.2, 90.5, 92.1, 94.5];
+  // Mini rupee sparkline: ₹85.5 → ₹96.82
+  const pts = [85.53, 84.8, 84.5, 83.9, 84.2, 84.0, 84.7, 85.6, 86.8, 88.2, 90.5, 92.1, 96.82];
   const W = 68, H = 34;
-  const minV = 83, maxV = 96;
+  const minV = 83, maxV = 99;
   const toX = (i) => (i / (pts.length - 1)) * W;
   const toY = (v) => H - ((v - minV) / (maxV - minV)) * H;
   const pathD = pts.map((v, i) => `${i === 0 ? "M" : "L"} ${toX(i).toFixed(1)} ${toY(v).toFixed(1)}`).join(" ");
@@ -584,7 +584,7 @@ function IranShockCard() {
         <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 60% 50% at 50% 50%, ${fire}25, transparent 70%)` }} />
         <div style={{ position: "absolute", top: "1rem", left: "1.1rem" }}>
           <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#F5A0A0", background: `${fire}28`, border: `1px solid ${fire}45`, padding: "3px 10px", borderRadius: "20px" }}>
-            Live Crisis Analysis
+            Live Data · Updated May 2026
           </span>
         </div>
         {/* Rupee sparkline */}
@@ -597,7 +597,7 @@ function IranShockCard() {
           </defs>
           <path d={`${pathD} L ${W} ${H} L 0 ${H} Z`} fill={`${fire}20`} />
           <path d={pathD} fill="none" stroke="url(#iranRupGrad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx={toX(pts.length - 1).toFixed(1)} cy={toY(94.5).toFixed(1)} r="2.5" fill={fire} />
+          <circle cx={toX(pts.length - 1).toFixed(1)} cy={toY(96.82).toFixed(1)} r="2.5" fill={fire} />
         </svg>
         <div style={{ position: "absolute", bottom: "1rem", left: "1.1rem", right: "1.1rem", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "6px" }}>
           {stats.map((s, i) => (
@@ -608,15 +608,15 @@ function IranShockCard() {
           ))}
         </div>
       </div>
-      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>Hormuz Closure Risk: Quantifying India's 87% Energy Cost Shock</h3>
+      <h3 className="text-xl md:text-2xl font-semibold" style={{ color: PALETTE.charcoal }}>The Iran Shock: Modeling How an Oil Crisis Reaches Indian Household Budgets</h3>
       <p className="mt-3 leading-relaxed text-sm md:text-base" style={{ color: `${PALETTE.charcoal}B3` }}>
-        Modeled the cascading impact of Strait of Hormuz risk and Brent crude spike ($120+) on India's economy: rupee depreciation to ₹94.5/$, OMC daily losses of ₹1,700 Cr, and 87.1% effective cost increase. Built a scenario-based pump price transmission model across income quintiles.
+        Built a crude-to-pump-price transmission model using PPAC, EIA, RBI, and MOSPI data. Quantified the compound shock of Brent crude surge and rupee depreciation (₹85.5 → ₹96.82) across 5 income quintiles — and deployed the findings as an interactive household cost simulator.
       </p>
       <ProofBlock
         accent={fire}
-        methods="Oil-price transmission model, pump price formula (crude × INR/USD + duties), quintile impact analysis, Python"
-        output="Household cost calculator (5 income quintiles), OMC loss model, FX pressure dashboard, scenario comparisons"
-        finding="Lowest-income quintile faces 4.2× greater relative burden; energy diversification critical to reduce shock sensitivity"
+        methods="Pump price transmission formula (crude × INR/USD ÷ yield × duties), quintile impact model (HCES 2022-23), OMC under-recovery calculation, Python + SQL"
+        output="Interactive household cost calculator (5 income quintiles), rupee depreciation chart, OMC loss model, sector impact tabs (fuel · LPG · aviation · food)"
+        finding="Bottom quintile carries 2.6× greater relative fuel burden vs top quintile; ~68% theoretical pump price shock vs. current administered prices"
       />
       <div className="mt-2 flex flex-wrap gap-2">
         {tags.map((tag) => (
@@ -629,16 +629,16 @@ function IranShockCard() {
         ))}
       </div>
       <p className="mt-3 text-xs font-semibold" style={{ color: `${fire}CC` }}>
-        <span style={{ color: fire }}>Proves:</span> Python transmission modeling · SQL aggregation · Excel scenario analysis · quintile impact modeling · business recommendations
+        <span style={{ color: fire }}>Proves:</span> Price transmission modeling · quintile impact analysis · multi-source data synthesis · interactive dashboard · macroeconomic research
       </p>
       <div className="mt-2 flex flex-wrap gap-3">
         <a href="https://github.com/salomigandra/data-analytics-case-studies/tree/main/iran-shock" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: PALETTE.slate }}>GitHub →</a>
       </div>
-      <Link href="/blog/iran-shock-india-economy"
+      <Link href="/work/iran-shock"
         className="mt-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 self-start"
         style={{ backgroundColor: fire, color: "#fff", outlineColor: fire }}
-        aria-label="Explore the Iran Shock data story">
-        Explore the data story
+        aria-label="Explore the Iran Shock case study">
+        Explore the case study
         <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12m0 0l-5-5m5 5l-5 5" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
       </Link>
     </div>
@@ -818,7 +818,7 @@ export default function WorkPage() {
       <section className="mx-auto max-w-6xl px-4 pb-16">
         <h2 className="text-center text-2xl md:text-3xl font-semibold">Data Case Studies</h2>
         <p className="text-center mt-2 text-sm md:text-base" style={{ color: `${PALETTE.charcoal}80` }}>
-          Six independently researched case studies — each with a clear business question, sourced data, and decision-ready output.
+          Six independently researched case studies — each with a structured problem statement, cited data sources, and decision-ready findings.
         </p>
 
         {/* ── Featured Projects ── */}
