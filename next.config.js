@@ -5,12 +5,8 @@ const nextConfig = {
     path: '/_next/image',
     formats: ['image/avif', 'image/webp'],
   },
-  async redirects() {
-    return [
-      // Redirect bare / → /work
-      { source: '/', destination: '/work', permanent: true },
-    ];
-  },
+  // Redirect removed — handled by app/page.js using next/navigation redirect()
+  // so Google sees a clean single response rather than a config-level 301 chain.
   // Allows Next.js to recognise .md and .mdx as page extensions
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
 };

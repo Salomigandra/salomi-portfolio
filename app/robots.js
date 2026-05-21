@@ -7,7 +7,13 @@ export default function robots() {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/"],
+        // Block internal Next.js infra paths only — not the broad /_next/ tree,
+        // which can accidentally match paths Google legitimately wants to reach.
+        disallow: [
+          "/api/",           // server-side API routes — not indexable content
+          "/_next/static/",  // JS / CSS bundles
+          "/_next/image",    // image optimiser endpoint
+        ],
       },
     ],
     sitemap: "https://salomigandra.me/sitemap.xml",
