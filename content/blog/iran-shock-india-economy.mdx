@@ -24,6 +24,17 @@ I built an interactive React-based economic shock simulator, modeled fuel, LPG, 
 
 ---
 
+## The Model, Step by Step
+
+The pass-through chain is four multiplications, each with a stated source:
+
+1. **Crude → landed cost**: Brent price × USD/INR rate × import dependency (~90%, PPAC). Both shock variables move together — that's why this crisis compounds: a 51% crude rise landed as a ~68% rupee-cost rise.
+2. **Landed cost → pump price**: pump prices are administered, so I model a pass-through *scenario* (₹14/L) rather than a mechanical formula, benchmarked against OMC under-recovery disclosures (~₹1,700 crore/day).
+3. **Pump price → household cost**: vehicle type × km/month × mileage. The calculator exposes these as user inputs instead of hiding averages.
+4. **Burden by income**: fuel + cooking-energy share of household spending by consumption quintile (NSSO/HCES). The bottom quintile spends roughly 2.6× the share of its budget on energy that the top quintile does — same price shock, very different pain. That's the headline number, and it's a *relative burden* ratio, not a rupee ratio.
+
+**Limits.** Administered pricing means step 2 is a scenario, not a forecast — the government can absorb the shock fiscally, as it partially did. FPI outflow and reserve figures are point-in-time estimates that were being revised weekly. The food-CPI channel (fertiliser → crop cost) is directionally modeled, not econometrically estimated.
+
 ## How a War Reaches Your Kitchen
 
 When the United States and Israel launched military operations against Iranian nuclear facilities in **February 2026**, Brent crude crossed **$110/barrel** within days. The Strait of Hormuz — through which roughly 20% of the world's seaborne oil passes — entered partial closure on March 4, 2026. India, which imports approximately **90% of its crude oil**, had limited insulation from what followed.
@@ -65,6 +76,10 @@ The full case study includes:
 - A **household impact calculator**: input your vehicle type, WFH days, km per day, gold holdings, and overseas travel budget to see your estimated monthly impact from the oil and currency shock
 - A **national aggregate calculator**: models what happens to OMC losses and forex reserves if a given share of India's population adopts each of Modi's four asks
 - Interactive charts: rupee trend, crude oil price, FPI outflows, and forex reserves — all updated to May 2026
+
+## The Analyst's Takeaway
+
+Two things in this data matter more than the headline crude price. First, the **quintile asymmetry**: any fiscal response designed around average household impact will underserve the bottom 40%, because their energy burden is structurally 2.6× heavier — targeted LPG subsidy protection beats broad excise cuts on equity per rupee. Second, of PM Modi's four asks, the data ranks **gold-import reduction** as the highest-leverage behavioural lever ($3–4B forex saved per 10% reduction, versus ~$1B for travel cuts) — yet it received the least public attention. When the levers are quantified side by side, the communication priority looks misallocated.
 
 ---
 

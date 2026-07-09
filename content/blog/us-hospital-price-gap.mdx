@@ -10,6 +10,14 @@ caseStudyUrl: "/work/hospital-pricing"
 
 > **This is a data case study with interactive price comparison charts.** [View the full interactive version →](/work/hospital-pricing)
 
+## How I Built This
+
+**Sources.** RAND Hospital Price Transparency Study (4th edition, 2022) for hospital-vs-Medicare price ratios; OECD Health Statistics 2022 for per-capita spending; Himmelstein et al. (NEJM, 2020) for administrative overhead; Patient Rights Advocate reports for compliance rates; CFPB (2022) and KFF polling for medical debt.
+
+**Method.** Cross-country prices aren't directly comparable procedure-by-procedure, so I use two normalizations: (1) **Medicare multiples** — expressing each hospital's negotiated rates as a percentage of what Medicare pays for the identical procedure code, which is RAND's method and controls for procedure mix; and (2) **per-capita spending ratios** for the international view. The "2.35× above global benchmarks" headline is US per-capita spending ($12,555) divided by the average of five peer systems (UK, Germany, Canada, Japan, Australia — ~$5,350). Those are two different lenses; the 224%-of-Medicare figure is about *price*, the 2.35× figure is about *total spending* — I keep them separate because conflating them is how healthcare statistics usually go wrong.
+
+**Assumptions & limits.** Hospital-published transparency files are inconsistent enough that RAND's employer-claims sample remains more reliable than the raw CMS files; per-capita comparisons bundle price, utilisation, and demographics, so the 2.35× is a system-level gap, not a pure price gap; debt figures are self-reported survey data with the usual biases.
+
 ## The Most Expensive Healthcare System That Isn't the Healthiest
 
 The United States spends **$12,555 per person per year** on healthcare (OECD 2022). The UK, operating a single-payer National Health Service, spends **$3,795** — less than a third — and achieves comparable or better outcomes across most indicators (Commonwealth Fund Mirror on the Wall 2023).
@@ -57,6 +65,10 @@ The full case study includes:
 - The global spending comparison chart: US vs. UK, Germany, Canada, Japan, and Australia
 - A breakdown of administrative overhead vs. clinical spending
 - The compliance tracker for the price transparency rule
+
+## The Analyst's Takeaway
+
+The data says the binding constraint isn't information — it's incentives. Transparency files exist and haven't moved patient behaviour, because patients don't choose hospitals mid-emergency and can't parse gigabyte JSON files. If I were analysing this for a payer or policy team, the actionable levers in the data are: (1) reference pricing tied to Medicare multiples, which directly targets the 224% wedge; and (2) penalty structures indexed to hospital revenue rather than flat caps, since the compliance data shows flat penalties priced non-compliance as a cheap licence. The 3–10× same-city price spread is the clearest signal in the dataset that this is a negotiation-power problem, not a cost-of-care problem.
 
 ---
 

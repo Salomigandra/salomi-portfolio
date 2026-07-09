@@ -10,6 +10,14 @@ caseStudyUrl: "/work/air-quality"
 
 > **This is a data case study with interactive AQI charts and health impact calculators.** [View the full interactive version →](/work/air-quality)
 
+## How I Built This
+
+**Sources.** AQLI 2023 (University of Chicago EPIC) for life-expectancy impact by state and city; State of Global Air 2024 (IHME/HEI) for mortality attribution; CPCB annual-average PM2.5 for city-level readings; WHO 2021 guidelines for the benchmark; NCAP documents for policy targets.
+
+**Method.** I compiled annual-mean PM2.5 for 20 Indian cities, benchmarked each against the WHO guideline (5 µg/m³) and India's own NAAQS (40 µg/m³), and applied the AQLI dose–response relationship — roughly **0.98 years of life expectancy lost per 10 µg/m³ of sustained PM2.5 exposure** (Ebenstein et al., 2016) — to translate concentrations into the life-expectancy figures in the charts. The personal exposure calculator multiplies your city's annual mean by years of residence and applies the same coefficient. The "~27,000 preventable deaths" figure comes from scaling the mortality attribution to the gap between NAAQS and WHO thresholds.
+
+**Assumptions & limits.** Annual city means hide seasonal spikes (Delhi winters run far above the mean); the AQLI coefficient assumes sustained exposure, so the calculator is an approximation for people who move between cities; monitoring-station coverage is thin outside major metros, so smaller-city readings likely understate exposure. I'd treat every figure here as directionally solid, not precise to the digit.
+
 ## The Numbers the Headlines Miss
 
 India's air quality crisis is reported in outrage cycles — Delhi winter smog, stubble burning season, the odd WHO ranking. What gets lost is the *cumulative* picture that emerges when you put the annual data together.
@@ -48,6 +56,10 @@ What hasn't worked at scale: enforcement of stubble burning bans, industrial emi
 The interactive case study includes a personal exposure calculator: input your city, age, and years of residence, and the model estimates your cumulative PM2.5 exposure and its health impact using the AQLI methodology.
 
 It also shows the city-level PM2.5 comparison across 20 Indian cities and the global context — where India sits relative to WHO standards, China, and Europe.
+
+## The Analyst's Takeaway
+
+If I were advising a state pollution board with a fixed budget, this data points at two decisions: prioritise the Indo-Gangetic Plain corridor (highest exposure × highest population density = largest life-years recovered per rupee), and spend on the two source categories with proven, measurable interventions — vehicular standards and household LPG substitution — rather than on enforcement programs (stubble bans) that a decade of data shows don't hold. The gap between NAAQS and WHO limits is the single highest-leverage policy variable in the dataset: closing even half of it changes the mortality math more than any city-level program.
 
 ---
 
