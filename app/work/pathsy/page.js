@@ -69,13 +69,13 @@ const VALIDATION_ROWS = [
   ["Humanities aspirant", "Arts / Humanities", "1", "1"],
   ["Law / professional", "Integrated law", "1", "1"],
   ["Pharmacy aspirant", "Pharmacy", "2", "2"],
-  ["Hands-on trade seeker", "ITI trades", "2", "2 *"],
+  ["Hands-on trade seeker", "ITI trades", "2", "1 *"],
   ["Diploma-first student", "Polytechnic", "2", "2"],
   ["Defence aspirant", "Defence prep", "4 ❌", "1 ✅"],
 ];
 
 const METRICS = [
-  ["Quiz completion rate", "starts → 8/8 answered; per-question drop-off finds weak questions"],
+  ["Quiz completion rate", "starts → 9/9 answered; per-question drop-off finds weak questions"],
   ["Save rate", "saves ÷ path views — the product's real conversion of interest into intent"],
   ["Zero-result search rate", "share of searches returning nothing; its top terms are the content roadmap"],
   ["Demand concentration", "share of views in top-3 streams — quantifies the engineering/medicine bias"],
@@ -202,15 +202,19 @@ GROUP BY c.id, c.slug, c.name
 HAVING COUNT(DISTINCT sr.id) < 4
     OR COUNT(DISTINCT ce.exam_id) = 0;`}</Code>
         <Finding>
-          22 of 78 active courses are missing the full 4-band salary progression, and 74 of 78
-          have <em>zero</em> rows in the exam junction table — exam data was living in a free-text
-          column instead, which blocks exam-based filtering. Both are now queued as data-migration
-          work. Auditing your own curation is humbling; it is also the job.
+          The audit found 22 of 78 active courses missing the full 4-band salary progression, and
+          74 of 78 with <em>zero</em> rows in the exam junction table — exam data was living in a
+          free-text column, which blocks exam-based filtering. I backfilled the junction: 46 exams
+          added, ~100 course–exam links with mandatory flags. The backfill also corrected the
+          metric itself: 23 of those &quot;missing&quot; courses are ITI trades and skill
+          certifications with <em>no entrance exam at all</em> — a completeness metric needs a
+          &quot;not applicable&quot; category before you treat every zero as missing data.
+          Auditing your own curation is humbling; it is also the job.
         </Finding>
 
         <SectionLabel n="05">Validating the recommendation engine (Python)</SectionLabel>
         <P>
-          The quiz scores 8 answers against per-path JSONB weights. To test calibration, I
+          The quiz scores 9 answers against per-path JSONB weights. To test calibration, I
           defined 9 student archetypes — the answers a stereotypical aspirant of each path would
           pick, chosen from option text alone — and ran them through the live scoring matrix:
         </P>
@@ -242,15 +246,14 @@ HAVING COUNT(DISTINCT sr.id) < 4
           only 2 of 32 quiz options carried any defence weight. My first rebalance fixed the ranks
           but overcorrected: ITI could suddenly outrank engineering for any tinkering-minded
           student, which is unrealistic in India, and Defence collected points from options
-          unrelated to service. The final design is <strong>zeal-gated</strong>: Defence scores
-          only from explicit service signals (&quot;serving the nation&quot;, &quot;serving in
-          uniform&quot;) and can never rank first without them; ITI&apos;s defining weight sits on
-          &quot;1–2 years — a skill and a job as quickly as possible&quot;, the actual reason
-          students choose ITI. Result: 6/9 rank #1, 9/9 in top 3.
+          unrelated to service. The final design is <strong>commitment-gated</strong>: a ninth
+          question asks what the student has <em>actually done</em> (trained for NDA, visited an
+          ITI centre, researched entrance exams), and high-stakes paths only rank first when that
+          action signal is present. Result: 7/9 rank #1, 9/9 in top 3.
           <span className="block mt-2 text-[13px]" style={{ color: `${C.charcoal}70` }}>
-            * ITI deliberately ranks second behind engineering for a tinkering-profile student —
-            it ranks first only when the student signals a 1–2-year time-to-income constraint.
-            Calibration is a product decision, not just a math one.
+            * ITI ranks first only for a student who has actually visited a training centre and
+            wants a 1–2-year route to income; a tinkering-profile student still gets engineering
+            first. Calibration is a product decision, not just a math one.
           </span>
         </Finding>
 

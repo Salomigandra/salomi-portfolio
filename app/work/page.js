@@ -208,7 +208,7 @@ function PathsyCard() {
   const lime = "#86C986";
 
   const updates = [
-    { label: "8-question quiz",  detail: "Calibration validated with 9 archetypes in Python" },
+    { label: "9-question quiz",  detail: "Calibration validated with 9 archetypes in Python" },
     { label: "4 stages live",    detail: "After 10th · 12th · Graduation · Vocational" },
     { label: "78 courses",       detail: "833 career roles, 4-band salary data — audited in SQL" },
   ];
@@ -279,7 +279,7 @@ function PathsyCard() {
           </p>
 
           <p className="mt-2 text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.42)" }}>
-            On top sits a transparent weighted-scoring quiz engine: 8 questions carrying per-path JSONB weights — no black box. I validated its calibration in Python with simulated student archetypes, found a real bias toward academic tracks, and redesigned the weights so high-stakes paths need an explicit intent signal — 9/9 archetypes now land in the top 3.
+            On top sits a transparent weighted-scoring quiz engine: 9 questions carrying per-path JSONB weights — no black box. I validated its calibration in Python with simulated student archetypes, found a real bias toward academic tracks, and redesigned the scoring so high-stakes paths need an explicit commitment signal — 9/9 archetypes now land in the top 3.
           </p>
 
           {/* Milestone pills row */}
