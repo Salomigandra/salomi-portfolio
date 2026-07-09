@@ -10,3 +10,4 @@ pnpm-*.log*
 .vscode
 .idea
 *.swp
+.claude/
