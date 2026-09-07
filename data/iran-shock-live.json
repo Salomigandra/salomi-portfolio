@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-09-06",
-  "lastUpdatedIST": "2026-09-06 21:09 IST",
+  "lastUpdated": "2026-09-07",
+  "lastUpdatedIST": "2026-09-07 23:21 IST",
   "usdInr": {
-    "closing": 94.51,
+    "closing": 94.55,
     "intradayLow": 96.96,
     "baseline": 85.5,
-    "changePercent": 10.5
+    "changePercent": 10.6
   },
   "brentCrude": {
     "current": 96.28,
