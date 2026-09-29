@@ -1,14 +1,14 @@
 {
   "lastUpdated": "2026-09-29",
-  "lastUpdatedIST": "2026-09-29 01:17 IST",
+  "lastUpdatedIST": "2026-09-29 23:42 IST",
   "usdInr": {
-    "closing": 95.93,
+    "closing": 96.07,
     "intradayLow": 96.96,
     "baseline": 85.5,
-    "changePercent": 12.2
+    "changePercent": 12.4
   },
   "brentCrude": {
-    "current": 98.14,
+    "current": 96.6,
     "peak": 114.0,
     "baseline": 72.5,
     "unit": "USD/barrel"
